@@ -29,4 +29,12 @@ Two scenarios are possible. The first one is to create a new Watson Studio proje
 
 ## New empty Watson Studio 
 
-Create new GitHub repository. If repository is not empty, the content will be removed after integration with Watson Studio project.
+Create a new GitHub repository. If the repository is not empty, the content will be removed after integration with Watson Studio project.
+
+Create a new Watson Studio project integrated with GitHub.
+
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202020-11-17%2023-01-07.png)
+
+Important: Check "Integrate with project with Git" at the moment of project creation. It cannot be set when a project is created.<br>
+Creation of the project can fail during GitHub synchronization. Make sure that GitHub token has enough privileges and recreate the project.
+
