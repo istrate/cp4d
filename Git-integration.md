@@ -15,7 +15,7 @@ Upper-right image -> Settings -> Developer settings -> Personal access token
 
 Use existing token or generate new one dedicated to IP4D synchronization
 
-!()[asd]
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202020-11-17%2022-37-02.png)
 
 
 
