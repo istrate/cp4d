@@ -1,4 +1,4 @@
-# Connect or not connect
+# To connect or not to connect
 
 The GitHub integration with Watson Studio project. <br>
 https://www.ibm.com/support/knowledgecenter/en/SSQNUZ_3.0.1/wsj/manage-data/git-integration.html<br>
