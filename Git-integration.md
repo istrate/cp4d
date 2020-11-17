@@ -15,5 +15,7 @@ Upper-right image -> Settings -> Developer settings -> Personal access token
 
 Use existing token or generate new one dedicated to IP4D synchronization
 
+!()[asd]
+
 
 
