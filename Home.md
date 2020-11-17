@@ -1,4 +1,4 @@
-Welcome to the CP4D wiki!
+Welcome to the IBM CP4D Wiki!
 
 | Information | Link
 | -----------|--------------|
