@@ -34,10 +34,16 @@ sbartkowski:cpd$
 ```
 <br>
 Make sure that MySQL database is up and running.
+> oc get pods
+```
+NAME                      READY   STATUS    RESTARTS   AGE
+mysql-openshift-1-85ft6   1/1     Running   1          26h
+```
+> oc port-forward mysql-openshift-1-85ft6  3306:3306<br>
 
 
 
-Create a route.
+# Create a route.
 
 > oc expose service mysql-openshift<br>
 > of get route<br>
