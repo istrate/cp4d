@@ -6,7 +6,7 @@ https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/svc-w
 Execution Engine for Apache Hadoop is one of the services available on IBM Cloud Pak for Data platform. The service integrates CP4D and Hadoop, two Hadoop implementations are supported: CDH (Cloudera) and HDP (former HortonWorks, now Cloudera).
 <br>
 
-An installation of the service requires installation and configuration on both sides, Hadoop and CP4D. Steps necessary to activate the service are described here https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/wsj/install/install-hadoop.html. <br>
+An installation of the service requires installation and configuration on both sides, Hadoop and CP4D. Steps necessary to activate the service are described here: https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/wsj/install/install-hadoop.html. <br>
 <br>
 In the rest of this article, there is a description of practical steps to activate the service.
 
