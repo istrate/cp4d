@@ -87,6 +87,8 @@ Route exposes *mysql-openshift-sb.apps.rumen.os.fyre.ibm.com* hostname and *3306
 
 # Solution using the service
 
+## Discover ClusterIP
+
 > oc describe service mysql-openshift<br>
 
 ```
@@ -104,4 +106,75 @@ Endpoints:         10.254.12.23:3306
 Session Affinity:  None
 ```
 
-CluserIP address *172.30.94.36* is not visible from gateway node because it is the part of internal OpenShift network. 
+## Make ClusterIP accessible from Gateway node
+
+CluserIP address *172.30.94.36* is not visible from Gateway node because it is the part of internal OpenShift network. 
+
+On Gateway node<br>
+<br>
+Step 1: Create IP route to reach ClusterIP (172.30.94.36) assuming OpenShift Master node *10.16.35.203*
+<br>
+> ip route add   172.30.94.0/24 via 10.16.35.203 dev eth0<br>
+<br>
+Test *mysql-openshift* service (assuming MySQL client installed on Gateway node)
+
+> mysql -uuser1 -pmypa55 --protocol tcp -h 172.30.94.36<br>
+```
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 5.7.24 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> 
+```
+
+Make IP route permanent to survive network restart.<br>
+
+> vi /etc/sysconfig/network-scripts/route-eth0<br>
+```
+ADDRESS0=172.30.94.0
+NETMASK0=255.255.255.0
+GATEWAY0=10.16.35.203
+```
+
+# Configure HAProxt on Gateway node
+
+Assuming public IP address of Gateway node is *9.30.220.176*. Forward all tradif on *3306* port to ClusterIP.
+<br>
+
+> vi /etc/haproxy/haproxy.cfg 
+```
+listen mysql
+        bind 9.30.220.176:3306
+        mode tcp
+        server server1 172.30.94.36:3306 check
+
+```
+
+Restart HAProxy.
+
+> systemctl restart haproxy
+
+## Test from the client desktop
+<br>
+> mysql -uuser1 -pmypa55 --protocol tcp -h mysql-openshift-sb.apps.rumen.os.fyre.ibm.com<br>
+
+```
+mysql: [Warning] Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 5.7.24 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> 
+```
