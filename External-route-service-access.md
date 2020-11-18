@@ -160,6 +160,7 @@ Restart HAProxy.
 
 ## Test from the client desktop
 <br>
+
 > mysql -uuser1 -pmypa55 --protocol tcp -h mysql-openshift-sb.apps.rumen.os.fyre.ibm.com<br>
 
 ```
