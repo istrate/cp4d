@@ -72,7 +72,7 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 mysql> 
 ```
 
-# Create a route.
+# Create a route
 
 > oc expose service mysql-openshift<br>
 > oc get route<br>
@@ -81,7 +81,27 @@ NAME              HOST/PORT                                       PATH   SERVICE
 mysql-openshift   mysql-openshift-sb.apps.rumen.os.fyre.ibm.com          mysql-openshift   3306-tcp                 None
 
 ```
+Route exposes *mysql-openshift-sb.apps.rumen.os.fyre.ibm.com* hostname and *3306* port. But hostname points to Gateway which is not part of the OpenShift cluster and Gateway is unable to forward the port to OpenShift route.
 
+> oc delete route mysql-openshift
 
+# Solution using the service
 
+> oc describe service mysql-openshift<br>
 
+```
+Name:              mysql-openshift
+Namespace:         sb
+Labels:            app=mysql-openshift
+                   app.kubernetes.io/component=mysql-openshift
+                   app.kubernetes.io/instance=mysql-openshift
+.....
+Type:              ClusterIP
+IP:                172.30.94.36
+Port:              3306-tcp  3306/TCP
+TargetPort:        3306/TCP
+Endpoints:         10.254.12.23:3306
+Session Affinity:  None
+```
+
+CluserIP address *172.30.94.36* is not visible from gateway node because it is the part of internal OpenShift network. 
