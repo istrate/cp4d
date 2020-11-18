@@ -23,7 +23,7 @@ The client can access the gateway node and run OpenShift console or *oc* command
 
 <br>
 > oc new-app --as-deployment-config  --docker-image=registry.access.redhat.com/rhscl/mysql-57-rhel7:latest --name=mysql-openshift  -e MYSQL_USER=user1 -e MYSQL_PASSWORD=mypa55 -e MYSQL_DATABASE=testdb  -e MYSQL_ROOT_PASSWORD=r00tpa55<br>
-
+<br>
 This command creates MySQL instance and MySQL service.
 <br>
 > oc get svc
@@ -33,12 +33,14 @@ mysql-openshift   ClusterIP   172.30.94.36   <none>        3306/TCP   4d12h
 sbartkowski:cpd$ 
 ```
 <br>
-Make sure that MySQL database is up and running.
-> oc get pods
+
+Make sure that MySQL database is up and running.<br>
+> oc get pods<br>
 ```
 NAME                      READY   STATUS    RESTARTS   AGE
 mysql-openshift-1-85ft6   1/1     Running   1          26h
 ```
+
 > oc port-forward mysql-openshift-1-85ft6  3306:3306<br>
 
 
