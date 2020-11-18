@@ -26,7 +26,7 @@ The client can access the gateway node and run OpenShift console or *oc* command
 <br>
 This command creates MySQL instance and MySQL service.
 <br>
-> oc get svc
+> oc get svc<br>
 ```
 NAME              TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
 mysql-openshift   ClusterIP   172.30.94.36   <none>        3306/TCP   4d12h
@@ -35,6 +35,7 @@ sbartkowski:cpd$
 <br>
 
 Make sure that MySQL database is up and running.<br>
+
 > oc get pods<br>
 ```
 NAME                      READY   STATUS    RESTARTS   AGE
