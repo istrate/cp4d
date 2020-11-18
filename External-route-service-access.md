@@ -2,11 +2,11 @@
 
 https://docs.openshift.com/container-platform/4.5/networking/routes/route-configuration.html
 
-OpenShift is an extension to Kubernetes service allowing external access to OpenShift/Kubernetes applications. But it requires at least one of the OpenShift nodes to be accessible directly from the client node.<br>
+OpenShift route is an extension to Kubernetes service allowing external access to OpenShift/Kubernetes applications. But it requires at least one of the OpenShift nodes to be accessible directly from the client node.<br>
 
 # Architecture
 
-Assume the architecture where the whole OpenShift cluster is running on a private network and the gateway is a separate node running in both networks, private and public, but not being included in the OpenShift cluster
+Assume the architecture where the whole OpenShift cluster is running on a private network and the gateway is a separate node running in both networks, private and public, but not being included in the OpenShift cluster.
 
 | Node | Network | Role 
 | --- | ---- | ---- 
