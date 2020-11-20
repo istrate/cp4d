@@ -1,5 +1,8 @@
 # Registry 
 
+https://www.techrepublic.com/article/how-to-set-up-a-local-image-repository-with-podman/
+
+
 Creating a private image registry is simple and straightforward. Assume that hostname for registry is *thinkde*
 
 # Create registry
