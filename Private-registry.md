@@ -36,6 +36,7 @@ thinkde:5000   thinkde:5000/db2                 0
 ```
 # Push/pull
 
+> podman tag db2 thinkde:5000/db2<br>
 > podman push db2 thinkde:5000/db2<br>
 
 >  podman pull thinkde:5000/db2<br>
