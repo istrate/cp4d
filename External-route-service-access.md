@@ -140,9 +140,9 @@ NETMASK0=255.255.255.0
 GATEWAY0=10.16.35.203
 ```
 
-# Configure HAProxt on Gateway node
+# Configure HAProxy on OpenShift Infra node
 
-Assuming public IP address of Gateway node is *9.30.220.176*. Forward all tradif on *3306* port to ClusterIP.
+Assuming public IP address of Gateway node is *9.30.220.176*. Forward all traffic on *3306* port to ClusterIP.
 <br>
 
 > vi /etc/haproxy/haproxy.cfg 
