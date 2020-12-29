@@ -19,6 +19,7 @@
     nodeSelecter:
         tier: silver
 ```
+> of create -f loadtest.yaml
 # Misc commands
 | Command | Description |
 | --- | ---- |
