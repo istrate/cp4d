@@ -20,6 +20,8 @@
         tier: silver
 ```
 > of create -f loadtest.yaml
+# Resource limits
+
 # Misc commands
 | Command | Description |
 | --- | ---- |
