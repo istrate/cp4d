@@ -42,6 +42,64 @@
               memory: "20Mi"
 
 ```
+# Login and users
+## Create OpenShift credentials
+| Command | Description
+| --- | ---- |
+| htpasswd -c -B -b htpasswd admin redhat | Create new htpasswd file and insert admin/redhat credentials
+| htpasswd -b htpasswd developer developer | Add credentials to existing htpasswd file
+| oc create secret generic localusers --from-file htpasswd=htpasswd -n openshift-config | Create 
+| oc adm policy add-cluster-role-to-user cluster-admin admin | Nominate *admin* user as OpenShift cluster admin
+| oc adm policy add-role-to-user edit sbdev -n sb | Grant *edit* privileges for user in a particular project only
+## Modify existing credentials
+Get existing credentials
+> oc extract secret/localusers -n openshift-config --confirm<br>
+
+Add new credentials
+> htpasswd -b htpasswd manager redhat<br>
+
+Refresh credentials in OpenShift
+> oc set data secret/localusers --from-file htpasswd=htpasswd -n openshift-config<br>
+
+## Random password
+> MANAGER_PASSWD="$(openssl rand -hex 15)"<br>
+> htpasswd -b htpasswd manager ${MANAGER_PASSWD}
+
+## Delete user
+| Command | Description 
+| ---- | ---- |
+| htpasswd -D htpasswd manager | Remove user from htpasswd file
+| oc delete user manager | Delete user from OpenShift
+
+## Delete all users
+> oc edit oauth<br>
+```
+spec: {}
+```
+
+> oc delete secret localusers -n openshift-config<br>
+> oc delete user --all<br>
+> oc delete identity --all
+## Specify OpenShift credentials
+
+> oc get oauth cluster -o yaml >oauth.yaml<br>
+
+Mind *localuser* name the same for 'oauth' and *secret*<br>
+
+```
+spec:
+  identityProviders:
+  - htpasswd:
+     fileData:
+        name: localusers
+    mappingMethod: claim
+    name: myusers
+    type: HTPasswd    
+```
+
+> oc replace -f oauth.yaml<br>
+
+
 # Misc commands
 | Command | Description |
 | --- | ---- |
