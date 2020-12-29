@@ -21,7 +21,26 @@
 ```
 > of create -f loadtest.yaml
 # Resource limits
+## Command
+| Command | Description |
+| ------ | --------- |
+|oc autoscale deployment/loadtest --min 3 --max 40 --cpu-percent 70 | Deployment will scale from 3 to 40 id cpu usage exceeds 70% | 
+| oc create quota project-quota --hard cpu="1",memory="2G",configmaps="3",pods="20" | Assign quotas for current project. Add -n if project different then current
+## Limits for deployment
+```
+   spec:
+        containers:
+        - image: ' '
+          name: loadtest
+          ports:
+          - containerPort: 8080
+            protocol: TCP
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "20Mi"
 
+```
 # Misc commands
 | Command | Description |
 | --- | ---- |
