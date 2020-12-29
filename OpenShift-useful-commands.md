@@ -51,6 +51,26 @@
 | oc create secret generic localusers --from-file htpasswd=htpasswd -n openshift-config | Create 
 | oc adm policy add-cluster-role-to-user cluster-admin admin | Nominate *admin* user as OpenShift cluster admin
 | oc adm policy add-role-to-user edit sbdev -n sb | Grant *edit* privileges for user in a particular project only
+
+## Specify OpenShift credentials
+> oc get oauth cluster -o yaml >oauth.yaml<br>
+
+Mind *localuser* name the same for 'oauth' and *secret*<br>
+
+```
+spec:
+  identityProviders:
+  - htpasswd:
+     fileData:
+        name: localusers
+    mappingMethod: claim
+    name: myusers
+    type: HTPasswd    
+```
+
+> oc replace -f oauth.yaml<br>
+
+
 ## Modify existing credentials
 Get existing credentials
 > oc extract secret/localusers -n openshift-config --confirm<br>
@@ -80,25 +100,6 @@ spec: {}
 > oc delete secret localusers -n openshift-config<br>
 > oc delete user --all<br>
 > oc delete identity --all
-## Specify OpenShift credentials
-
-> oc get oauth cluster -o yaml >oauth.yaml<br>
-
-Mind *localuser* name the same for 'oauth' and *secret*<br>
-
-```
-spec:
-  identityProviders:
-  - htpasswd:
-     fileData:
-        name: localusers
-    mappingMethod: claim
-    name: myusers
-    type: HTPasswd    
-```
-
-> oc replace -f oauth.yaml<br>
-
 
 # Misc commands
 | Command | Description |
