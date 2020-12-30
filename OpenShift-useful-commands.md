@@ -101,8 +101,19 @@ spec: {}
 > oc delete user --all<br>
 > oc delete identity --all
 
+# Versions, upgrade
+| Command | Description
+| --- | --- |
+| oc patch clusterversion version --type="merge" --patch '{"spec":{"channel":"fast-4.5"}}' | Switch to another channel (fast/stable/candidate)
+| oc get clusterversion | Retrieve the cluster version 
+| oc get clusterversion -o json | jq ".items[0].spec.channel" | Retrieve the current update channel
+| oc adm upgrade | List the available updates
+| oc adm upgrade --to-latest=true | Install the latest update 
+| oc get clusteroperators | List cluster operators and versions
+| oc describe clusterversion | Display more detailed information about cluster version
+
 # Misc commands
 | Command | Description |
 | --- | ---- |
 | oc new-project demo --node-selector "tier=special" | Create a project where all containers will be labelled "ties=special"
-|  oc new-app --name loadtest  --docker-image quay.io/redhattraining/loadtest:v1.0  --dry-run --save-config -f loadtest.yaml | Creates a yaml specification only
+| oc new-app --name loadtest  --docker-image quay.io/redhattraining/loadtest:v1.0  --dry-run --save-config -f loadtest.yaml | Creates a yaml specification only
