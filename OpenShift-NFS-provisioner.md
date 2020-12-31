@@ -60,3 +60,35 @@ NAME                  PROVISIONER      RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOW
 managed-nfs-storage   fuseim.pri/ifs   Delete          Immediate           false                  35s
 ```
 ```
+# Test
+## Create test PVC
+
+> curl -s https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/test-claim.yaml | oc create -f -<br>
+```
+persistentvolumeclaim/test-claim created
+```
+
+Make sure that *pvc* is bounded, *Bound* value in *STATUS* column.<br>
+
+> oc get pvc<br>
+```NAME         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS          AGE
+test-claim   Bound    pvc-2fd9aeaf-4bff-49a9-b6c4-187fe91ce820   1Mi        RWX            managed-nfs-storage   43s
+```
+## Create test application
+
+> curl -s https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/test-pod.yaml | oc create -f -<br>
+```
+pod/test-pod created
+```
+
+The *Completed* value in *STATUS* column is expected.<br>
+
+> oc get pods<br>
+NAME                                      READY   STATUS      RESTARTS   AGE
+test-pod                                  0/1     Completed   0          4m19s
+
+Logon to NFS server host and verify the SUCCESS file.<br>
+> ll /data/nfs2/nfs-storage-test-claim-pvc-2fd9aeaf-4bff-49a9-b6c4-187fe91ce820/
+```
+-rw-r--r-- 1 root root 0 12-31 15:55 SUCCESS
+```
