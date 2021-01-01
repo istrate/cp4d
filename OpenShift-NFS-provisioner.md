@@ -55,12 +55,13 @@ nfs-client-provisioner-59b865db57-6bf89   1/1     Running   0          38s
 storageclass.storage.k8s.io/managed-nfs-storage created
 ```
 
-> oc get sc
+> oc get sc<br>
+
 ```
 NAME                  PROVISIONER      RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
 managed-nfs-storage   fuseim.pri/ifs   Delete          Immediate           false                  35s
 ```
-```
+
 # Test
 ## Create test PVC
 
@@ -72,7 +73,9 @@ persistentvolumeclaim/test-claim created
 Make sure that *pvc* is bounded, *Bound* value in *STATUS* column.<br>
 
 > oc get pvc<br>
-```NAME         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS          AGE
+
+```
+NAME         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS          AGE
 test-claim   Bound    pvc-2fd9aeaf-4bff-49a9-b6c4-187fe91ce820   1Mi        RWX            managed-nfs-storage   43s
 ```
 ## Create a test application
@@ -95,3 +98,6 @@ Logon to NFS server host and verify the SUCCESS file.<br>
 ```
 -rw-r--r-- 1 root root 0 12-31 15:55 SUCCESS
 ```
+
+> oc delete pod/test-pod<br>
+> oc delete pvc/test-claim<br>
