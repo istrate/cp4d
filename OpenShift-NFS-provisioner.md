@@ -84,8 +84,10 @@ pod/test-pod created
 The *Completed* value in *STATUS* column is expected.<br>
 
 > oc get pods<br>
+```
 NAME                                      READY   STATUS      RESTARTS   AGE
 test-pod                                  0/1     Completed   0          4m19s
+```
 
 Logon to NFS server host and verify the SUCCESS file.<br>
 > ll /data/nfs2/nfs-storage-test-claim-pvc-2fd9aeaf-4bff-49a9-b6c4-187fe91ce820/
