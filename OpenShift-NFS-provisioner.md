@@ -62,7 +62,7 @@ NAME                  PROVISIONER      RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOW
 managed-nfs-storage   fuseim.pri/ifs   Delete          Immediate           false                  35s
 ```
 
-To make *managed-nfs-storage* a default class, add a *is-default-class* annotation.
+To make *managed-nfs-storage* a default class, add *is-default-class* annotation.
 
 ```
 annotations:
