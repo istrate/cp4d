@@ -12,7 +12,7 @@ Install and configure the NFS server. Make sure that NFS host is visible and NFS
 
 # OpenShift project
 
-You can use a default project or create a separate project to keep NFS related objects. Here *nfs-storage* project is used.<br>
+You can use a default project or create a separate project to keep NFS related objects. In this example, *nfs-storage* project is used.<br>
 
 > oc new-project nfs-storage<br>
 
