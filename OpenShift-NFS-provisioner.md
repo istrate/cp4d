@@ -1,6 +1,7 @@
 # OpenShift NFS provisioner
 
-This page is an adaptation of https://medium.com/faun/openshift-dynamic-nfs-persistent-volume-using-nfs-client-provisioner-fcbb8c9344e
+This page is an adaptation of:<br>
+https://medium.com/faun/openshift-dynamic-nfs-persistent-volume-using-nfs-client-provisioner-fcbb8c9344e
 
 # Prerequisities
 
@@ -74,7 +75,7 @@ Make sure that *pvc* is bounded, *Bound* value in *STATUS* column.<br>
 ```NAME         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS          AGE
 test-claim   Bound    pvc-2fd9aeaf-4bff-49a9-b6c4-187fe91ce820   1Mi        RWX            managed-nfs-storage   43s
 ```
-## Create test application
+## Create a test application
 
 > curl -s https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/test-pod.yaml | oc create -f -<br>
 ```
