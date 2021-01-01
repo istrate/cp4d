@@ -137,14 +137,14 @@ Assume:<br>
 * NFS host: 9.30.97.206
 * Mount point: /data/nfs
 
-Use the same *nfs-storage* project<br>
+Use the same *nfs-storage* project.<br>
 
 > oc project nfs-storage<br>
 
-Download Deployment yaml<br>
+Download Deployment yaml.<br>
 > wget https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/deployment.yaml<br>
 
-Modify manually<br>
+Modify manually.<br>
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -186,7 +186,7 @@ spec:
 
 ```
 
-Create *nfs-zen-provisioner* deployment
+Create *nfs-zen-provisioner* deployment.
 > oc create -f deployment.yaml<br>
 ```
 deployment.apps/nfs-zen-provisioner created
@@ -198,7 +198,7 @@ nfs-client-provisioner-59b865db57-6bf89   1/1     Running   0          13h
 nfs-zen-provisioner-b796d9774-dxf4x       1/1     Running   0          8s
 ```
 
-Create StorageClass<br>
+Create StorageClass.<br>
 > curl -s https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/class.yaml | sed s@nfs-@zen-@g | sed s@ifs@zen@g | oc create -f -
 
 ```
@@ -213,12 +213,12 @@ managed-zen-storage             fuseim.pri/zen   Delete          Immediate      
 
 ## Test
 
-The same test as above but modify the claimed StorageClass<br>
+The same test as above but modify the claimed StorageClass.<br>
 
 > curl -s https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/test-claim.yaml | sed s@-nfs@-zen@g | oc create -f -<br>
 > curl -s https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/test-pod.yaml | oc create -f -
 
-Logon to *9.30.97.206* NFS server<br>
+Logon to *9.30.97.206* NFS server.<br>
 > ll /data/nfs/nfs-storage-test-claim-pvc-854785ef-1267-4bb1-b64e-9378521e4b41/<br>
 ```
 -rw-r--r-- 1 root root 0 01-01 05:42 SUCCESS
