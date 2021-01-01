@@ -62,6 +62,29 @@ NAME                  PROVISIONER      RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOW
 managed-nfs-storage   fuseim.pri/ifs   Delete          Immediate           false                  35s
 ```
 
+To make *managed-nfs-storage* a default class, add a *is-default-class* annotation.
+
+```
+annotations:
+    storageclass.kubernetes.io/is-default-class: 'true'
+```
+
+> oc edit sc managed-nfs-storage<br>
+```
+....
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+  creationTimestamp: "2020-12-31T23:50:45Z"
+  managedFields:
+```
+
+> oc get sc<br>
+```
+NAME                            PROVISIONER      RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+managed-nfs-storage (default)   fuseim.pri/ifs   Delete          Immediate           false                  19m
+```
+
 # Test
 ## Create test PVC
 
