@@ -48,7 +48,7 @@ deployment.apps/nfs-client-provisioner created
 NAME                                      READY   STATUS    RESTARTS   AGE
 nfs-client-provisioner-59b865db57-6bf89   1/1     Running   0          38s
 ```
-# Create Storage Class
+# Create StorageClass
 
 > curl -s https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/class.yaml | oc create -f -
 ```
