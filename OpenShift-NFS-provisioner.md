@@ -16,7 +16,7 @@ You can use a default project or create a separate project to keep NFS related o
 
 > oc new-project nfs-storage<br>
 
-# Create serviceaccount and role
+# Create ServiceAccount and Role
 
  > curl -s https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/serviceaccount.yaml | sed "s@: default@: nfs-storage@g" | oc create -f -
 ```
