@@ -30,7 +30,7 @@ registries = ['thinkde:5000']
 > curl -X GET http://thinkde:5000/v2/_catalog<br>
 ```
 {"repositories":["db2"]}
-
+```
 > curl -X GET http://thinkde:5000/v2/db2/tags/list
 
 > podman search thinkde:5000/
