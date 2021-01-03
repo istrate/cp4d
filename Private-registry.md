@@ -11,6 +11,10 @@ Use external storage for registry, here */disk/registry*.
 
 > podman run --privileged -d --name registry -p 5000:5000  -v /disk/registry:/var/lib/registry  registry:2<br>
 
+To enable removing from registry.<br>
+
+> podman run --privileged -d --name registry -p 5000:5000 -e REGISTRY_STORAGE_DELETE_ENABLED=true  -v /disk/registry:/var/lib/registry registry:2
+
 # Configure client for HTTP
 
 As a default, *podman* client is reaching registry using a secure connection.
@@ -27,7 +31,7 @@ registries = ['thinkde:5000']
 ```
 {"repositories":["db2"]}
 
-```
+> curl -X GET http://thinkde:5000/v2/db2/tags/list
 
 > podman search thinkde:5000/
 ```
@@ -41,4 +45,12 @@ thinkde:5000   thinkde:5000/db2                 0
 
 >  podman pull thinkde:5000/db2<br>
 
+# skopeo
 
+To maintain the registry, install *skopeo* utility.
+
+> yum install skopeo<br>
+
+Remove from the registry.<br>
+
+>  skopeo delete docker://localhost:5000/mail:latest<br>
