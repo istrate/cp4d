@@ -118,3 +118,4 @@ spec: {}
 | oc new-project demo --node-selector "tier=special" | Create a project where all containers will be labelled "ties=special"
 | oc new-app --name loadtest  --docker-image quay.io/redhattraining/loadtest:v1.0  --dry-run --save-config -f loadtest.yaml | Creates a yaml specification only
 |  oc adm node-logs --role=master -u kubelet | Get master nodes logs
+| oc whoami --show-console | OC console hostname
