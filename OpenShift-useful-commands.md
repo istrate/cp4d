@@ -48,6 +48,7 @@
 | --- | ---- |
 | htpasswd -c -B -b htpasswd admin redhat | Create new htpasswd file and insert admin/redhat credentials
 | htpasswd -b htpasswd developer developer | Add credentials to existing htpasswd file
+| htpasswd -n -b tester redhat | Generate U/P line only
 | oc create secret generic localusers --from-file htpasswd=htpasswd -n openshift-config | Create 
 | oc adm policy add-cluster-role-to-user cluster-admin admin | Nominate *admin* user as OpenShift cluster admin
 | oc adm policy add-role-to-user edit sbdev -n sb | Grant *edit* privileges for user in a particular project only
