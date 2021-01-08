@@ -52,6 +52,7 @@
 | oc create secret generic localusers --from-file htpasswd=htpasswd -n openshift-config | Create 
 | oc adm policy add-cluster-role-to-user cluster-admin admin | Nominate *admin* user as OpenShift cluster admin
 | oc adm policy add-role-to-user edit sbdev -n sb | Grant *edit* privileges for user in a particular project only
+| oc adm policy add-role-to-user admin db2admin -n db2 | Making of project admin (db2admin/db2)
 
 ## Specify OpenShift credentials
 > oc get oauth cluster -o yaml >oauth.yaml<br>
