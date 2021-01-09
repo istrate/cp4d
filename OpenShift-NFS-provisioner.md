@@ -129,7 +129,7 @@ Logon to NFS server host and verify the SUCCESS file.<br>
 
 ## Create
 
-In order to utilize another NFS server, create a similar Deployment and StorageClass but under different names.<br>
+In order to utilize another NFS server, create a similar Deployment and StorageClass but using different names.<br>
 
 Assume:<br>
 * Deployment name: nfs-zen-provisioner
