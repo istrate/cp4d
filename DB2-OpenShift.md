@@ -63,8 +63,58 @@ c-db2ucluster-sample-etcd            ClusterIP   None             <none>        
 c-db2ucluster-sample-ldap            ClusterIP   172.30.59.53     <none>        50389/TCP                                                                         14m
 c-db2ucluster-sample-tools           ClusterIP   172.30.32.134    <none>        53/TCP,53/UDP        
 ```
+For *c-db2ucluster-sample-db2u-engn-svc* pod take notice of *NodePort*, *31753* port of non-secure connection and *30397* port for secure connection.<br>
+
+Get *ip* addresses for master node(s).<br>
+```
+NAME                               STATUS   ROLES    AGE   VERSION
+master0.bewigged.os.fyre.ibm.com   Ready    master   24d   v1.19.0+7070803
+master1.bewigged.os.fyre.ibm.com   Ready    master   24d   v1.19.0+7070803
+master2.bewigged.os.fyre.ibm.com   Ready    master   24d   v1.19.0+7070803
+worker0.bewigged.os.fyre.ibm.com   Ready    worker   24d   v1.19.0+7070803
+worker1.bewigged.os.fyre.ibm.com   Ready    worker   24d   v1.19.0+7070803
+worker2.bewigged.os.fyre.ibm.com   Ready    worker   24d   v1.19.0+7070803
+worker3.bewigged.os.fyre.ibm.com   Ready    worker   24d   v1.19.0+7070803
+worker4.bewigged.os.fyre.ibm.com   Ready    worker   24d   v1.19.0+7070803
+
+```
+Modify *HAProxy* configuration. Replace hostname with corresponding *ip* addresses and restart *haproxy* service.
+
+> vi /etc/haproxy/haproxy.cfg<br>
+```
+.........
+frontend db2
+        bind *:31753
+        default_backend db2u
+        mode tcp
+        option tcplog
+
+backend db2u
+        balance source
+        mode tcp
+        server master0 10.16.71.16:31753 check
+        server master1 10.16.71.50:31753 check
+        server master2 10.16.71.52:31753 check
 
 
+frontend db2ssl
+        bind *:30397
+        default_backend db2ussl
+        mode tcp
+        option tcplog
 
+backend db2ussl
+        balance source
+        mode tcp
+        server master0 10.16.71.16:30397 check
+        server master1 10.16.71.50:30397 check
+        server master2 10.16.71.52:30397 check
+
+```
+# Verify using *DB2* CLP
+Assuming hostname of infrastructure node *bewigged-inf*.<br>
+
+> db2 catalog tcpip node DB2BLU remote bewigged-inf server 31753<br>
+> db2 catalog database BLUDB at node DB2BLU<br>
 
 
