@@ -47,7 +47,22 @@ Go to pod related to *db2ucluster* and open terminal<br>
  SQL authorization ID   = DB2INST1
  Local database alias   = BLUDB
 ```
+# Open external access to OpenShift DB2
 
+DB2 operator creates a number of services related to DB2. One method to use "OpenShift" route but this option is now always available.<br>
+Another method is to redirect ports in *HAProxy* gateway on infrastructure node.<br>
+
+Get service ports.<br>
+> oc project db2<br>
+```
+NAME                                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                                                                           AGE
+c-db2ucluster-sample-db2u            ClusterIP   172.30.83.77     <none>        50000/TCP,50001/TCP,25000/TCP,25001/TCP,25002/TCP,25003/TCP,25004/TCP,25005/TCP   12m
+c-db2ucluster-sample-db2u-engn-svc   NodePort    172.30.155.188   <none>        50000:31753/TCP,50001:30397/TCP                                                   12m
+c-db2ucluster-sample-db2u-internal   ClusterIP   None             <none>        50000/TCP,9443/TCP                                                                12m
+c-db2ucluster-sample-etcd            ClusterIP   None             <none>        2379/TCP,2380/TCP                                                                 13m
+c-db2ucluster-sample-ldap            ClusterIP   172.30.59.53     <none>        50389/TCP                                                                         14m
+c-db2ucluster-sample-tools           ClusterIP   172.30.32.134    <none>        53/TCP,53/UDP        
+```
 
 
 
