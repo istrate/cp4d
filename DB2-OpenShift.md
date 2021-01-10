@@ -112,9 +112,22 @@ backend db2ussl
 
 ```
 # Verify using *DB2* CLP
+
+Password for *db2inst1* user is generated randomly and stored in related secret. In *Secret* panel, identify the line similar to *c-db2ucluster-sample-instancepassword* and copy the content. Example: XeYnwqqWcrbfiLx
+
 Assuming hostname of infrastructure node *bewigged-inf*.<br>
 
 > db2 catalog tcpip node DB2BLU remote bewigged-inf server 31753<br>
 > db2 catalog database BLUDB at node DB2BLU<br>
 
+Try to connect using *db2inst1* and password.<br>
 
+> db2 attach to db2blu user db2inst1<br>
+Enter current password for db2inst1: 
+
+   Instance Attachment Information
+
+ Instance server        = DB2/LINUXX8664 11.5.5.0
+ Authorization ID       = DB2INST1
+ Local instance alias   = DB2BLU
+```
