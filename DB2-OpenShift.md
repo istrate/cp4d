@@ -22,7 +22,7 @@ Deploy *Entitlement Key* following an instruction attached to the operator. In *
 
 https://www.ibm.com/support/producthub/db2/docs/content/SSEPGG_11.5.0/com.ibm.db2.luw.db2u_openshift.doc/database-storage-aese.html
 
-There is a number of options available. For testing and evaluating, NFS storage is possible. 
+There are several options available. For testing and evaluating, NFS storage is possible. 
 
 https://github.com/stanislawbartkowski/CP4D/wiki/OpenShift-NFS-provisioner
 
