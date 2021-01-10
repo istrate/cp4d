@@ -1,3 +1,7 @@
 # DB2 and OpenShift
 
-DB2 can be easily installed using DB2 Operator.
+Containerized DB2 is available for RedHat OpenShift. The installation is easy and straightforward also in a tiny environment.
+
+# Enable DB22 Operator
+
+
