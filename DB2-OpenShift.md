@@ -34,6 +34,20 @@ The simplest option is "Db2u Cluster". "OC Console" -> Project db2 -> Installed 
 
 In order to use non-default storage, open "YAML View" and enter appropriate StorageClass name in the *storageClassName* property.
 
+# Verify that DB2 is up and running
+
+Go to pod related to *db2ucluster* and open terminal<br>
+> su - db2inst1<br>
+> db2 list db directory<br>
+> db2 connect to BLUDB<br>
+```
+   Database Connection Information
+
+ Database server        = DB2/LINUXX8664 11.5.5.0
+ SQL authorization ID   = DB2INST1
+ Local database alias   = BLUDB
+```
+
 
 
 
