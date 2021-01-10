@@ -123,6 +123,7 @@ Assuming hostname of infrastructure node *bewigged-inf*.<br>
 Try to connect using *db2inst1* and password.<br>
 
 > db2 attach to db2blu user db2inst1<br>
+```
 Enter current password for db2inst1: 
 
    Instance Attachment Information
