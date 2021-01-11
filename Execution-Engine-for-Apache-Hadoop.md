@@ -129,9 +129,9 @@ If WebHDFS is listening on a secure port, add WebHDFS certificates to Hadoop Eng
 ## Register CP4D URL
 
 > cd /opt/ibm/dsxhi/bin<br>
-> ./manage_known_dsx.py -d https://zen-cpd-zen.apps.rumen.os.fyre.ibm.com:443<br>
+> ./manage_known_dsx.py -a https://zen-cpd-zen.apps.rumen.os.fyre.ibm.com:443<br>
 
-Verify and mind Hadoop Engine endpoint.
+Verify CP4D and DSXHI endpoints.<br>
 > ./manage_known_dsx.py -l<br>
 ```
 DSX Local Cluster URL			                                            DSXHI Service URL
