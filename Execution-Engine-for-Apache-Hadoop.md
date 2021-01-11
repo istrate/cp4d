@@ -37,7 +37,7 @@ Verify<br>
 
 > bin/cpd-linux status --assembly hadoop-addon --namespace zen<br>
 
-# Install on HDP cluster
+# Install HEE component on HDP cluster
 
 https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/wsj/install/installing-hadoop-cluster.html
 
@@ -56,7 +56,7 @@ Directories after installation.
 
 ## Configuration 
 
-Collect Hadoop endpoints
+Collect Hadoop endpoints:<br>
 
 | Endpoint | Example |
 | ---- | ---- |
