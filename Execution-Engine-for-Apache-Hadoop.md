@@ -14,8 +14,8 @@ In the rest of this article, there is a description of practical steps to activa
 
 https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/wsj/install/installing-hadoop-cluster.html
 
-Usually, Hadoop nodes meet the prerequisites required.<br>
-In the article, the following hostnames are used.
+In this article, the following hostnames are used.<br>
+
 <br>
 | Role | Hostname |
 | --- | --- |
