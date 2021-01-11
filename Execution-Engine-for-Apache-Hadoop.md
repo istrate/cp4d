@@ -61,7 +61,7 @@ Collect Hadoop endpoints:<br>
 
 | Endpoint | Example |
 | ---- | ---- |
-| WebHDFS | (here secure) 
+| WebHDFS | (here secure port) bushily1.fyre.ibm.com:50470
 | Hive URL | jdbc:hive2://bushily2.fyre.ibm.com:10000
 | Ambari URL | http://exile1.fyre.ibm.com:8080 |
 | Ambari credentials | admin/admin
