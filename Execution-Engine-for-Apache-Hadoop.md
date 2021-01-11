@@ -17,6 +17,7 @@ https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/wsj/i
 In this article, the following hostnames are used.<br>
 
 <br>
+
 | Role | Hostname |
 | --- | --- |
 | Edge node for Hadoop part | exile1.fyre.ibm.com |
