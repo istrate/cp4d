@@ -50,7 +50,7 @@ nfs-client-provisioner-59b865db57-6bf89   1/1     Running   0          38s
 ```
 # Create StorageClass
 
-> curl -s https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/class.yaml | oc create -f -
+> oc create -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/class.yaml
 ```
 storageclass.storage.k8s.io/managed-nfs-storage created
 ```
