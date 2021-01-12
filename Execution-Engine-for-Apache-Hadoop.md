@@ -12,6 +12,8 @@ In the rest of this article, there is a description of practical steps to activa
 
 # Prerequisites
 
+In CPD3.x, the Hive access through Execution Engine for Hadoop supports only Cloudera Hadoop distribution. HDP (HortonData Platform) is not supported.<br>
+
 https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/wsj/install/installing-hadoop-cluster.html
 
 In this article, the following hostnames are used.<br>
