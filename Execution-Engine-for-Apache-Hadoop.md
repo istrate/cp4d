@@ -155,13 +155,16 @@ After registering CP4D, a corresponding endpoint specification is created.
 
 # Register Hadoop Engine in CP4D
 
-CP4D Console->Configure Platform->Hadoop integration->Add Registration<br>
+CP4D Console->Platform configuration->Systems integration->New integration<br>
 <br>
 | Property | Value |
 | ---- | ---- |
 | Name | (any name) MyCluster |
 | Service user ID | dsxhi |
 | Service URL | (output from ./manage_known_dsx.py -l command) https://exile1.fyre.ibm.com:8443/gateway/zen-cpd-zen |
+
+All runtimes:<br>
+Push "Jupyter with Python". It can take a number of minutes until completed. Make sure that Status is reported as "Push succeeded".
 
 # Verify
 
