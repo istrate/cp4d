@@ -22,7 +22,8 @@ In this article, the following hostnames are used.<br>
 | --- | --- |
 | Edge node for Hadoop part | exile1.fyre.ibm.com |
 | HDFS Name node | bushily1.fyre.ibm.com |
-| CP4D node | https://zen-cpd-zen.apps.rumen.os.fyre.ibm.com:443	
+| CP4D node | https://zen-cpd-zen.apps.rumen.os.fyre.ibm.com:443
+| Livy URL | http://sawtooth1.fyre.ibm.com:8999
 
 Hadoop version: HDP
 
