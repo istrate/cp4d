@@ -88,7 +88,7 @@ managed-nfs-storage (default)   fuseim.pri/ifs   Delete          Immediate      
 # Test
 ## Create test PVC
 
-> curl -s https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/test-claim.yaml | oc create -f -<br>
+> oc create -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/test-claim.yaml
 ```
 persistentvolumeclaim/test-claim created
 ```
@@ -103,7 +103,7 @@ test-claim   Bound    pvc-2fd9aeaf-4bff-49a9-b6c4-187fe91ce820   1Mi        RWX 
 ```
 ## Create a test application
 
-> curl -s https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/test-pod.yaml | oc create -f -<br>
+> oc create -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/test-pod.yaml
 ```
 pod/test-pod created
 ```
