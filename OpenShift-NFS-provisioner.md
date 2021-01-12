@@ -216,7 +216,7 @@ managed-zen-storage             fuseim.pri/zen   Delete          Immediate      
 The same test as above but modify the claimed StorageClass.<br>
 
 > curl -s https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/test-claim.yaml | sed s@-nfs@-zen@g | oc create -f -<br>
-> curl -s https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/test-pod.yaml | oc create -f -
+> oc create -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/test-pod.yaml
 
 Logon to *9.30.97.206* NFS server.<br>
 > ll /data/nfs/nfs-storage-test-claim-pvc-854785ef-1267-4bb1-b64e-9378521e4b41/<br>
