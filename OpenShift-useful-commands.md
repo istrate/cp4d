@@ -57,7 +57,7 @@
 ## Specify OpenShift credentials
 > oc get oauth cluster -o yaml >oauth.yaml<br>
 
-Mind *localuser* name the same for 'oauth' and *secret*<br>
+Pay attention to *localuser* name the same for 'oauth' and *secret*<br>
 
 ```
 spec:
@@ -72,6 +72,9 @@ spec:
 
 > oc replace -f oauth.yaml<br>
 
+Or edit a configuration directly:<br>
+
+>  oc edit oauth cluster
 
 ## Modify existing credentials
 Get existing credentials
