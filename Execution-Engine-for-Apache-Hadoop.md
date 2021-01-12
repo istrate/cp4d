@@ -163,8 +163,9 @@ CP4D Console->Platform configuration->Systems integration->New integration<br>
 | Service user ID | dsxhi |
 | Service URL | (output from ./manage_known_dsx.py -l command) https://exile1.fyre.ibm.com:8443/gateway/zen-cpd-zen |
 
-All runtimes:<br>
+All runtimes panel:<br>
 Push "Jupyter with Python". It can take a number of minutes until completed. Make sure that Status is reported as "Push succeeded".
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-01-12%2023-22-35.png)
 
 # Verify
 
