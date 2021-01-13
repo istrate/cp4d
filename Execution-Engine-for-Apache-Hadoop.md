@@ -58,6 +58,12 @@ Directories after installation.
 | /opt/ibm/dsxhi | Binaries and configuration
 | /var/log/dsxhi | Log files |
 
+## Service user
+
+Create *dsxhi* service user and make him the owner of Hadoop Engine files.
+> addser dsxhi<br>
+> chown -R /opt/ibm/dsxhi<br>
+
 ## Configuration 
 
 Collect Hadoop endpoints:<br>
@@ -292,4 +298,21 @@ Project->Add to project->Notebook->Select runtime (JEG environment)
 
 ![](https://github.com/stanislawbartkowski/wikis/blob/master/img/Zrzut%20ekranu%20z%202020-11-03%2014-10-03.png)
 
+# Kerberized HDP
 
+Add *dsxhi* user to Kerberos and obtain appropriate *keytab* file. Modify Hahdoop Engine configuration file.<br>
+> vi /opt/ibm/dsxhi/conf/dsxhi_install.conf<br>
+```
+# If the HDP cluster is kerberized, it is mandatory to specify the complete
+# path to the keytab for the dsxhi service user and the spnego keytab.
+# If the HDP cluster is not kerberized, this field should be left blank.
+dsxhi_serviceuser_keytab=/etc/security/keytabs/dsxhi.keytab
+dsxhi_spnego_keytab=/etc/security/keytabs/spnego.service.keytab
+```
+If HDP was Kerberized after Hadoop Engine installation, it is necessary to reinstall it again.<br>
+> cd /opt/ibm/dsxhi/bin<br>
+> ./manage_known_dsx.py -a https://zen-cpd-zen.apps.rumen.os.fyre.ibm.com:443<br>
+> ./uninstall.py<br>
+> ./install.py<br>
+
+Also 
