@@ -323,13 +323,13 @@ Hadoop proxy user *dsxhi* impersonates CP4D user to launch Yarn Spark job. Follo
 * create HDFS */user/{CP4D user}* directory and make CP4D user the owner of this directory
 * if Ranger is installed, create a policy to authorize CP4D user to submit jobs in Yarn
 
-# User mapping
+# CP4D user mapping
 
-It is possible to change CP4D user into any other more convenient user name in backend Hadoop cluster.<br>
+It is possible to change CP4D user into any other more convenient user name in a backend Hadoop cluster.<br>
 
 https://knox.apache.org/books/knox-0-12-0/user-guide.html#Default+Identity+Assertion+Provider
 
-Modify appropriate Hadoop Engine gateway configuration file:<br>
+Modif Hadoop Engine gateway configuration file:<br>
 > vi /opt/ibm/dsxhi/gateway/conf/topologies/zen-cpd-zen.xml
 ```
 ..........
