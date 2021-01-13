@@ -300,7 +300,8 @@ Project->Add to project->Notebook->Select runtime (JEG environment)
 
 # Kerberized HDP
 
-Add *dsxhi* user to Kerberos and obtain appropriate *keytab* file. Modify Hahdoop Engine configuration file.<br>
+Register *dsxhi* user in Kerberos and obtain appropriate *keytab* file. Modify Hahdoop Engine configuration file.<br>
+
 > vi /opt/ibm/dsxhi/conf/dsxhi_install.conf<br>
 ```
 # If the HDP cluster is kerberized, it is mandatory to specify the complete
@@ -315,4 +316,37 @@ If HDP was Kerberized after Hadoop Engine installation, it is necessary to reins
 > ./uninstall.py<br>
 > ./install.py<br>
 
-Also 
+Also in CP4D, the Hadoop integration should be recreated again.<br>
+<br>
+Hadoop proxy user *dsxhi* impersonates CP4D user to launch Yarn Spark job. Following steps should be performed for CP4D user:<br>
+* register in Kerberos/AD
+* create HDFS */user/{CP4D user}* directory and make CP4D user the owner of this directory
+* if Ranger is installed, create a policy to authorize CP4D user to submit jobs in Yarn
+
+# User mapping
+
+It is possible to change CP4D user into any other more convenient user name in backend Hadoop cluster.<br>
+
+https://knox.apache.org/books/knox-0-12-0/user-guide.html#Default+Identity+Assertion+Provider
+
+Modify appropriate Hadoop Engine gateway configuration file:<br>
+> vi /opt/ibm/dsxhi/gateway/conf/topologies/zen-cpd-zen.xml
+```
+..........
+  <provider>
+         <role>identity-assertion</role>
+         <name>Default</name>
+         <enabled>true</enabled>
+        <param>
+            <name>principal.mapping</name>
+            <value>admin=guest;</value>
+        </param>
+      </provider>
+.........
+```
+Restart the gateway:<br>
+> cd /opt/ibm/dsxhi/bin<br>
+> ./stop.py<br>
+> ./start.py<br>
+
+The CP4D *admin* user will reach the Hadoop cluster as *guest* user. All prerequisites regarding Hadoop users (Kerberos registering, HDFS home directory and Yarn authorization) should be applied to *guest* user as well.<br>
