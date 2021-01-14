@@ -117,6 +117,14 @@ spec: {}
 | oc get clusteroperators | List cluster operators and versions
 | oc describe clusterversion | Display more detailed information about cluster version
 
+# anyuid ServiceAccount
+
+| Command | Description |
+| --- | ---- | 
+| oc create sa uuid-sa | Create ServiceAccount
+| oc adm policy add-scc-to-user anyuid -z uuid-sa | Assign anyuid
+| oc set serviceaccount deployment/appl uuid-sa | Assign ServiceAccount to deployment
+
 # Misc commands
 | Command | Description |
 | --- | ---- |
