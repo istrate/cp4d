@@ -117,6 +117,15 @@ spec: {}
 | oc get clusteroperators | List cluster operators and versions
 | oc describe clusterversion | Display more detailed information about cluster version
 
+
+# Debug
+
+| Command | Description |
+| ---- | ---- |
+| oc debug -t deployment/mysql | Creates ephemeral container similar to specified
+| oc debug -t deployment/mysql --image registry.access.redhat.com/ubi8/ubi:8.0 | The same but using a different image
+| oc debug -t deployment/mysql --as-root | Run as root, only if the policy allows it
+
 # anyuid ServiceAccount
 
 | Command | Description |
