@@ -213,11 +213,50 @@ Project->Add to project (top button)->Connected data->Select source<br>
 
 ![](https://github.com/stanislawbartkowski/wikis/blob/master/img/Zrzut%20ekranu%20z%202020-11-02%2023-50-30.png)
 
+## Jupyter notebook accessing HDFS data
+
+After opening the notebook, Watson Studio can inject a Python code to get access data to remove HDFS file.
+
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-01-15%2023-59-50.png)
+
+Using the data injected, we can create an URL and get access to HDFS using KNOX HDFS Rest/API. https://cwiki.apache.org/confluence/display/KNOX/Examples+WebHDFS
+
+```
+# @hidden_cell
+# The following code contains the credentials for a connection in your Project.
+# You might want to remove those credentials before you share your notebook.
+
+from project_lib import Project
+project = Project.access()
+Hello_txt_credentials = project.get_connected_data(name="Hello.txt")
+h = Hello_txt_credentials
+
+
+URL = url = h['url'] + h['datapath']
+headers = {'authorization': 'Bearer ' +  h['access_token']}
+params = {'op' : 'GETFILESTATUS'}
+
+import requests
+r = requests.get(url,headers=headers,params=params)
+
+print(r.content)
+
+# read HDFS file
+params= {'op': 'OPEN'}
+r = requests.get(url,headers=headers,params=params)
+print(r.text)
+
+Output: 'Hello\nI am\nStanisław\n'
+
+```
+
+
 ## Jupyter notebook integrated with remote Hadoop cluster
 
 Watson Studio Jupyter Notebook can run distributed Spark application on remote Hadoop cluster using HDFS/Hadoop resources. The integration is done by JEG (Jupyter Enterprise Gateway), one of CP4D Hadoop Execution Engine services.
 
 https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/wsj/local/hadoopmodels.html
+
 
 ### Prerequisites
 
