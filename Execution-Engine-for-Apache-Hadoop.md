@@ -231,7 +231,6 @@ project = Project.access()
 Hello_txt_credentials = project.get_connected_data(name="Hello.txt")
 h = Hello_txt_credentials
 
-
 URL = url = h['url'] + h['datapath']
 headers = {'authorization': 'Bearer ' +  h['access_token']}
 params = {'op' : 'GETFILESTATUS'}
@@ -247,9 +246,7 @@ r = requests.get(url,headers=headers,params=params)
 print(r.text)
 
 Output: 'Hello\nI am\nStanisław\n'
-
 ```
-
 
 ## Jupyter notebook integrated with remote Hadoop cluster
 
