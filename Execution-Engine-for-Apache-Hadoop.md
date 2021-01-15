@@ -239,6 +239,7 @@ import requests
 r = requests.get(url,headers=headers,params=params)
 
 print(r.content)
+Output: b'{"FileStatus":{"accessTime":1610404702071,"blockSize":134217728,"childrenNum":0,"fileId":21279,"group":"admin","length":22,"modificationTime":1610404702276,"owner":"hdfs","pathSuffix":"","permission":"644","replication":3,"storagePolicy":0,"type":"FILE"}}'
 
 # read HDFS file
 params= {'op': 'OPEN'}
