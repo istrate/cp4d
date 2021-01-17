@@ -1,1 +1,53 @@
-sd
+https://github.com/rook/rook/blob/master/Documentation/ceph-openshift.md<br>
+
+This webpage contains recommendation on Rook Ceph in OpenShit Kubernetes. Below are practical steps on how to do it.
+
+> git clone https://github.com/rook/rook.git<br>
+> cd rook/cluster/examples/kubernetes/ceph<br>
+
+Log in to OpenShift cluster using cluster admin credentails.
+
+> oc login -u admin -p secret<br>
+
+Security objects are created. Also a designed project *rook-ceph* is created.
+>oc create -f common.yaml<br>
+<br>
+Create an opeator. Image is pull from *docker.io*, make sure that *docker.io* credentials are deployed or *rook/ceph:master* image is pulled manually. https://github.com/stanislawbartkowski/CP4D/wiki/Docker.io-credentials<br>
+<br>
+> oc create -f operator-openshift.yaml<br>
+
+Create all remaining objects.<br>
+> oc create -f cluster.yaml<br>
+> oc create -f ./csi/rbd/storageclass.yaml<br>
+> oc create -f filesystem.yaml<br>
+> oc create -f ./csi/cephfs/storageclass.yaml<br>
+
+Verify that all appropriate pods are created. Only "Running" and "Completed" pods should be displayed.<br>
+
+> oc project rook-ceph<br>
+```
+NAME                                                              READY   STATUS      RESTARTS   AGE
+............
+csi-cephfsplugin-provisioner-c68f789b8-gwkww                      6/6     Running     0          96s
+csi-cephfsplugin-provisioner-c68f789b8-jdqml                      6/6     Running     0          96s
+csi-cephfsplugin-v8rbt                                            3/3     Running     0          97s
+csi-cephfsplugin-w5jtp                                            3/3     Running     0          97s
+csi-rbdplugin-4qllv                                               3/3     Running     0          98s
+csi-rbdplugin-provisioner-6c75466c49-wv5x7                        6/6     Running     0          98s
+csi-rbdplugin-provisioner-6c75466c49-zmgvr                        6/6     Running     0          98s
+csi-rbdplugin-s2ndj                                               3/3     Running     0          98s
+csi-rbdplugin-vfj7l                                               3/3     Running     0          98s
+csi-rbdplugin-x5lfv                                               3/3     Running     0          98s
+csi-rbdplugin-xc8d8                                               3/3     Running     0          98s
+rook-ceph-crashcollector-worker0.openshift.cluster.com-fv7pz      1/1     Running     0          18s
+rook-ceph-crashcollector-worker1.openshift.cluster.com-6xvzm      1/1     Running     0          94s
+...
+rook-ceph-osd-prepare-worker0.openshift.cluster.com-zg6pb         0/1     Completed   0          51s
+rook-ceph-osd-prepare-worker1..openshift.cluster.com-m547n        0/1     Completed   0          51s
+...
+```
+
+
+
+
+
