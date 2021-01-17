@@ -56,11 +56,14 @@ Verify Storage Classes<br>
 NAME                            PROVISIONER                     RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
 rook-ceph-block                 rook-ceph.rbd.csi.ceph.com      Delete          Immediate           true                   23h
 rook-cephfs                     rook-ceph.cephfs.csi.ceph.com   Delete          Immediate           true                   23h
-``
+```
 
 # Test
 
-## Create pvc
+## Create PVC
+
+> oc create -f csi/rbd/pvc.yaml<br>
+
 
 
 
