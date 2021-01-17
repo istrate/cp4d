@@ -23,20 +23,17 @@ Ncat: 0 bytes sent, 0 bytes received in 0.02 seconds.
 ```
 If not available, log on to any of OpenShift nodes and do the same.<br>
 
-Log in to OpenShift as *admin* user.<br>
+Log in to OpenShift as *admin* user<br>
 > oc login https://api.openshift.cluster.com:6443 -u admin -p secret.<br>
 
-Log in to *docker.io*.<br>
+Log in to *docker.io*<br>
 > podman login docker.io<br>
 
-Pull the image to local podman registry.<br>
+Pull the image to local podman registry<br>
 > podman pull docker.io/rook/ceph:master<br>
 
-Retag.<br>
+Retag<br>
 > podman tag docker.io/rook/ceph:master  image-registry.openshift-image-registry.svc:5000/openshift/rook/ceph:master<br>
 
-Push to OpenShift.<br>
+Push to OpenShift<br>
 > podman push  name.io/image image-registry.openshift-image-registry.svc:5000/openshift/image<br>
-
-
-
