@@ -1,3 +1,5 @@
+# Rook Ceph installation in Open Shift
+
 https://github.com/rook/rook/blob/master/Documentation/ceph-openshift.md<br>
 
 This webpage contains recommendation on Rook Ceph in OpenShit Kubernetes. Below are practical steps on how to do it.
@@ -46,6 +48,19 @@ rook-ceph-osd-prepare-worker0.openshift.cluster.com-zg6pb         0/1     Comple
 rook-ceph-osd-prepare-worker1..openshift.cluster.com-m547n        0/1     Completed   0          51s
 ...
 ```
+
+Verify Storage Classes<br>
+
+>oc get sc
+```
+NAME                            PROVISIONER                     RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE
+rook-ceph-block                 rook-ceph.rbd.csi.ceph.com      Delete          Immediate           true                   23h
+rook-cephfs                     rook-ceph.cephfs.csi.ceph.com   Delete          Immediate           true                   23h
+``
+
+# Test
+
+## Create pvc
 
 
 
