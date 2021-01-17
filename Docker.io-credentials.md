@@ -14,6 +14,29 @@ Go to the bottom, *Add Credentials", fill the form, and it is done.<br>
 Another method is to pull *docker.io* image manually and push it to OpenShift internal registry.<br>
 https://docs.openshift.com/container-platform/4.5/registry/accessing-the-registry.html<br>
 <br>
-Sample session.<br>
+Check accessibility of OpenShift internal registry.<br>
+>  nc -zv  image-registry.openshift-image-registry.svc 5000
+```
+Ncat: Version 7.70 ( https://nmap.org/ncat )
+Ncat: Connected to 172.30.108.134:5000.
+Ncat: 0 bytes sent, 0 bytes received in 0.02 seconds.
+```
+If not available, log on to any of OpenShift nodes and do the same.<br>
+
+Log in to OpenShift as *admin* user.<br>
+> oc login https://api.openshift.cluster.com:6443 -u admin -p secret.<br>
+
+Log in to *docker.io*.<br>
+> podman login docker.io<br>
+
+Pull the image to local podman registry.<br>
+> podman pull docker.io/rook/ceph:master<br>
+
+Retag.<br>
+> podman tag docker.io/rook/ceph:master  image-registry.openshift-image-registry.svc:5000/openshift/rook/ceph:master<br>
+
+Push to OpenShift.<br>
+> podman push  name.io/image image-registry.openshift-image-registry.svc:5000/openshift/image<br>
+
 
 
