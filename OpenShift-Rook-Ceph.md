@@ -48,7 +48,8 @@ rook-ceph-osd-prepare-worker0.openshift.cluster.com-zg6pb         0/1     Comple
 rook-ceph-osd-prepare-worker1..openshift.cluster.com-m547n        0/1     Completed   0          51s
 ...
 ```
-
+>  oc create -f toolbox.yaml<br>
+<br>
 Verify Storage Classes<br>
 
 >oc get sc
