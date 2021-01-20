@@ -83,6 +83,8 @@ Conduct necessary arrangements in remote Hadoop cluster, particularly make *bigs
 
 Also, give *bigsql* user access to HDFS Hive warehouse directory using *hdfs* command line or Ranger.<br>
 
+If Ranger authorization is enabled, give *bigsql* user access to Hive databases and tables.<br>
+
 # Provision DB2 BigSQL instance
 
 Collect all necessary information.<br>
