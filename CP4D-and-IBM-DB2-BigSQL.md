@@ -49,6 +49,22 @@ DB2 BigSQL is installed using the same method as all other CP4D services.<br>
 > ./cpd-cli adm --repo ./repo.yaml --assembly big-sql --namespace zen --apply<br>
 > ./cpd-cli install --repo ./repo.yaml --assembly big-sql   --namespace zen --storageclass managed-zen-storage<br>
 > ./cpd-cli status --assembly big-sql --namespace zen
+```
+Displaying CR status for all assemblies and relevant modules
+
+Status for assembly big-sql and relevant modules in project zen:
+
+Assembly Name                           Status            Version          Arch    
+big-sql                                 Ready             7.1.1            x86_64  
+
+  SubAssembly Name                      Status            Version          Arch    
+  lite                                  Ready             3.5.1            x86_64  
+
+  Module Name                           Version           Arch             Storage Class     
+  big-sql                               7.1.1             x86_64           managed-zen-storage
+
+=========================================================================================
+```
 
 # Provision DB2 BigSQL instance
 
