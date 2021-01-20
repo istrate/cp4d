@@ -118,3 +118,16 @@ All nodes are registered OK.
 Processing completed successfully
 Total Processing Time (secs) : 26
 ```
+
+Verify HDFS access.<br>
+> hdfs dfs -ls /tmp<br>
+```
+Found 10 items
+drwx------   - ambari-qa hdfs          0 2021-01-10 12:56 /tmp/ambari-qa
+drwxr-xr-x   - hdfs      hdfs          0 2021-01-08 14:30 /tmp/entity-file-history
+drwx-wx-wx   - hive      hdfs          0 2021-01-20 01:15 /tmp/hive
+-rw-r--r--   3 hdfs      hdfs       1024 2021-01-08 14:31 /tmp/id0b0a3020_date310821
+...........
+```
+
+Verify Hive Server2 connection.<br>
