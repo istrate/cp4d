@@ -79,3 +79,5 @@ Collect all necessary information.<br>
 | Ambari password | secret |
 | If Hadoop kerberized then Kerberos admin principal. <br> The same used for Hadoop kerberization | hadoopadmin@FYRE.NET
 | Kerberos admin password | secret
+
+In a tiny environment, the instance provisioning can be blocked because of lack of resources. The ugly and dirty solution on the fly is to reduce manually the cpu and memory request in Deployment yaml definition. Not recommended in a production environment.<br>
