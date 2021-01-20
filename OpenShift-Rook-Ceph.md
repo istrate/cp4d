@@ -127,8 +127,8 @@ write-box   0/1     Completed   0          2m21s
 ```
 
 Open a shell in *read-box* and verify */mnt/SUCCESS* file.<br>
->  oc exec -it read-box -- sh<br>
-># cat /mnt/SUCCESS<br>
+> oc exec -it read-box -- sh<br>
+> cat /mnt/SUCCESS<br>
 ```
 Hello world!
 ```
