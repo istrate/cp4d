@@ -147,6 +147,7 @@ metadata:
 | --- | ---- |
 | oc get pods --show-labels | Display all labels attached |
 | oc get pods -l app=ceph-test | Select pods according to labels |
+| oc delete pods -l app=ceph-test | Delete pods according to label |
 
 # Misc commands
 | Command | Description |
