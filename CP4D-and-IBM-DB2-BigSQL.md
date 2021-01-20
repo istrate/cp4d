@@ -172,7 +172,7 @@ Verify DB2 BigSQL Hive connection.<br>
 > db2 "insert into table test values(1)"
 > db2 "select * from test"<br>
 
-Verify that *test* table just created is a accessible in Hive.<br>
+Verify that *test* table just created is accessible in Hive.<br>
 > beeline -u .... -n bigsql
 > use bigsql;
 > show tables;
