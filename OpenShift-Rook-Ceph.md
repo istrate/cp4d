@@ -1,5 +1,3 @@
-(Under construction)<br>
-
 # Rook Ceph installation in Open Shift
 
 https://github.com/rook/rook/blob/master/Documentation/ceph-openshift.md<br>
