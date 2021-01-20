@@ -232,7 +232,8 @@ Create database and a table in Hive.<br>
 Log on the DB2 BigSQL Head pod.<br>
 > db2 connect to bigsql<br>
 
-Run *HCAT_SYNC_OBJECTS* stored procedure. This call brings to DB2 BigSQL all databases and tables from Hive. It is possible to tailor the command to meet more specialized needs.<br>
+Run *HCAT_SYNC_OBJECTS* stored procedure. This call brings to DB2 BigSQL all non-transactional tables from Hive. You can tailor the command to meet more specific needs.<br>
+
 https://www.ibm.com/support/knowledgecenter/en/SSCRJT_7.1.0/com.ibm.swg.im.bigsql.commsql.doc/doc/biga_hadsyncobj.html
 
 >  db2 "CALL SYSHADOOP.HCAT_SYNC_OBJECTS('.*','.*','a','REPLACE','CONTINUE')"
