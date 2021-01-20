@@ -8,6 +8,18 @@ There are two elements to install:<br>
 * IBM DB2 BigSQL in CP4D
 * Provision an instance of DB2 BigSQL
 
+# Limitations
+
+Comparing to standard IBM DB2 BigSQL, the CP4D DB2 BigSQL deployment comes with limitations.<br>
+
+https://www.ibm.com/support/knowledgecenter/en/SSQNUZ_3.5.0/svc-bigsql/bigsql_known_issues.html
+
+One is particularly important: <br>
+
+* Transactional tables are not supported.
+
+The transactional tables are enabled as default in Hive3. Only external tables, not managed by Hive, can be synchronized with DB2 IBM BigSQL.
+
 # Prerequisites
 
 https://www.ibm.com/support/knowledgecenter/en/SSQNUZ_3.5.0/svc-bigsql/bigsql_setup_cluster.html
