@@ -225,7 +225,7 @@ Create database and a table in Hive.<br>
 | synctest.x  |
 +-------------+
 | 1           |
-+--db-----------+
++-------------+
 
 ```
 
