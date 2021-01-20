@@ -74,5 +74,7 @@ Collect all necessary information.<br>
 
 | Parameter | Example |
 | ---- | ---- |
-| 
-
+| Ambari URL | sawtooth1.fyre.ibm.com:8080 |
+| Ambadri admin | admin |
+| Ambari password | secret |
+| If Hdaoop kerberized, Kerberos admin principal, the same used for Hadoop kerberization | hadoopadmin@FYRE.NET
