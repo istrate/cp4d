@@ -1,5 +1,3 @@
-(Under construction)
-
 https://www.ibm.com/support/knowledgecenter/en/SSQNUZ_3.5.0/svc-welcome/bigsql.html
 
 # Installation
