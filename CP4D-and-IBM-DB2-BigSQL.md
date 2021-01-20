@@ -263,3 +263,47 @@ X
 
   1 record(s) selected.
 ```
+# Configure external connection to DB2 BigSQL
+
+## DB2 BigSQL Services
+Discover DB2 BigSQL services.<br>
+
+> oc get svc | grep bigsql
+```
+bigsql-1611104274650644                    ClusterIP   None             <none>        2222/TCP                                15h
+bigsql-1611104274650644-jdbc               NodePort    172.30.112.110   <none>        32051:31293/TCP,32052:31638/TCP         15h
+bigsql-addon                               ClusterIP   172.30.223.142   <none>        80/TCP,443/TCP                          15h
+bigsql-service-provider                    ClusterIP   172.30.188.91    <none>        3443/TCP                                15h
+```
+The DB2 BigSQL non-secure 32051 port is redirected to 31293 OpenShift NodePort.<br>
+
+## Give access
+Modify the HAProxy configuration on the gateway node. Replaces IP addresses with corresponding addresses of OpenShift master nodes.<br>
+> vi /etc/haproxy/haproxy.cfg<br>
+```
+frontend bigsql-tcp
+        bind *:31293
+        default_backend bigsql-tcp
+        mode tcp
+        option tcplog
+
+backend bigsql-tcp
+        balance source
+        mode tcp
+        server master0 10.16.40.242:31293 check
+        server master1 10.16.40.243:31293 check
+        server master2 10.16.40.249:31293 check
+```
+
+Restart HAProxy service.<br>
+> systemctl restart haproxy<br>
+
+Verify that port is responding assuming *shrieker-inf* is OpenShift gateway host.<br>
+>  nc -zv shrieker-inf 31293
+```
+Ncat: Version 7.70 ( https://nmap.org/ncat )
+Ncat: Connected to 9.30.182.157:31293.
+Ncat: 0 bytes sent, 0 bytes received in 0.24 seconds.
+```
+# Configure DB2 client
+
