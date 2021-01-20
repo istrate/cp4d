@@ -1,3 +1,5 @@
+(Under construction)<br>
+
 # Rook Ceph installation in Open Shift
 
 https://github.com/rook/rook/blob/master/Documentation/ceph-openshift.md<br>
@@ -7,7 +9,7 @@ This webpage contains recommendation on Rook Ceph in OpenShit Kubernetes. Below 
 > git clone https://github.com/rook/rook.git<br>
 > cd rook/cluster/examples/kubernetes/ceph<br>
 
-Log in to OpenShift cluster using cluster admin credentails.
+Log in to OpenShift cluster using cluster-admin credentials.
 
 > oc login -u admin -p secret<br>
 
