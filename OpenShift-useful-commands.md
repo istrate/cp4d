@@ -134,6 +134,20 @@ spec: {}
 | oc adm policy add-scc-to-user anyuid -z uuid-sa | Assign anyuid
 | oc set serviceaccount deployment/appl uuid-sa | Assign ServiceAccount to deployment
 
+# Pod labels
+## Assign labels in pod yaml
+```
+metadata:
+  name: read-box
+  labels : {
+     app: ceph-test
+  }
+```
+| Command | Description |
+| --- | ---- |
+| oc get pods --show-labels | Display all labels attached |
+| oc get pods -l app=ceph-test | Select pods according to labels |
+
 # Misc commands
 | Command | Description |
 | --- | ---- |
