@@ -307,3 +307,16 @@ Ncat: 0 bytes sent, 0 bytes received in 0.24 seconds.
 ```
 # Configure DB2 client
 
+Catalog BigSQL Head node.<br>
+> db2 catalog tcpip node BIGSQL remote shrieker-inf server 31293<br>
+
+For remote connection, *bigsql* password is needed. The password is generated randomly and can be copied from OpenShift console. <br>
+
+OpenShift console -> CP4D project -> Secrets -> search for *bigsql-secret* -> copy from *bigsqlPassword*<br>
+
+Important: it is against the good practice to use *bigsql* credentials for querying data, use it only for the administrative task.<br>
+<br>
+Verify DB2 BigSQL Head node connectivity.<br>
+> db2 attach to bigsql user bigsql<br>
+```
+```
