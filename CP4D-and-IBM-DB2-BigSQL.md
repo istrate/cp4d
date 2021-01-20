@@ -67,6 +67,21 @@ big-sql                                 Ready             7.1.1            x86_6
 
 =========================================================================================
 ```
+# Remove Hadoop
+
+https://www.ibm.com/support/knowledgecenter/en/SSQNUZ_3.5.0/svc-bigsql/bigsql_install_prereqs.html
+
+Conduct necessary arrangements in remote Hadoop cluster, particularly make *bigsql* a valid user in Hadoop.<br>
+
+> hdfs dfs -mkdir /user/bigsql<br>
+> hdfs dfs -chmod 755 /user/bigsql<br>
+> hdfs dfs -chown -R bigsql /user/bigsql<br>
+> hdfs dfs -mkdir /user/bigsql/sync<br>
+> hdfs dfs -chmod 777 /user/bigsql/sync<br>
+> hdfs dfs -chown -R bigsql:hdfs /user/bigsql<br>
+> hdfs dfs -chown -R bigsql:hdfs /user/bigsql/sync<br>
+
+Also, give *bigsql* user access to HDFS Hive warehouse directory using *hdfs* command line or Ranger.<br>
 
 # Provision DB2 BigSQL instance
 
