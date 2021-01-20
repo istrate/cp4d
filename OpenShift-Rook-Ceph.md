@@ -13,6 +13,7 @@ Log in to OpenShift cluster using cluster-admin credentials.
 
 > oc login -u admin -p secret<br>
 
+>oc create -f crds.yaml<br>
 >oc create -f common.yaml<br>
 
 Security objects are created. Also a designed project *rook-ceph* is created.<br>
