@@ -14,7 +14,7 @@ https://www.ibm.com/support/knowledgecenter/en/SSQNUZ_3.5.0/svc-bigsql/bigsql_se
 
 https://www.ibm.com/support/knowledgecenter/en/SSQNUZ_3.5.0/svc-bigsql/bigsql_install_prereqs.html
 
-Additional remarks<br>
+Additional remarks:<br>
 
 Make sure that HDFS is accessible from OpenShift cluster nodes. In some environments, HDFS NameNode hostname can resolve as IP in a private network and as different IP ports in a public network used by OpenShift cluster. Assuming that HDFS NameNode as *sawtooth1.fyre.ibm.com*, run the command from any OpenShift nodes:<br>
 
