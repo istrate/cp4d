@@ -159,7 +159,7 @@ Copy and paste Hive URL connection string from Ambari console -> Hive -> Summary
 Run several commands to be sure that *bigsql* is authorized in Hive2 server.<br>
 > show databases;<br>
 > create database sampledb;<br>
-> use database samledb;<br>
+> use sampledb;<br>
 > create table test (x int);<br>
 > insert into test values(1); <br>
 > select * from test; <br>
