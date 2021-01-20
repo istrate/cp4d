@@ -165,3 +165,24 @@ Run several commands to be sure that *bigsql* is authorized in Hive2 server.<br>
 > select * from test; <br>
 > drop table test;<br>
 > drop database sampledb; <br>
+
+Verify DB2 BigSQL Hive connection.<br>
+> db2 connect to bigsql<br>
+> db2 "create hadoop table test (x int)"<br>
+> db2 "insert into table test values(1)"
+> db2 "select * from test"<br>
+
+Verify that *test* table just created is a accessible in Hive.<br>
+> beeline -u .... -n bigsql
+> use bigsql;
+> show tables;
+> select * from test;
+```
+INFO  : OK
++---------+
+| test.x  |
++---------+
+| 1       |
++---------+
+1 row selected (0.374 seconds)
+```
