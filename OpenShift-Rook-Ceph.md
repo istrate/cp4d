@@ -97,15 +97,17 @@ Open a shell in *rook-ceph-tool* container.<br>
 ```
 Pay attention to the number of *osd*, number 0 mean that something is wrong.<br>
 
-
-
 # Test
 
 ## Create PVC
 
 > oc create -f csi/rbd/pvc.yaml<br>
 > oc get pvc<br>
+
+Wait until the status is *Bound*.<br>
+
 ```
 NAME      STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS      AGE
 rbd-pvc   Bound    pvc-f5239735-cd74-4269-86d1-c8b2ffbf9d9d   1Gi        RWO            rook-ceph-block   4s
 ```
+## Write to allocated space
