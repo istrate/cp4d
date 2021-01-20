@@ -14,9 +14,27 @@ Create a separate OpenShift project to maintain DB2 instances.<br>
 
 > oc new-project db2<br>
 
-In OpenShift console, go to Operators->OperatorHub and search "Db2". Click "Install" and select "db2" namespace just created as a placeholder for Db2.<br>
+In OpenShift console, go to Operators->OperatorHub and search for "Db2". Click "IBM Db2" tile and wait a moment until the info page is displayed. Deploy *Entitlement Key* following the instruction attached to the operator.
+```
+............
+To install the Db2U Operator using the command-line
+1. Retrieve an entitled key from the Entitled registry
+Log into MyIBM
+Copy the Entitled Key
+............
+```
+
+Click "Install" and select "db2" namespace just created as a placeholder for Db2.<br>
 <br>
 Deploy *Entitlement Key* following an instruction attached to the operator. In *db2* project, go to "Installed Operators" and click the line. After a while, the web page is displayed. 
+```
+............
+To install the Db2U Operator using the command-line
+1. Retrieve an entitled key from the Entitled registry
+Log into MyIBM
+Copy the Entitled Key
+............
+```
 
 # Storage options
 
