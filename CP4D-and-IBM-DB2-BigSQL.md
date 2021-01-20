@@ -27,11 +27,11 @@ Ncat: 0 bytes sent, 0 bytes received in 0.02 seconds.
 If there is no connection, it means that HDFS is listening on a private network. The solution is to make HDFS listening on all networks.
 https://www.ibm.com/support/pages/ibm-biginsights-how-configure-hadoop-client-port-8020-bind-all-network-interfaces
 <br>
-Ambari console -> HDFS -> Configs -> Advanced -> Custom hdfs-site<br>
+* Ambari console -> HDFS -> Configs -> Advanced -> Custom hdfs-site<br>
 
-Add: dfs.namenode.rpc-bind-host = 0.0.0.0<br>
+* Add: dfs.namenode.rpc-bind-host = 0.0.0.0<br>
 
-Restart HDFS and check NameNode again.<br>
+* Restart HDFS and check NameNode again.<br>
 
 If HDFS is protected by Kerberos, verify that Kerberos server is reachable by OpenShift cluster.
 
