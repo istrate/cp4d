@@ -13,7 +13,6 @@ Log in to OpenShift cluster using cluster-admin credentials.
 
 > oc login -u admin -p secret<br>
 
-
 >oc create -f common.yaml<br>
 
 Security objects are created. Also a designed project *rook-ceph* is created.<br>
@@ -21,6 +20,12 @@ Security objects are created. Also a designed project *rook-ceph* is created.<br
 Create an operator. Image is pulled from *docker.io*, make sure that *docker.io* credentials are deployed or *rook/ceph:master* image is pulled manually. https://github.com/stanislawbartkowski/CP4D/wiki/Docker.io-credentials<br>
 <br>
 > oc create -f operator-openshift.yaml<br>
+> oc project ceph-rook<br>
+> oc get pods<br>
+```
+NAME                                  READY   STATUS    RESTARTS   AGE
+rook-ceph-operator-5b9dd84979-fwpbf   1/1     Running   0          48s
+```
 
 Create all remaining objects.<br>
 > oc create -f cluster.yaml<br>
