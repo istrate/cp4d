@@ -232,10 +232,35 @@ Create database and a table in Hive.<br>
 Log on the DB2 BigSQL Head pod.<br>
 > db2 connect to bigsql<br>
 
-Run *HCAT_SYNC_OBJECTS* stored procedure. It brings to DB2 BigSQL all databases and tables from Hive. It is possible to tailor the command to meet more specialized needs.<br>
+Run *HCAT_SYNC_OBJECTS* stored procedure. This call brings to DB2 BigSQL all databases and tables from Hive. It is possible to tailor the command to meet more specialized needs.<br>
 https://www.ibm.com/support/knowledgecenter/en/SSCRJT_7.1.0/com.ibm.swg.im.bigsql.commsql.doc/doc/biga_hadsyncobj.html
 
-> db2 "CALL SYSHADOOP.HCAT_SYNC_OBJECTS('.*','.*','a','REPLACE','CONTINUE')"
-```
-```
+>  db2 "CALL SYSHADOOP.HCAT_SYNC_OBJECTS('.*','.*','a','REPLACE','CONTINUE')"
 
+```
+ Result set 1
+  --------------
+
+  OBJSCHEMA OBJNAME           OBJATTRIB TYPE STATUS DETAILS                                                     
+  --------- ----------------- --------- ---- ------ ------------------------------------------------------------
+  testdb    x                 -         ?    WARN   Transactional tables are disabled. This table is not synced.
+  testdb    aaa               -         ?    WARN   Transactional tables are disabled. This table is not synced.
+  testdb    account_holders   -         ?    WARN   Transactional tables are disabled. This table is not synced.
+  testdb    bank_accounts     -         ?    WARN   Transactional tables are disabled. This table is not synced.
+  testdb    bank_clients      -         ?    WARN   Transactional tables are disabled. This table is not synced.
+  testdb    bank_customers    -         ?    WARN   Transactional tables are disabled. This table is not synced.
+  testdb    bank_wrkex_salary -         ?    WARN   Transactional tables are disabled. This table is not synced.
+  testdb    checking_accounts -         ?    WARN   Transactional tables are disabled. This table is not synced.
+  testdb    savings_accounts  -         ?    WARN   Transactional tables are disabled. This table is not synced.
+  SYNCDB    SYNCTEST          -         T    OK     -                                                           
+
+```
+Only non-transactional SYNCTEST table is synchronized.<br>
+> db2 "select * from syncdb.synctest"<br>
+```
+X          
+-----------
+          1
+
+  1 record(s) selected.
+```
