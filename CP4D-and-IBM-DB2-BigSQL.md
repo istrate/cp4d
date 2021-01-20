@@ -211,11 +211,13 @@ The stored procedure can be called from DB2 BigSQL Head pod *db2* command line o
 
 A basic test.<br>
 
+CP4D DB2 BigSQL can only be synchronized with non-transactional Hive tables. The table should be created as *external", not managed by Hive.
+
 Create database and a table in Hive.<br>
 > beeline ...... <br>
 > create database syncdb;<br>
 > use syncdb;<br>
-> create table synctest (x int);<br>
+> create external table synctest (x int);<br>
 > insert into synctest values(1);<br>
 > select * from synctest;<br>
 ```
