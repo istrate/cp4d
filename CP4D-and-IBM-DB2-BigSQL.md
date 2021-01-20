@@ -331,6 +331,9 @@ Enter current password for bigsql:
 Catalog *bigsql* database.<br>
 
 > db2 catalog database bigsql at node bigsql<br>
+
+Connect and run the query.<br>
+
 > db2 connect to bisql user bigsql<br>
 > db2 "select * from syncdb.synctest"<br>
 ```
