@@ -5,7 +5,7 @@ Failed to pull image "busybox": rpc error: code = Unknown desc = Error reading m
 ```
 # Register docker.io credentials 
 Having *docker.io* credentials, the next step is to register them in OpenShift to be used while pulling images from *docker.io*. It is very easy using OpenShift console.<br>
-Go to: OpenShift console -> openshift-config project -> Secrets -> pull-secretm -> Actions -> Edit Secret<br>
+Go to: OpenShift console -> openshift-config project -> Secrets -> pull-secret -> Actions -> Edit Secret<br>
 Go to the bottom, *Add Credentials", fill the form, and it is done.<br>
 ![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-01-17%2019-35-32.png)
 
