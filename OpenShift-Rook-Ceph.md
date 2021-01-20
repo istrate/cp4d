@@ -111,3 +111,28 @@ NAME      STATUS   VOLUME                                     CAPACITY   ACCESS 
 rbd-pvc   Bound    pvc-f5239735-cd74-4269-86d1-c8b2ffbf9d9d   1Gi        RWO            rook-ceph-block   4s
 ```
 ## Write to allocated space
+> oc create -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/rook-ceph/write-box.yaml<br>
+> oc get pods -l app=ceph-test<br>
+```
+NAME        READY   STATUS      RESTARTS   AGE
+write-box   0/1     Completed   0          38s
+```
+## Read content in allocated space
+> oc create -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/rook-ceph/read-box.yaml
+> oc get pods -l app=ceph-test<br>
+```
+NAME        READY   STATUS      RESTARTS   AGE
+read-box    1/1     Running     0          24s
+write-box   0/1     Completed   0          2m21s
+```
+
+Open a shell in *read-box* and verify */mnt/SUCCESS* file.<br>
+>  oc exec -it read-box -- sh<br>
+># cat /mnt/SUCCESS<br>
+```
+Hello world!
+```
+
+If successful, delete test objects.<br>
+> oc delete pods -l app=ceph-test<br>
+> oc delete pvc/rbd-pvc<br>
