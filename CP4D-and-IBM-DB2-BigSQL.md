@@ -151,3 +151,17 @@ drwx-wx-wx   - hive      hdfs          0 2021-01-20 01:15 /tmp/hive
 ```
 
 Verify Hive Server2 connection.<br>
+
+Copy and paste Hive URL connection string from Ambari console -> Hive -> Summary -> HIVESERVER2 JDBC URL
+
+> beeline -u "jdbc:hive2://banquets1.fyre.ibm.com:2181,sawtooth1.fyre.ibm.com:2181,sawtooth2.fyre.ibm.com:2181/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2" -n bigsql
+
+Run several commands to be sure that *bigsql* is authorized in Hive2 server.<br>
+> show databases;<br>
+> create database testdb;<br>
+> use database testdb;<br>
+> create table test (x int);<br>
+> insert into test values(1); <br>
+> select * from test; <br>
+> drop table test;<br>
+> drop database testdb; <br>
