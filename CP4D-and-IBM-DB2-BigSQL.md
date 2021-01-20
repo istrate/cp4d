@@ -81,3 +81,39 @@ Collect all necessary information.<br>
 | Kerberos admin password | secret
 
 In a tiny environment, the instance provisioning can be blocked because of lack of resources. The ugly and dirty solution on the fly is to reduce manually the cpu and memory request in Deployment yaml definition. Not recommended in a production environment.<br>
+
+To deploy an instance, go to CP4D console -> Left menu -> Services -> Instances -> New Instance -> DB2 BigSQL tile -> New instance (again) -> Follow user-friendly wizard pages<br>
+
+Review and apply if necessary post-provisioning reconfiguration.<br>
+https://www.ibm.com/support/knowledgecenter/en/SSQNUZ_3.5.0/svc-bigsql/bigsql_post_prov_tsks.html
+# Basic health-check
+Check pods up and running, in this example, only one worker node is used.<br>
+
+> oc project zen<br>
+> oc get pods | grep bigsql<br>
+```
+bigsql-1611104274650644-head-7cb969fb7d-vnzsw                1/1     Running     0          9h
+bigsql-1611104274650644-worker-0                             1/1     Running     0          9h
+bigsql-addon-5f7f6b876f-4rmtm                                1/1     Running     0          9h
+bigsql-service-provider-64695f97c9-wsc5w                     1/1     Running     0          9h
+```
+<br>
+Run a command in DB2 BigSQL Head Node pod.<br>
+>  oc -it exec bigsql-1611104274650644-head-7cb969fb7d-vnzsw -- bash<br>
+> source $HOME/.profile<br>
+> bigsql status<br>
+```
+SERVICE              HOSTNAME                               NODE      PID STATUS
+
+Big SQL Scheduler    head.bigsql-1611104274650644.zen.svc.cluster.local    -    35966 Available
+Big SQL Worker       bigsql-1611104274650644-worker-0.bigsql-1611104274650644.zen.svc.cluster.local    1    33759 DB2 Running
+Big SQL Master       head.bigsql-1611104274650644.zen.svc.cluster.local    0    42778 DB2 Running
+```
+
+> bigsql-admin -health<br>
+```
+All nodes are registered OK.
+------------------------------------------
+Processing completed successfully
+Total Processing Time (secs) : 26
+```
