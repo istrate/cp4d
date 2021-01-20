@@ -14,7 +14,7 @@ Create a separate OpenShift project to maintain DB2 instances.<br>
 
 > oc new-project db2<br>
 
-In OpenShift console, go to Operators->OperatorHub and search for "Db2". Click "IBM Db2" tile and wait a moment until the info page is displayed. Deploy *Entitlement Key* following the instruction attached to the operator.
+In OpenShift console, go to Operators->OperatorHub and search for "Db2". Click "IBM Db2" tile and wait a moment until the info page is displayed. Deploy *Entitlement Key* following the instruction attached to the operator. Make sure to pass all points: 1,2 and 3.
 ```
 ............
 To install the Db2U Operator using the command-line
@@ -50,7 +50,9 @@ Another option is OpenShift Container Storage. https://www.openshift.com/blog/in
 
 The simplest option is "Db2u Cluster". "OC Console" -> Project db2 -> Installed Operators -> IBM DB2 -> Db2u Cluster -> Create Instance<br>
 
-In order to use non-default storage, open "YAML View" and enter appropriate StorageClass name in the *storageClassName* property.
+In order to use non-default storage, open "YAML View" and enter appropriate StorageClass name in the *storageClassName* property.<br>
+
+It can take one hour before DB2 instance is provisioned.<br>
 
 # Verify that DB2 is up and running
 
