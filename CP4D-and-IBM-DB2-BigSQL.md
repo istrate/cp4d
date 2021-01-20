@@ -31,7 +31,7 @@ Add: dfs.namenode.rpc-bind-host = 0.0.0.0<br>
 
 Restart HDFS and check NameNode again.<br>
 
-If HDFS is protected by Kerberos, verify that Kerberos server is reachable by OpenShift clusters.
+If HDFS is protected by Kerberos, verify that Kerberos server is reachable by OpenShift cluster.
 
 > nc -zv  verse1.fyre.ibm.com 88<br>
 ```
@@ -40,4 +40,21 @@ Ncat: Connected to 9.30.54.109:88.
 Ncat: 0 bytes sent, 0 bytes received in 0.04 seconds.
 ```
 
+# Install IBM DB2 BigSQL
+
+https://www.ibm.com/support/knowledgecenter/en/SSQNUZ_3.5.0/svc-bigsql/bigsql_install.html
+
+DB2 BigSQL is installed using the same method as all other CP4D services.<br>
+
+> ./cpd-cli adm --repo ./repo.yaml --assembly big-sql --namespace zen --apply<br>
+> ./cpd-cli install --repo ./repo.yaml --assembly big-sql   --namespace zen --storageclass managed-zen-storage<br>
+> ./cpd-cli status --assembly big-sql --namespace zen
+
+# Provision DB2 BigSQL instance
+
+Collect all necessary information.<br>
+
+| Parameter | Example |
+| ---- | ---- |
+| 
 
