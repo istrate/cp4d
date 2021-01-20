@@ -112,6 +112,7 @@ Big SQL Master       head.bigsql-1611104274650644.zen.svc.cluster.local    0    
 
 > bigsql-admin -health<br>
 ```
+...............
 All nodes are registered OK.
 ------------------------------------------
 Processing completed successfully
