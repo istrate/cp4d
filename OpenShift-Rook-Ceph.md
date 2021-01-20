@@ -37,7 +37,7 @@ Create all remaining objects.<br>
 
 Verify that all appropriate pods are created. Only "Running" and "Completed" pods should be displayed.<br>
 
-> oc project rook-ceph<br>
+> oc get pods<br>
 ```
 NAME                                                              READY   STATUS      RESTARTS   AGE
 ............
