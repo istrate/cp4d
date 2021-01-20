@@ -99,9 +99,11 @@ bigsql-service-provider-64695f97c9-wsc5w                     1/1     Running    
 ```
 <br>
 Run a command in DB2 BigSQL Head Node pod.<br>
->  oc -it exec bigsql-1611104274650644-head-7cb969fb7d-vnzsw -- bash<br>
+
+> oc -it exec bigsql-1611104274650644-head-7cb969fb7d-vnzsw -- bash<br>
 > source $HOME/.profile<br>
 > bigsql status<br>
+
 ```
 SERVICE              HOSTNAME                               NODE      PID STATUS
 
@@ -111,6 +113,7 @@ Big SQL Master       head.bigsql-1611104274650644.zen.svc.cluster.local    0    
 ```
 
 > bigsql-admin -health<br>
+
 ```
 ...............
 All nodes are registered OK.
