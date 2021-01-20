@@ -319,4 +319,26 @@ Important: it is against the good practice to use *bigsql* credentials for query
 Verify DB2 BigSQL Head node connectivity.<br>
 > db2 attach to bigsql user bigsql<br>
 ```
+Enter current password for bigsql: 
+
+   Instance Attachment Information
+
+ Instance server        = DB2/LINUXX8664 11.5.4.0
+ Authorization ID       = BIGSQL
+ Local instance alias   = BIGSQL
+```
+
+Catalog *bigsql* database.<br>
+
+> db2 catalog database bigsql at node bigsql<br>
+> db2 connect to bisql user bigsql<br>
+> db2 "select * from syncdb.synctest"<br>
+```
+
+X          
+-----------
+          1
+
+  1 record(s) selected.
+
 ```
