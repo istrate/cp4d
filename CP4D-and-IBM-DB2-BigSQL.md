@@ -193,6 +193,8 @@ https://www.ibm.com/support/knowledgecenter/en/SSQNUZ_3.5.0/svc-bigsql/bigsql_sy
 If DB2 BigSQL is deployed directly to Hadoop cluster, Hive to DB2 BigSQL metastore synchronization is done automatically, every change in Hive metastore is immediately echoed in DB2 BigSQL. In CP4D DB2 BigSQL installation, the synchronization is done on-demand by calling an appropriate stored procedure. <br>
 The stored procedure can be called from DB2 BigSQL Head pod *db2* command line or through IBM® Db2 Data Management Console service.<br>
 
+A basic test.<br>
+
 Create database and a table in Hive.<br>
 > beeline ...... <br>
 > create database syncdb;<br>
@@ -205,6 +207,17 @@ Create database and a table in Hive.<br>
 | synctest.x  |
 +-------------+
 | 1           |
-+-------------+
++--db-----------+
 
 ```
+
+Log on the DB2 BigSQL Head pod.<br>
+> db2 connect to bigsql<br>
+
+Run *HCAT_SYNC_OBJECTS* stored procedure. It brings to DB2 BigSQL all databases and tables from Hive. It is possible to tailor the command to meet more specialized needs.<br>
+https://www.ibm.com/support/knowledgecenter/en/SSCRJT_7.1.0/com.ibm.swg.im.bigsql.commsql.doc/doc/biga_hadsyncobj.html
+
+> db2 "CALL SYSHADOOP.HCAT_SYNC_OBJECTS('.*','.*','a','REPLACE','CONTINUE')"
+```
+```
+
