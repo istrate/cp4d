@@ -70,11 +70,40 @@ rook-ceph-block                 rook-ceph.rbd.csi.ceph.com      Delete          
 rook-cephfs                     rook-ceph.cephfs.csi.ceph.com   Delete          Immediate           true                   23h
 ```
 
+# Health-check
+
+Open a shell in *rook-ceph-tool* container.<br>
+> oc exec -it rook-ceph-tools-7865b9c9f6-7b7bf -- bash<br>
+
+
 # Test
 
 ## Create PVC
 
 > oc create -f csi/rbd/pvc.yaml<br>
+> ceph status<br>
+```
+  cluster:
+    id:     22be353e-57a6-473b-a5f3-4cb73debcf07
+    health: HEALTH_OK
+ 
+  services:
+    mon: 3 daemons, quorum a,b,c (age 21m)
+    mgr: a(active, since 20m)
+    mds: myfs:1 {0=myfs-a=up:active} 1 up:standby-replay
+    osd: 6 osds: 6 up (since 20m), 6 in (since 20m)
+ 
+  data:
+    pools:   4 pools, 97 pgs
+    objects: 22 objects, 2.2 KiB
+    usage:   6.0 GiB used, 2.9 TiB / 2.9 TiB avail
+    pgs:     97 active+clean
+ 
+  io:
+    client:   1.2 KiB/s rd, 2 op/s rd, 0 op/s wr
+```
+Pay attention to the number of *osd*, number 0 mean that something is wrong.<br>
+
 
 
 
