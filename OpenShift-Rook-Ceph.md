@@ -74,13 +74,6 @@ rook-cephfs                     rook-ceph.cephfs.csi.ceph.com   Delete          
 
 Open a shell in *rook-ceph-tool* container.<br>
 > oc exec -it rook-ceph-tools-7865b9c9f6-7b7bf -- bash<br>
-
-
-# Test
-
-## Create PVC
-
-> oc create -f csi/rbd/pvc.yaml<br>
 > ceph status<br>
 ```
   cluster:
@@ -106,7 +99,13 @@ Pay attention to the number of *osd*, number 0 mean that something is wrong.<br>
 
 
 
+# Test
 
+## Create PVC
 
-
-
+> oc create -f csi/rbd/pvc.yaml<br>
+> oc get pvc<br>
+```
+NAME      STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS      AGE
+rbd-pvc   Bound    pvc-f5239735-cd74-4269-86d1-c8b2ffbf9d9d   1Gi        RWO            rook-ceph-block   4s
+```
