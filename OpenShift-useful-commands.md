@@ -174,7 +174,7 @@ metadata:
 | oc get pod --loglevel 6 | More verbose information on 'oc' command
 | oc get pod --loglevel 10 | More verbose 
 | oc get pod -n </project name> | List pods in a project
-
+| skopeo inspect docker://docker.io/centos/postgresql-12-centos7 | Image info
 
 # Misc commands 
 | Command | Description |
@@ -185,6 +185,7 @@ metadata:
 | oc whoami --show-console | OC console hostname
 | oc whoami -t | Get authentication token
 | oc status | Info about the project
+| oc get events | Events related to project
 # Yaml
 | Description | Link |
 | -- | --- | 
