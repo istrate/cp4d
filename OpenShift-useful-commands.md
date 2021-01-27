@@ -184,3 +184,8 @@ metadata:
 | oc adm node-logs --role=master -u kubelet | Get master nodes logs
 | oc whoami --show-console | OC console hostname
 | oc whoami -t | Get authentication token
+
+# Yaml
+| Description | Link |
+| -- | --- | 
+| Create PostgrSQL | https://github.com/stanislawbartkowski/CP4D/blob/main/yaml/postgresql.yaml
