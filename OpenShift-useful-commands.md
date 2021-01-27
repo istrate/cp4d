@@ -51,7 +51,7 @@
 | htpasswd -n -b tester redhat | Generate U/P line only
 | oc create secret generic localusers --from-file htpasswd=htpasswd -n openshift-config | Create 
 | oc adm policy add-cluster-role-to-user cluster-admin admin | Nominate *admin* user as OpenShift cluster admin
-| oc adm policy add-role-to-user edit sbdev -n sb | Grant *edit* privileges for user in a particular project only
+| oc adm policy add-role-to-user edit sbdev -n sb | Grant *edit* privileges for the user in a particular project only
 | oc adm policy add-role-to-user admin db2admin -n db2 | Making of project admin (db2admin/db2)
 
 ## Specify OpenShift credentials
@@ -160,7 +160,7 @@ metadata:
 | oc get clusteroperators | Displays current cluster operators, operator managing the cluster
 | oc adm node-logs <node name> | All journal logs
 | oc adm node-logs -u crio \<node name> | More specific log
-| oc adm node-logs -u kubelet | More specific log
+| oc adm node-logs -u kubelet \<node name> | More specific log
 | oc debug node/\<node name> | Shell session on a specific node
 | oc logs \<pod name> | Particular pod logs
 |  oc logs \<pod-name> -c \<container-name> | Container log, if more then one container in a pod
