@@ -163,6 +163,7 @@ metadata:
 | oc debug node/\<node name> | Shell session on a specific node
 | (inside the node) systemctl status kubelet | Node health-check
 | (inside the node) systemctl status cri-o | Node health-check
+| (inside node)  crictl ps --name openvswitch | Node health-check
 | oc logs \<pod name> | Particular pod logs
 | oc logs \<pod-name> -c \<container-name> | Container log, if more then one container in a pod
 | oc logs --tail 3  \<pod-name> -c \<container-name> | Container log, in "tail" fashion
