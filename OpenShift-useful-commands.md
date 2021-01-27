@@ -163,12 +163,18 @@ metadata:
 | oc adm node-logs -u kubelet \<node name> | More specific log
 | oc debug node/\<node name> | Shell session on a specific node
 | oc logs \<pod name> | Particular pod logs
-|  oc logs \<pod-name> -c \<container-name> | Container log, if more then one container in a pod
+| oc logs \<pod-name> -c \<container-name> | Container log, if more then one container in a pod
 | oc debug deployment/\<deployment-name> --as-root | Creates a temporary pod and starts shell session 
-# Misc commands
+| oc rsh \<pod-name> | Open shell session in a pod
+| oc cp /local/path \<pod-name>:/container/path | Copy a local file to the container 
+| oc port-forward \<pod-name> \<local-port>:\<remote-port> | Creates a TCP tunnel between local machine and pod
+| oc get pod --loglevel 6 | More verbose information on 'oc' command
+| oc get pod --loglevel 10 | More verbose 
+# Misc commands 
 | Command | Description |
 | --- | ---- |
 | oc new-project demo --node-selector "tier=special" | Create a project where all containers will be labelled "ties=special"
 | oc new-app --name loadtest  --docker-image quay.io/redhattraining/loadtest:v1.0  --dry-run --save-config -f loadtest.yaml | Creates a yaml specification only
-|  oc adm node-logs --role=master -u kubelet | Get master nodes logs
+| oc adm node-logs --role=master -u kubelet | Get master nodes logs
 | oc whoami --show-console | OC console hostname
+| oc whoami -t | Get authentication token
