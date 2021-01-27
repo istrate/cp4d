@@ -184,7 +184,7 @@ metadata:
 | oc adm node-logs --role=master -u kubelet | Get master nodes logs
 | oc whoami --show-console | OC console hostname
 | oc whoami -t | Get authentication token
-
+| oc status | Info about the project
 # Yaml
 | Description | Link |
 | -- | --- | 
