@@ -117,12 +117,11 @@ spec: {}
 | oc get clusteroperators | List cluster operators and versions
 | oc describe clusterversion | Display more detailed information about cluster version
 
-
 # Debug
 
 | Command | Description |
 | ---- | ---- |
-| oc debug -t deployment/mysql | Creates ephemeral container similar to specified
+| oc debug -t deployment/mysql | Creates ephemeral container similar to the specified
 | oc debug -t deployment/mysql --image registry.access.redhat.com/ubi8/ubi:8.0 | The same but using a different image
 | oc debug -t deployment/mysql --as-root | Run as root, only if the policy allows it
 
@@ -159,17 +158,23 @@ metadata:
 | oc describe clusterversion | More detailed information about the cluster
 | oc get clusteroperators | Displays current cluster operators, operator managing the cluster
 | oc adm node-logs <node name> | All journal logs
-| oc adm node-logs -u crio \<node name> | More specific log
+| oc adm node-logs -u crio \<node name> | More specific log, you can add --tail \<number\>
 | oc adm node-logs -u kubelet \<node name> | More specific log
 | oc debug node/\<node name> | Shell session on a specific node
+| (inside the node) systemctl status kubelet | Node health-check
+| (inside the node) systemctl status cri-o | Node health-check
 | oc logs \<pod name> | Particular pod logs
 | oc logs \<pod-name> -c \<container-name> | Container log, if more then one container in a pod
+| oc logs --tail 3  \<pod-name> -c \<container-name> | Container log, in "tail" fashion
 | oc debug deployment/\<deployment-name> --as-root | Creates a temporary pod and starts shell session 
 | oc rsh \<pod-name> | Open shell session in a pod
 | oc cp /local/path \<pod-name>:/container/path | Copy a local file to the container 
 | oc port-forward \<pod-name> \<local-port>:\<remote-port> | Creates a TCP tunnel between local machine and pod
 | oc get pod --loglevel 6 | More verbose information on 'oc' command
 | oc get pod --loglevel 10 | More verbose 
+| oc get pod -n </project name> | List pods in a project
+
+
 # Misc commands 
 | Command | Description |
 | --- | ---- |
