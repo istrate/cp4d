@@ -164,6 +164,7 @@ metadata:
 | oc debug node/\<node name> | Shell session on a specific node
 | oc logs \<pod name> | Particular pod logs
 |  oc logs \<pod-name> -c \<container-name> | Container log, if more then one container in a pod
+| oc debug deployment/\<deployment-name> --as-root | Creates a temporary pod and starts shell session 
 # Misc commands
 | Command | Description |
 | --- | ---- |
