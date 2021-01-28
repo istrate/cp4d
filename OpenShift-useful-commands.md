@@ -188,6 +188,8 @@ metadata:
 | oc whoami -t | Get authentication token
 | oc status | Info about the project
 | oc get events | Events related to project
+| oc describe no | Statistics on all nodes
+| oc describe no \| grep Non | Number of running pods on each node
 # Yaml
 | Description | Link |
 | -- | --- | 
