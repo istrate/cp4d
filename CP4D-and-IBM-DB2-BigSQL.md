@@ -77,7 +77,7 @@ big-sql                                 Ready             7.1.1            x86_6
 
 =========================================================================================
 ```
-# Remove Hadoop
+# Remote Hadoop
 
 https://www.ibm.com/support/knowledgecenter/en/SSQNUZ_3.5.0/svc-bigsql/bigsql_install_prereqs.html
 
