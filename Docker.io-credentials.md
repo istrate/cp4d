@@ -24,7 +24,7 @@ Ncat: 0 bytes sent, 0 bytes received in 0.02 seconds.
 If not available, log on to any of OpenShift nodes and do the same.<br>
 
 Log in to OpenShift as *admin* user<br>
-> oc login https://api.openshift.cluster.com:6443 -u admin -p secret.<br>
+> oc login https://api.openshift.cluster.com:6443 -u admin -p secret<br>
 
 Log in to *docker.io*<br>
 > podman login docker.io<br>
