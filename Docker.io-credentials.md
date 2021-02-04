@@ -36,4 +36,4 @@ Retag<br>
 > podman tag docker.io/rook/ceph:master  image-registry.openshift-image-registry.svc:5000/openshift/rook/ceph:master<br>
 
 Push to OpenShift<br>
-> podman push  nimage-registry.openshift-image-registry.svc:5000/openshift/root/ceph:master<br>
+> podman push  image-registry.openshift-image-registry.svc:5000/openshift/rook/ceph:master<br>
