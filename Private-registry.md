@@ -11,7 +11,7 @@ Use external storage for registry, here */disk/registry*.
 
 > podman run --privileged -d --name registry -p 5000:5000  -v /disk/registry:/var/lib/registry  registry:2<br>
 
-To enable removing from registry.<br>
+To allow removing images from the registry, switch on *REGISTRY_STORAGE_DELETE_ENABLED* parameter.<br>
 
 > podman run --privileged -d --name registry -p 5000:5000 -e REGISTRY_STORAGE_DELETE_ENABLED=true  -v /disk/registry:/var/lib/registry registry:2
 
