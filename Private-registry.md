@@ -70,12 +70,12 @@ Run a long command.<br>
 >   -v /home/repos/registrycert/thinkde.sb.com.key.pem:/certs/thinkde.sb.com.key.pem \\ <br>
 >   -e REGISTRY_HTTP_TLS_CERTIFICATE=/certs/cert-chain.pem  -e REGISTRY_HTTP_TLS_KEY=/certs/thinkde.sb.com.key.pem registry:2
 
-Verify.<br>
+Verify<br>
 > openssl s_client -connect \<hostname\>:5000<br>
 
 Run commands using *https* instead of *http* <br>
 
-> curl -X GET http://\<hostname\>:5000/v2/_catalog<br>
+> curl -X GET https://\<hostname\>:5000/v2/_catalog<br>
 > curl -X GET https://\<hostname\>:5000/v2/db2/tags/list<br>
 
 
