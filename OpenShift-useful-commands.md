@@ -201,6 +201,20 @@ spec:
 
 After modification, it takes several minutes until the change takes effect because every node is reconfigured. <br>
 
+Wait until all nodes are ready.<br>
+> oc get nodes<br>
+```
+NAME                               STATUS                        ROLES    AGE   VERSION
+master0.shrieker.os.fyre.ibm.com   Ready                         master   24d   v1.18.3+fa69cae
+master1.shrieker.os.fyre.ibm.com   Ready                         master   24d   v1.18.3+fa69cae
+master2.shrieker.os.fyre.ibm.com   NotReady,SchedulingDisabled   master   24d   v1.18.3+fa69cae
+worker0.shrieker.os.fyre.ibm.com   Ready                         worker   24d   v1.17.1+40d7dbd
+worker1.shrieker.os.fyre.ibm.com   Ready                         worker   24d   v1.17.1+40d7dbd
+worker2.shrieker.os.fyre.ibm.com   Ready                         worker   24d   v1.17.1+40d7dbd
+worker3.shrieker.os.fyre.ibm.com   Ready,SchedulingDisabled      worker   24d   v1.17.1+40d7dbd
+worker4.shrieker.os.fyre.ibm.com   Ready                         worker   24d   v1.17.1+40d7dbd
+```
+
 # Misc commands 
 | Command | Description |
 | --- | ---- |
