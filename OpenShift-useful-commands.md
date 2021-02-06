@@ -178,6 +178,29 @@ metadata:
 | oc get pod -n </project name> | List pods in a project
 | skopeo inspect docker://docker.io/centos/postgresql-12-centos7 | Image info
 
+# Insecure registry
+
+Assuming a non-secure registry is used to pull docker images. Example, image registry *broth1.fyre.ibm.com:5000* <br>
+
+> oc new-app --name postgresql-persistent --docker-image broth1.fyre.ibm.com:5000/rhel8/postgresql-12 -e POSTGRESQL_USER=redhat -e POSTGRESQL_PASSWORD=redhat123  -e POSTGRESQL_DATABASE=persistentdb --insecure-registry
+
+Flag *--insecure-registry* makes only *oc new-app* completed, pod creation will be blocked by *self-signed* certificate error message.<br>
+
+https://docs.openshift.com/container-platform/4.1/openshift_images/image-configuration.html
+
+The solution is adding registry to list of insecure registries.<br>
+
+> oc edit image.config.openshift.io/cluster<br>
+```
+spec:
+  registrySources:
+    insecureRegistries:
+    - broth1.fyre.ibm.com:5000
+
+```
+
+After modification, it takes several minutes until the change takes effect because every node is reconfigured. <br>
+
 # Misc commands 
 | Command | Description |
 | --- | ---- |
