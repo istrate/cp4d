@@ -184,7 +184,7 @@ Assuming a non-secure registry is used to pull docker images. Example, image reg
 
 > oc new-app --name postgresql-persistent --docker-image broth1.fyre.ibm.com:5000/rhel8/postgresql-12 -e POSTGRESQL_USER=redhat -e POSTGRESQL_PASSWORD=redhat123  -e POSTGRESQL_DATABASE=persistentdb --insecure-registry
 
-Flag *--insecure-registry* makes only *oc new-app* completed, pod creation will be blocked by *self-signed* certificate error message.<br>
+Flag *--insecure-registry* makes only *oc new-app* completed, pod creation will be blocked by *certificate signed by unknown authority*  error message.<br>
 
 https://docs.openshift.com/container-platform/4.1/openshift_images/image-configuration.html
 
