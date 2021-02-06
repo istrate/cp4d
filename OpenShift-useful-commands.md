@@ -186,7 +186,7 @@ Assuming a non-secure registry is used to pull docker images. Example, image reg
 
 Flag *--insecure-registry* makes only *oc new-app* completed, pod creation will be blocked by *certificate signed by unknown authority*  error message.<br>
 
-https://docs.openshift.com/container-platform/4.1/openshift_images/image-configuration.html
+https://docs.openshift.com/container-platform/4.5/post_installation_configuration/preparing-for-users.html#images-configuration-file_post-install-preparing-for-users
 
 The solution is adding registry to list of insecure registries.<br>
 
