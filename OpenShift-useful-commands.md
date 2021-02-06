@@ -214,6 +214,17 @@ worker2.shrieker.os.fyre.ibm.com   Ready                         worker   24d   
 worker3.shrieker.os.fyre.ibm.com   Ready,SchedulingDisabled      worker   24d   v1.17.1+40d7dbd
 worker4.shrieker.os.fyre.ibm.com   Ready                         worker   24d   v1.17.1+40d7dbd
 ```
+Make sure that on all nodes */etc/container/registries.conf* is updated.<br>
+
+> cat /etc/containers/registries.conf<br>
+```
+unqualified-search-registries = ["registry.access.redhat.com", "docker.io"]
+
+[[registry]]
+  prefix = ""
+  location = "broth1.fyre.ibm.com:5000"
+  insecure = true
+```
 
 # Misc commands 
 | Command | Description |
