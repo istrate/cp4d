@@ -78,4 +78,14 @@ Run commands using *https* instead of *http* <br>
 > curl -X GET https://\<hostname\>:5000/v2/_catalog<br>
 > curl -X GET https://\<hostname\>:5000/v2/db2/tags/list<br>
 
+<br>
+If self-signed certificates are used, the registry needs to be included in insecure registry list.<br>
+<br>
 
+> vi /etc/containers/registries.conf<br>
+
+```
+[registries.insecure]
+registries = ['localhost:5000','broth1.fyre.ibm.com:5000']
+
+```
