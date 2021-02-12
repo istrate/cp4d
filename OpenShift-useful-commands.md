@@ -133,6 +133,13 @@ spec: {}
 | oc adm policy add-scc-to-user anyuid -z uuid-sa | Assign anyuid
 | oc set serviceaccount deployment/appl uuid-sa | Assign ServiceAccount to deployment
 
+# Persistent storage
+
+Assign PVC to the existing PostgreSQL pod. Important: current content will be removed.<br>
+
+> oc set volumes deployment/postgresql-persistent  --add --name postgresql-storage --type pvc --claim-class rook-ceph-block   --claim-mode rwo --claim-size 10Gi --mount-path /var/lib/pgsql --claim-name postgresql-storage<br>
+
+
 # Pod labels
 ## Assign labels in pod yaml
 ```
