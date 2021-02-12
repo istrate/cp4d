@@ -241,4 +241,4 @@ unqualified-search-registries = ["registry.access.redhat.com", "docker.io"]
 # Yaml
 | Description | Link |
 | -- | --- | 
-| Create PostgrSQL | https://github.com/stanislawbartkowski/CP4D/blob/main/yaml/postgresql.yaml
+| Create PostgreSQL | https://github.com/stanislawbartkowski/CP4D/blob/main/yaml/postgresql.yaml
