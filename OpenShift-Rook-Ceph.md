@@ -20,7 +20,7 @@ Create an operator. Image is pulled from *docker.io*, make sure that *docker.io*
 <br>
 > oc create -f operator-openshift.yaml<br>
 
-> oc project ceph-rook<br>
+> oc project rook-ceph<br>
 > oc get pods<br>
 ```
 NAME                                  READY   STATUS    RESTARTS   AGE
