@@ -116,7 +116,7 @@ NAME        READY   STATUS      RESTARTS   AGE
 write-box   0/1     Completed   0          38s
 ```
 ## Read content in allocated space
-> oc create -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/rook-ceph/read-box.yaml
+> oc create -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/rook-ceph/read-box.yaml<br>
 > oc get pods -l app=ceph-test<br>
 ```
 NAME        READY   STATUS      RESTARTS   AGE
