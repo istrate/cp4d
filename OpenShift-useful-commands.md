@@ -245,6 +245,7 @@ unqualified-search-registries = ["registry.access.redhat.com", "docker.io"]
 | oc get events | Events related to project
 | oc describe no | Statistics on all nodes
 | oc describe no \| grep Non | Number of running pods on each node
+| oc exec -it deployment.apps/postgresql-persistent -- bash | Open pod shell using deployment specification
 # Yaml
 | Description | Link |
 | -- | --- | 
