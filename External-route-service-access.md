@@ -228,4 +228,4 @@ backend postgresql
 
 > systemctl reload haproxy<br>
 
-Connect to PostgreSQL using standard *5432* port. HAproxy will redirect the connection to *31114* service port and the service to push the traffic to *5432* PostgreSQL port.
+Connect to PostgreSQL using standard *5432* port. HAproxy will redirect the connection to *31114* service port and the service will push the traffic to *5432* port PostgreSQL pod.
