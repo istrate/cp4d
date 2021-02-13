@@ -177,3 +177,55 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
 mysql> 
 ```
+
+# Use NodePort
+
+Make sure that service, for instance, PostgreSQL, is exposing NodePort service. Create NodePort service if it is not.<br>
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgresql-persistent-node
+  labels:
+    name: postgresql-persistent
+spec:
+  type: NodePort
+  ports:
+    - port: 5432
+      name: 5432-tcp-node
+  selector:
+      deployment: postgresql-persistent
+```
+> oc create -f \<yaml file\><br>
+
+Because *nodePort* property is not defined, OpenShift will assign a random port.<br>
+
+> oc get svc<br>
+```
+NAME                         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+postgresql-persistent        ClusterIP   172.30.214.127   <none>        5432/TCP         17m
+postgresql-persistent-node   NodePort    172.30.124.188   <none>        5432:31114/TCP   9m24s
+```
+Here port *31114* is assigned.<br>
+
+Modify *haproxy* configuration. In this test environment, only one master node exists. Add all master nodes for HA.
+
+> vi /etc/haproxy/haproxy.cfg 
+```
+.............
+
+frontend postgresql
+        bind *:5432
+        default_backend postgresql
+        mode tcp
+        option tcplog
+
+backend postgresql
+        balance source
+        mode tcp
+        server master0 10.26.4.13:31114 check
+```
+
+> systemctl reload haproxy<br>
+
+Connect to PostgreSQL using standard *5432* port. HAproxy will redirect the connection to *31114* service port and the service to push the traffic to *5432* PostgreSQL port.
