@@ -54,6 +54,7 @@
 | oc adm policy add-role-to-user edit sbdev -n sb | Grant *edit* privileges for the user in a particular project only
 | oc adm policy add-role-to-user admin db2admin -n db2 | Making of project admin (db2admin/db2)
 | oc get identity | Display the list of current identities
+| oc get users  | List of users
 
 ## Specify OpenShift credentials
 > oc get oauth cluster -o yaml >oauth.yaml<br>
