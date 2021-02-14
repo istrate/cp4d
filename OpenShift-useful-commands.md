@@ -108,6 +108,12 @@ spec: {}
 > oc delete user --all<br>
 > oc delete identity --all
 
+# RBAC, role-based access control
+
+| Command | Description
+| ---- | ----- |
+|  oc get clusterrolebinding -o wide \| grep -E 'NAME|self-provisioner' | List all cluster role bindings that reference the self-provisioner cluster role
+
 # Versions, upgrade
 | Command | Description
 | --- | --- |
