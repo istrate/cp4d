@@ -56,6 +56,7 @@
 | oc get identity | Display the list of current identities
 | oc get users  | List of users
 | oc adm groups new dev-group | Create new group
+| adm groups add-users dev-group developer| Add user to group
 
 ## Specify OpenShift credentials
 > oc get oauth cluster -o yaml >oauth.yaml<br>
