@@ -260,8 +260,9 @@ unqualified-search-registries = ["registry.access.redhat.com", "docker.io"]
 | oc describe no | Statistics on all nodes
 | oc describe no \| grep Non | Number of running pods on each node
 | oc exec -it deployment.apps/postgresql-persistent -- bash | Open pod shell using deployment specification
+| oc new-app --name httpd httpd:2.4 | Create httpd pod (ephemeral) 
+| oc scale deployment httpd --replicas 3 | Scale application
 # Yaml
 | Description | Link |
 | -- | --- | 
 | Create PostgreSQL | https://github.com/stanislawbartkowski/CP4D/blob/main/yaml/postgresql.yaml
-| Create httpd pod (ephemeral) | oc new-app --name httpd httpd:2.4
