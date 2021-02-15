@@ -264,3 +264,4 @@ unqualified-search-registries = ["registry.access.redhat.com", "docker.io"]
 | Description | Link |
 | -- | --- | 
 | Create PostgreSQL | https://github.com/stanislawbartkowski/CP4D/blob/main/yaml/postgresql.yaml
+| Create httpd pod (ephemeral) | oc new-app --name httpd httpd:2.4
