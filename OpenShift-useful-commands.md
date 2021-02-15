@@ -113,7 +113,9 @@ spec: {}
 | Command | Description
 | ---- | ----- |
 |  oc get clusterrolebinding -o wide \| grep -E 'NAME|self-provisioner' | List all cluster role bindings that reference the self-provisioner cluster role
-
+|  oc describe clusterrolebindings self-provisioners | Details about the role, here self-provisioners
+| oc adm policy remove-cluster-role-from-group  self-provisioner system:authenticated:oauth | Remove role from virtual group
+| oc adm policy add-cluster-role-to-group --rolebinding-name self-provisioners self-provisioner system:authenticated:oauth | Add role to virtual group
 # Versions, upgrade
 | Command | Description
 | --- | --- |
