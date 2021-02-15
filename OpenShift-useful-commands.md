@@ -55,6 +55,7 @@
 | oc adm policy add-role-to-user admin db2admin -n db2 | Making of project admin (db2admin/db2)
 | oc get identity | Display the list of current identities
 | oc get users  | List of users
+| oc adm groups new dev-group | Create new group
 
 ## Specify OpenShift credentials
 > oc get oauth cluster -o yaml >oauth.yaml<br>
