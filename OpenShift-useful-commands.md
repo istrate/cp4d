@@ -58,6 +58,7 @@
 | oc get users  | List of users
 | oc adm groups new dev-group | Create new group 'dev-group'
 | adm groups add-users dev-group developer| Add user 'developer' to group 'dev-group'
+| oc get rolebindings -o wide | Display all role-binding in current project
 
 ## Specify OpenShift credentials
 > oc get oauth cluster -o yaml >oauth.yaml<br>
