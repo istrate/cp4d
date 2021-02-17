@@ -122,6 +122,7 @@ spec: {}
 |  oc describe clusterrolebindings self-provisioners | Details about the role, here self-provisioners
 | oc adm policy remove-cluster-role-from-group  self-provisioner system:authenticated:oauth | Remove role from virtual group, here the privilege to create a new project
 | oc adm policy add-cluster-role-to-group --rolebinding-name self-provisioners self-provisioner system:authenticated:oauth | Add role to virtual group
+| oc adm policy add-cluster-role-to-group --rolebinding-name self-provisioners self-provisioner managers | Add privilege to create a new project to the group managers
 # Versions, upgrade
 | Command | Description
 | --- | --- |
