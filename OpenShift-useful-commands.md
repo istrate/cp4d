@@ -61,6 +61,8 @@
 | oc get rolebindings -o wide | Display all role-binding in current project
 
 ## Specify OpenShift credentials
+> oc create secret generic localusers --from-file htpasswd=htpasswd -n openshift-config<br>
+
 > oc get oauth cluster -o yaml >oauth.yaml<br>
 
 Pay attention to *localuser* name the same for 'oauth' and *secret*<br>
