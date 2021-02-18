@@ -137,6 +137,7 @@ Devices */dev/vbd* and */dev/vdc* were expected to be included in *ceph* storage
 
 Solution:<br>
 Remove logical volume and labels attached to devices fit for *ceph*. The devices should be in "raw" state.<br>
+*Warning: be very careful and double-check because the changes are irreversible.*<br>
 
 > lvdisplay<br>
 ```
