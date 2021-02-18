@@ -68,6 +68,21 @@ rook-ceph-block                 rook-ceph.rbd.csi.ceph.com      Delete          
 rook-cephfs                     rook-ceph.cephfs.csi.ceph.com   Delete          Immediate           true                   23h
 ```
 
+To make *rook-ceph-block* a default StorageClass, add *default* annotation.<br>
+> oc edit sc/rook-ceph-block<br>
+```
+metadata:
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+  creationTimestamp: "2021-02-18T14:27:05Z"
+
+```
+> oc get sc<br>
+```
+rook-ceph-block (default)   rook-ceph.rbd.csi.ceph.com      Delete          Immediate           true                   9m55s
+rook-cephfs                 rook-ceph.cephfs.csi.ceph.com   Delete          Immediate           true                   9m41s
+```
+
 # Health-check
 
 Open a shell in *rook-ceph-tool* container.<br>
