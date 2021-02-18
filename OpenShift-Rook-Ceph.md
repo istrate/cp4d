@@ -93,7 +93,47 @@ Open a shell in *rook-ceph-tool* container.<br>
   io:
     client:   1.2 KiB/s rd, 2 op/s rd, 0 op/s wr
 ```
-Pay attention to the number of *osd*, number 0 mean that something is wrong.<br>
+Pay attention to the number of *osd*, number 0 means that although *ceph* management is running but there is no space to be allocated.<br>
+
+Example of the wrong status.<br>
+```
+ cluster:
+    id:     db64f499-d0ea-4ead-9839-d44397037574
+    health: HEALTH_WARN
+            2 MDSs report slow metadata IOs
+            Reduced data availability: 96 pgs inactive
+            OSD count 0 < osd_pool_default_size 3
+ 
+  services:
+    mon: 3 daemons, quorum a,b,c (age 21m)
+    mgr: a(active, since 20m)
+    mds: myfs:1 {0=myfs-a=up:creating} 1 up:standby-replay
+    osd: 0 osds: 0 up, 0 in
+ 
+  data:
+    pools:   3 pools, 96 pgs
+    objects: 0 objects, 0 B
+    usage:   0 B used, 0 B / 0 B avail
+    pgs:     100.000% pgs unknown
+             96 unknown
+```
+
+# Trouble shooting<br>
+Review logs of completed *rook-ceph-osd-prepare-\<....\>* pods. Example.<br>
+```
+cephosd: 0 ceph-volume lvm osd devices configured on this node
+2021-02-18 12:12:08.820330 W | cephosd: skipping OSD configuration as no devices matched the storage settings for this node "worker4.shrieker.os.fyre.ibm.com"
+```
+The message means that there are no applicable devices on this node. If it repeats on all nodes, the *ceph* cannot provide any storage for applications.<br>
+
+Further review.<br>
+```
+021-02-18 12:12:07.884708 I | cephosd: skipping device "vda4" because it contains a filesystem "crypto_LUKS"
+2021-02-18 12:12:07.884722 I | cephosd: skipping device "vdb" because it contains a filesystem "LVM2_member"
+2021-02-18 12:12:07.884727 I | cephosd: skipping device "vdc" because it contains a filesystem "LVM2_member"
+2021-02-18 12:12:07.884866 I | cephosd: configuring osd devices: {"Entries":{}}
+```
+Devices */dev/vbd* and */dev/vdc* were expected to be included in *ceph* storage. But the devices are labelled as "LVM2_member* and were skipped during devices scanning. 
 
 # Test
 
