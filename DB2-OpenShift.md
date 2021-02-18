@@ -40,11 +40,13 @@ Copy the Entitled Key
 
 https://www.ibm.com/support/producthub/db2/docs/content/SSEPGG_11.5.0/com.ibm.db2.luw.db2u_openshift.doc/database-storage-aese.html
 
-There are several options available. For testing and evaluating, NFS storage is possible. 
+There are several options available. For testing and evaluating, NFS storage is a good option. 
 
 https://github.com/stanislawbartkowski/CP4D/wiki/OpenShift-NFS-provisioner
 
-Another option is OpenShift Container Storage. https://www.openshift.com/blog/introducing-openshift-container-storage-4-2
+OpenShift Container Storage. https://www.openshift.com/blog/introducing-openshift-container-storage-4-2
+<br>
+Rook-Ceph: use *rook-cephfs* (file system)
 
 # Install DB2 database
 
