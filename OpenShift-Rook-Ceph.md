@@ -118,7 +118,7 @@ Example of the wrong status.<br>
              96 unknown
 ```
 
-# Trouble shooting<br>
+# Troubleshooting<br>
 Review logs of completed *rook-ceph-osd-prepare-\<....\>* pods. Example.<br>
 ```
 cephosd: 0 ceph-volume lvm osd devices configured on this node
@@ -135,6 +135,27 @@ Further review.<br>
 ```
 Devices */dev/vbd* and */dev/vdc* were expected to be included in *ceph* storage. But the devices are labelled as "LVM2_member* and were skipped during devices scanning. 
 
+Solution:<br>
+Remove logical volume and labels attached to devices fit for *ceph*. The devices should be in "raw" state.<br>
+
+> lvdisplay<br>
+```
+--- Logical volume ---
+  LV Path                /dev/ceph-d63d273b-20fc-4e27-9d9d-f149fffb80a5/osd-block-cd06d5c4-26c8-44ff-9ef2-eb54435a3f70
+  LV Name                osd-block-cd06d5c4-26c8-44ff-9ef2-eb54435a3f70
+  VG Name                ceph-d63d273b-20fc-4e27-9d9d-f149fffb80a5
+.........
+```
+> lvremove /dev/ceph-d63d273b-20fc-4e27-9d9d-f149fffb80a5/osd-block-cd06d5c4-26c8-44ff-9ef2-eb54435a3f70<br>
+
+> wipefs /dev/vdb<br>
+```
+/dev/vdb: 8 bytes were erased at offset 0x00000218 (LVM2_member): 4c 56 4d 32 20 30 30 31
+```
+> wipefs /dev/vdb -a<br>
+
+> wipefs /dev/vdb<br>
+(empty output)
 # Test
 
 ## Create PVC
