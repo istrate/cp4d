@@ -136,8 +136,9 @@ Further review.<br>
 Devices */dev/vbd* and */dev/vdc* were expected to be included in *ceph* storage. But the devices are labelled as "LVM2_member* and were skipped during devices scanning. 
 
 Solution:<br>
-Remove logical volume and labels attached to devices fit for *ceph*. The devices should be in "raw" state.<br>
-*Warning: be very careful and double-check because the changes are irreversible.*<br>
+Remove logical volumes and labels attached to devices fit for *ceph*. The devices should be in a "raw" state.<br>
+**Warning: be very careful and double-check because the changes are irreversible.**<br>
+
 
 > lvdisplay<br>
 ```
