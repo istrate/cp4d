@@ -54,7 +54,7 @@ The simplest option is "Db2u Cluster". "OC Console" -> Project db2 -> Installed 
 
 In order to use non-default storage, open "YAML View" and enter appropriate StorageClass name in the *storageClassName* property.<br>
 
-It can take one hour before DB2 instance is provisioned.<br>
+It can take a half an hour to provision DB2 instance for NFS storage and around 10 minutes in case of Ceph backed storage.<br>
 
 # Verify that DB2 is up and running
 
