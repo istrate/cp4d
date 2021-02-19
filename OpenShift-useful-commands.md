@@ -206,6 +206,11 @@ metadata:
 | Command | Description
 | --- | ----- |
 |  oc create secret generic mysql   --from-literal user=myuser --from-literal password=redhat123    --from-literal database=test_secrets --from-literal hostname=mysql | Create a secret
+| oc new-app --name mysql   --docker-image registry.access.redhat.com/rhscl/mysql-57-rhel7:5.7-47 | Will fail because expects environment variables
+| oc set env deployment/mysql --from secret/mysql  --prefix MYSQL_ | Assign expected variables taking values from secret
+| oc set volume deployment/mysql --add --type secret --mount-path /run/secrets/mysql --secret-name MySQL | Store secrets as text files in mounted directory
+| oc new-app --name quotes  --docker-image quay.io/redhattraining/famous-quotes:2.1 | Deploy client application, will fail because environment variables are not set
+| oc set env deployment/quotes --from secret/mysql  --prefix QUOTES_ | Assign expected variables from secret
 
 # Insecure registry
 
