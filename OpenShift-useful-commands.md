@@ -202,6 +202,11 @@ metadata:
 | oc get pod -n </project name> | List pods in a project
 | skopeo inspect docker://docker.io/centos/postgresql-12-centos7 | Image info
 
+# Secrets
+| Command | Description
+| --- | ----- |
+|  oc create secret generic mysql   --from-literal user=myuser --from-literal password=redhat123    --from-literal database=test_secrets --from-literal hostname=mysql | Create a secret
+
 # Insecure registry
 
 Assuming a non-secure registry is used to pull docker images. Example, image registry *broth1.fyre.ibm.com:5000* <br>
