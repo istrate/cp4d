@@ -177,10 +177,39 @@ Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
 mysql> 
 ```
+# Use NodePort (MySQL)
 
-# Use NodePort
+Make sure that the service is using NodePort. Create service NodePort if only ClusterIP is used.
 
-Make sure that service, for instance, PostgreSQL, is exposing NodePort service. Create NodePort service if it is not.<br>
+> vi svcnode.yml<br>
+```
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-node
+  labels:
+    name: mysql-node
+spec:
+  type: NodePort
+  ports:
+    - port: 3036
+      nodePort: 30036
+      name: mysql-tcp-node
+  selector:
+      name: mysql
+```
+
+> oc get svc<br>
+```
+mysql        ClusterIP   172.30.28.22    <none>        3306/TCP         100m
+mysql-node   NodePort    172.30.5.161    <none>        3036:30036/TCP   66s
+
+```
+
+
+# Use NodePort (PostgreSQL)
+
+Make sure that service is exposing NodePort. Create NodePort service if it is not.<br>
 ```
 apiVersion: v1
 kind: Service
