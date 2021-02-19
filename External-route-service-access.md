@@ -196,7 +196,7 @@ spec:
       nodePort: 30306
       name: mysql-tcp-node
   selector:
-      name: mysql
+      deployment: mysql
 ```
 
 > oc get svc<br>
@@ -229,7 +229,7 @@ Reload HAProxy.
 
 Connect to MySQL server using *HAProxy* node hostname and *3306* port. *HAProxy* server redirects incoming *3306* request to *30306* port inside the cluster and *mysql-node* service is redirecting it again to *3306* port in corresponding MySQL pod.
 
-
+>  mysql -h jobbery-inf  -u\<user\> -p \<database\><br>
 
 # Use NodePort (PostgreSQL)
 
