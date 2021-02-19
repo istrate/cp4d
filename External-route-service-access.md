@@ -192,8 +192,8 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 3036
-      nodePort: 30036
+    - port: 3306
+      nodePort: 30306
       name: mysql-tcp-node
   selector:
       name: mysql
@@ -202,9 +202,33 @@ spec:
 > oc get svc<br>
 ```
 mysql        ClusterIP   172.30.28.22    <none>        3306/TCP         100m
-mysql-node   NodePort    172.30.5.161    <none>        3036:30036/TCP   66s
+mysql-node   NodePort    172.30.5.161    <none>        3306:30306/TCP   66s
 
 ```
+
+Modify HAProxy configuration.<br>
+> vi /etc/haproxy/haproxy.cfg
+```
+frontend mysql-http
+        bind *:3306
+        default_backend mysql-http
+        mode tcp
+        option tcplog
+
+backend mysql-http
+        balance source
+        mode tcp
+        server worker0 10.17.118.48:30306 check
+        server worker1 10.17.119.46:30306 check
+        server worker2 10.17.127.79:30306 check
+
+```
+Reload HAProxy.
+
+> systemctl reload haproxy<br>
+
+Connect to MySQL server using *HAProxy* node hostname and *3306* port. *HAProxy* server redirects incoming *3306* request to *30306* port inside the cluster and *mysql-node* service is redirecting it again to *3306* port in corresponding MySQL pod.
+
 
 
 # Use NodePort (PostgreSQL)
