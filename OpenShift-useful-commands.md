@@ -126,7 +126,7 @@ spec: {}
 | oc adm policy add-cluster-role-to-group --rolebinding-name self-provisioners self-provisioner system:authenticated:oauth | Add role to virtual group
 | oc adm policy add-cluster-role-to-group --rolebinding-name self-provisioners self-provisioner managers | Add privilege to create a new project to the group managers
 
-As user, cannot create a pod. Run a security *review* to find a solution.<br>
+As a user, cannot create a pod. Run a security *review* to find a solution.<br>
 
 > oc get pod/gitlab-7d67db7875-gcsjl -o yaml  | oc adm policy scc-subject-review -f -<br>
 ```
