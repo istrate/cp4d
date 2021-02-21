@@ -118,6 +118,8 @@ spec: {}
 
 | Command | Description
 | ---- | ----- |
+| oc get scc | List all SCCs (Security Context Contraints)
+| oc describe scc anyuid | Details about a single scc
 |  oc get clusterrolebinding -o wide \| grep -E 'NAME\|self-provisioner' | List all cluster role bindings that reference the self-provisioner cluster role
 |  oc describe clusterrolebindings self-provisioners | Details about the role, here self-provisioners
 | oc adm policy remove-cluster-role-from-group  self-provisioner system:authenticated:oauth | Remove role from virtual group, here the privilege to create a new project
