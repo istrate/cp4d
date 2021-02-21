@@ -296,3 +296,34 @@ unqualified-search-registries = ["registry.access.redhat.com", "docker.io"]
 | Description | Link |
 | -- | --- | 
 | Create PostgreSQL | https://github.com/stanislawbartkowski/CP4D/blob/main/yaml/postgresql.yaml
+
+# MySQL and WordPress
+(as developer)<br>
+>  oc create secret generic mysql-secret   --from-literal user=wpuser --from-literal password=redhat123    --from-literal database=wordpress  <br>
+> oc new-app --name mysql   --docker-image registry.access.redhat.com/rhscl/mysql-57-rhel7:5.7-47<br>
+
+(will fail)
+> oc set env deployment/mysql --from secret/mysql-secret  --prefix MYSQL_<br>
+> oc new-app --name wordpress --docker-image  docker.io/library/wordpress:5.3.0 --build-env  WORDPRESS_DB_HOST=mysql --build-env WORDPRESS_DB_NAME=wordpress<br>
+
+(will fail)
+> oc set env deployment/wordpress --from secret/mysql-secret  --prefix WORDPRESS_DB_<br>
+
+(will fail again)<br>
+(as admin)<br>
+> oc get pod/wordpress-7f957bfc5b-9kfgt -o yaml    | oc adm policy scc-subject-review -f -
+```
+RESOURCE                         ALLOWED BY   
+Pod/wordpress-7f957bfc5b-9kfgt   anyuid 
+```
+> oc create sa wordpress-sa<br>
+> oc adm policy add-scc-to-user anyuid -z wordpress-sa<br>
+
+(as developer)<br>
+
+> oc set serviceaccount deployment/wordpress wordpress-sa<br>
+> oc expose service Wordpress<br>
+
+Logon and make sure that the portal doesn't ask about database access.<br>
+
+
