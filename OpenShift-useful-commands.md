@@ -296,6 +296,7 @@ unqualified-search-registries = ["registry.access.redhat.com", "docker.io"]
 | Description | Link |
 | -- | --- | 
 | Create PostgreSQL | https://github.com/stanislawbartkowski/CP4D/blob/main/yaml/postgresql.yaml
+| Create MySQL | https://github.com/stanislawbartkowski/CP4D/blob/main/yaml/mysql.yaml
 
 # MySQL and WordPress
 (as developer)<br>
