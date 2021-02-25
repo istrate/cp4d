@@ -190,8 +190,8 @@ metadata:
 | oc delete pods -l app=ceph-test | Delete pods according to label |
 
 # Cluster information, health-check
-| Command | Description |
-| ---- | ----- |
+| Command | Description
+| ---- | ----- | 
 | oc get nodes | List of nodes in the cluster
 | oc adm top nodes | Resource consumption by each node
 | oc describe node \<node name> | More detailed information about the node
