@@ -304,7 +304,7 @@ unqualified-search-registries = ["registry.access.redhat.com", "docker.io"]
 ## Prepare a certificate signed by another CA-signed key-certfificate
 
 Verify CA-signed key against the password.<br>
-* openssl rsa -in training-CA.key -text -passin file:passphrase.txt
+> openssl rsa -in training-CA.key -text -passin file:passphrase.txt
 
 Generate a private key.<br>
 > openssl genrsa -out training.key 2048 
