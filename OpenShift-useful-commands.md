@@ -292,6 +292,7 @@ unqualified-search-registries = ["registry.access.redhat.com", "docker.io"]
 | oc exec -it deployment.apps/postgresql-persistent -- bash | Open pod shell using deployment specification
 | oc new-app --name httpd httpd:2.4 | Create httpd pod (ephemeral) 
 | oc scale deployment httpd --replicas 3 | Scale application
+| tcpdump -i eth0 -A -n port 80 \| grep js | Intercept traffic
 # Yaml
 | Description | Link |
 | -- | --- | 
