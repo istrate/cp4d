@@ -300,8 +300,10 @@ unqualified-search-registries = ["registry.access.redhat.com", "docker.io"]
 | tcpdump -i eth0 -A -n port 80 \| grep js | Intercept traffic
 | oc create route edge todo-https --service todo-http | Create edge secure route
 | curl -I -v  --cacert tls.crt  https://todo-https-network-ingress.apps.jobbery.cp.fyre.ibm.com | Verify certificate
+| oc create secret tls todo-certs --cert certs/training.crt --key certs/training.key | Create cert secrets
+| oc create route passthrough todo-https  --service todo-https --port 8443 | Create passthrough route
 
-## Prepare a certificate signed by another CA-signed key-certfificate
+## Prepare a certificate signed by another CA-signed key-certificate
 
 Verify CA-signed key against the password.<br>
 > openssl rsa -in training-CA.key -text -passin file:passphrase.txt
