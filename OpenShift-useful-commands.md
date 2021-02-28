@@ -301,6 +301,31 @@ unqualified-search-registries = ["registry.access.redhat.com", "docker.io"]
 | oc create route edge todo-https --service todo-http | Create edge secure route
 | curl -I -v  --cacert tls.crt  https://todo-https-network-ingress.apps.jobbery.cp.fyre.ibm.com | Verify certificate
 
+## Prepare a certificate signed by another CA-signed key-certfificate
+
+Verify CA-signed key against the password.<br>
+* openssl rsa -in training-CA.key -text -passin file:passphrase.txt
+
+Generate a private key.<br>
+* openssl genrsa -out training.key 2048 
+Generate CSR to be signed
+* openssl req -new  -subj "/C=US/ST=North Carolina/L=Raleigh/O=Red Hat CN=todo-https.apps.ocp4.example.com"  -key training.key -out training.csr<br>
+* Signed CSR and generate certificate
+> openssl x509 -req -in training.csr  -passin file:passphrase.txt  -CA training-CA.pem -CAkey training-CA.key -CAcreateserial   -out training.crt -days 1825 -sha256 -extfile training.ext<br>
+* Certificate extension.<br>
+```
+basicConstraints=CA:FALSE
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+subjectAltName = @alt_names
+
+[alt_names]
+# Replace with your domain name (i.e. domain.example.com)
+DNS.1 = *.ocp4.example.com
+
+# Replace with the content of apps.ocp4.example.com
+DNS.2 = *.apps.ocp4.example.com
+
+```
 
 # Yaml
 | Description | Link |
