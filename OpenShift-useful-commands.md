@@ -307,11 +307,14 @@ Verify CA-signed key against the password.<br>
 * openssl rsa -in training-CA.key -text -passin file:passphrase.txt
 
 Generate a private key.<br>
-* openssl genrsa -out training.key 2048 
+> openssl genrsa -out training.key 2048 
+
 Generate CSR to be signed
-* openssl req -new  -subj "/C=US/ST=North Carolina/L=Raleigh/O=Red Hat CN=todo-https.apps.ocp4.example.com"  -key training.key -out training.csr<br>
+> openssl req -new  -subj "/C=US/ST=North Carolina/L=Raleigh/O=Red Hat CN=todo-https.apps.ocp4.example.com"  -key training.key -out training.csr<br>
+
 * Signed CSR and generate certificate
 > openssl x509 -req -in training.csr  -passin file:passphrase.txt  -CA training-CA.pem -CAkey training-CA.key -CAcreateserial   -out training.crt -days 1825 -sha256 -extfile training.ext<br>
+
 * Certificate extension.<br>
 ```
 basicConstraints=CA:FALSE
