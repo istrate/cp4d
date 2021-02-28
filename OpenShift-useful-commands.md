@@ -299,6 +299,8 @@ unqualified-search-registries = ["registry.access.redhat.com", "docker.io"]
 | oc extract secrets/router-ca --keys tls.crt -n openshift-ingress-operator | Retrieve router certficates
 | tcpdump -i eth0 -A -n port 80 \| grep js | Intercept traffic
 | oc create route edge todo-https --service todo-http | Create edge secure route
+| curl -I -v  --cacert tls.crt  https://todo-https-network-ingress.apps.jobbery.cp.fyre.ibm.com | Verify certificate
+
 
 # Yaml
 | Description | Link |
