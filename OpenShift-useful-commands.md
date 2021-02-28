@@ -293,6 +293,8 @@ unqualified-search-registries = ["registry.access.redhat.com", "docker.io"]
 | oc new-app --name httpd httpd:2.4 | Create httpd pod (ephemeral) 
 | oc scale deployment httpd --replicas 3 | Scale application
 | tcpdump -i eth0 -A -n port 80 \| grep js | Intercept traffic
+| oc create route edge todo-https --service todo-http | Create edge secure route
+
 # Yaml
 | Description | Link |
 | -- | --- | 
