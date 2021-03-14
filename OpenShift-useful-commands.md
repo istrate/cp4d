@@ -287,6 +287,42 @@ unqualified-search-registries = ["registry.access.redhat.com", "docker.io"]
   location = "broth1.fyre.ibm.com:5000"
   insecure = true
 ```
+# Limit network access
+
+deny-all.yml<br>
+
+```
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: deny-all
+spec:
+  podSelector: {}
+
+```
+allow-specific.yml
+```
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-specific
+spec:
+  podSelector:
+    matchLabels:
+      deployment: test
+  ingress:
+    - from:
+      - namespaceSelector:
+          matchLabels:
+            name: network-test
+        podSelector:
+          matchLabels:
+            deployment: sample-app
+      ports:
+      - port: 8080
+        protocol: TCP
+```
+
 
 # Misc commands 
 | Command | Description |
