@@ -167,6 +167,17 @@ As a user again, assign service account.<br>
 | oc adm policy add-scc-to-user anyuid -z uuid-sa | Assign anyuid
 | oc set serviceaccount deployment/appl uuid-sa | Assign ServiceAccount to deployment
 
+Deplyment<br>
+```
+  template:
+    metadata:
+      labels:
+        app: restmock
+    spec:
+      serviceAccountName: restmock-sa
+      containers:
+```
+
 # Persistent storage
 
 Assign PVC to the existing PostgreSQL pod. Important: current content will be removed.<br>
