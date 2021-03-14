@@ -414,8 +414,19 @@ Pod/wordpress-7f957bfc5b-9kfgt   anyuid
 
 Logon and make sure that the portal doesn't ask about database access.<br>
 # Schedule pods
-
+## Schedule pods on a specific node
 > oc new-app --name hello  --docker-image quay.io/redhattraining/hello-world-nginx:v1.0<br>
 > oc expose hello<br>
 > oc scale --replicas 4 deployment/hello<br>
-
+> oc label node worker0.jobbery.cp.fyre.ibm.com env=dev<br>
+> oc label node worker1.jobbery.cp.fyre.ibm.com env=prod<br>
+> oc get nodes -L env<br>
+> oc edit deployment/hello<br>
+```
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      nodeSelector:
+        env: dev
+      restartPolicy: Always
+```
