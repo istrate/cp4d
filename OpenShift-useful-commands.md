@@ -7,6 +7,7 @@
 | oc label node master0.bewigged.os.fyre.ibm.com  tier=gold<br>oc label node master1.bewigged.os.fyre.ibm.com  tier=silver | Assign label to a node|
 | oc get nodes -L tier | List nodes and *tier* labels
 | oc get nodes --show-labels | List nodes and all labels
+| oc label node -l env env- | Remove label from nodes
 
 ## Deploy the application running on a specified node
 >  oc new-app --name loadtest  --docker-image quay.io/redhattraining/loadtest:v1.0  --dry-run --save-config -f loadtest.yaml
