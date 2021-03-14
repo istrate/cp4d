@@ -342,6 +342,16 @@ spec:
 | oc scale deployment httpd --replicas 3 | Scale application
 | oc adm create-bootstrap-project-template -o yaml > /tmp/project-template.yaml | Retrieve project template
 
+# Project template
+
+> oc adm create-bootstrap-project-template -o yaml > /tmp/project-template.yaml <br>
+>  oc edit projects.config.openshift.io/cluster<br>
+```
+spec:
+  projectRequestTemplate:
+    name: project-request
+```
+
 # Secure
 | Command | Description |
 | --- | ---- |
