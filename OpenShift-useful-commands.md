@@ -413,5 +413,9 @@ Pod/wordpress-7f957bfc5b-9kfgt   anyuid
 > oc expose service Wordpress<br>
 
 Logon and make sure that the portal doesn't ask about database access.<br>
+# Schedule pods
 
+> oc new-app --name hello  --docker-image quay.io/redhattraining/hello-world-nginx:v1.0<br>
+> oc expose hello<br>
+> oc scale --replicas 4 deployment/hello<br>
 
