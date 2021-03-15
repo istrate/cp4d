@@ -345,7 +345,11 @@ spec:
 # Project template
 
 > oc adm create-bootstrap-project-template -o yaml > /tmp/project-template.yaml <br>
->  oc edit projects.config.openshift.io/cluster<br>
+
+Important: *openshift-config* namespace.<br>
+
+> oc create -f /tmp/project-template.yaml -n openshift-config<br>
+> oc edit projects.config.openshift.io/cluster<br>
 ```
 spec:
   projectRequestTemplate:
