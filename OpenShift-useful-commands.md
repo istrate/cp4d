@@ -10,7 +10,11 @@
 | oc label node -l env env- | Remove label from nodes
 
 ## Deploy the application running on a specified node
->  oc new-app --name loadtest  --docker-image quay.io/redhattraining/loadtest:v1.0  --dry-run --save-config -f loadtest.yaml
+
+Create a deployment configuration without creating any object.
+
+>  oc create deployment loadtest --dry-run=client --image quay.io/redhattraining/loadtest:v1.0  -o yaml >loadtest.yaml<br>
+
 ```
  spec:
     replicas: 1
@@ -329,7 +333,7 @@ spec:
 | Command | Description |
 | --- | ---- |
 | oc new-project demo --node-selector "tier=special" | Create a project where all containers will be labelled "ties=special"
-| oc new-app --name loadtest  --docker-image quay.io/redhattraining/loadtest:v1.0  --dry-run --save-config -f loadtest.yaml | Creates a yaml specification only
+| oc create deployment loadtest --dry-run=client --image quay.io/redhattraining/loadtest:v1.0  -o yaml >loadtest.yaml | Creates a yaml specification only
 | oc adm node-logs --role=master -u kubelet | Get master nodes logs
 | oc whoami --show-console | OC console hostname
 | oc whoami -t | Get authentication token
