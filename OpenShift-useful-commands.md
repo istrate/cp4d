@@ -345,6 +345,7 @@ spec:
 | oc new-app --name httpd httpd:2.4 | Create httpd pod (ephemeral) 
 | oc scale deployment httpd --replicas 3 | Scale application
 | oc adm create-bootstrap-project-template -o yaml > /tmp/project-template.yaml | Retrieve project template
+| oc expose deployment/loadtest --port 80 --target-port 8080 | Expose deployment, create service
 
 # Project template
 
