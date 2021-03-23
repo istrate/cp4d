@@ -460,7 +460,7 @@ Create *dba* user. Give the user *edit* role in *your_project* and grant the use
 As *admin* user.
 
 > oc project your_project<br>
-> oc create sa cockroach-sa
+> oc create sa cockroach-sa<br>
 > oc adm policy add-scc-to-user anyuid -z cockroach-sa
 
 ## Create CockroachDB cluster
