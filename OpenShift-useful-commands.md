@@ -451,3 +451,40 @@ Logon and make sure that the portal doesn't ask about database access.<br>
         env: dev
       restartPolicy: Always
 ```
+# Create Cockroach DB cluster
+## Install operator
+As *admin* user, install *Cockroach Operator* operator into *your_project*.
+## Create user 
+Create *dba* user. Give the user *edit* role in *your_project* and grant the user *view* role in *openshift-operator* project.
+## Create ServiceAccount
+As *admin* user.
+
+> oc project your_project<br>
+> oc create sa cockroach-sa
+> oc adm policy add-scc-to-user anyuid -z cockroach-sa
+
+## Create CockroachDB cluster
+As *dba* user, navigate to *Create CrdbCluster* page and switch to *Yaml* view.
+```
+apiVersion: crdb.cockroachlabs.com/v1alpha1
+kind: CrdbCluster
+metadata:
+  name: crdb-tls-example
+  namespace: your-project
+spec:
+  tlsEnabled: true
+  nodes: 3
+  serviceAccount: cockroach-sa
+  dataStore:
+    pvc:
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
+        volumeMode: Filesystem
+
+```
+Click *Create* and wait until ready.
+
