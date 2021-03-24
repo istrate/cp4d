@@ -487,4 +487,16 @@ spec:
 
 ```
 Click *Create* and wait until ready.
+# Router
+* Project *openshift-ingress* -> Pods -> Terminal
+
+> ps -aef <br>
+```
+UID          PID    PPID  C STIME TTY          TIME CMD
+1000560+       1       0  0 Mar18 ?        00:14:28 /usr/bin/openshift-router --v=2
+1000560+    1418       1  0 17:16 ?        00:00:05 /usr/sbin/haproxy -f /var/lib/haproxy/conf/haproxy.config -p /var/lib/haproxy/run/haproxy.pid -x /var/lib/haproxy/ru
+1000560+    1425       0  0 17:35 pts/0    00:00:00 sh
+1000560+    1431    1425  0 17:35 pts/0    00:00:00 ps -aef
+```
+```
 
