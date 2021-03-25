@@ -515,7 +515,7 @@ mysql   ClusterIP   172.30.94.179   <none>        3306/TCP   12m
 > mysql -h 172.30.94.179 -u root -p<br>
 
 (mount PVC)
-> pc set volume dc/mysql -add --name=pvc-mysql --claim-size=2G -t pvc --claim-mode=ReadWriteOnce -m /var/lib/mysql/data<br>
+>  oc set volume deployment/mysql --add --name=pvc-mysql --claim-size=2G -t pvc --claim-mode=ReadWriteOnce -m /var/lib/mysql/data<br>
 > oc get pvc<br>
 
 (test again as above)<br>
