@@ -499,4 +499,27 @@ UID          PID    PPID  C STIME TTY          TIME CMD
 1000560+    1431    1425  0 17:35 pts/0    00:00:00 ps -aef
 ```
 ```
+## Another session to create MySQL instance
+
+> oc create secret generic mysql --from-literal=password=r3dh4t123<br>
+> oc new-app --name=mysql --docker-image=registry.access.redhat.com/rhscl/mysql-57-rhel7:5.7<br>
+> oc set env deployment/mysql --from=secret/mysql --prefix=MYSQL_ROOT_<br>
+> oc get svc<br>
+```
+NAME    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+mysql   ClusterIP   172.30.94.179   <none>        3306/TCP   12m
+```
+
+(test) <br>
+> oc debug -t deployment/mysql<br>
+> mysql -h 172.30.94.179 -u root -p<br>
+
+(mount PVC)
+> pc set volume dc/mysql -add --name=pvc-mysql --claim-size=2G -t pvc --claim-mode=ReadWriteOnce -m /var/lib/mysql/data<br>
+> oc get pvc<br>
+
+(test again)<br>
+
+
+
 
