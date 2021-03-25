@@ -498,7 +498,7 @@ UID          PID    PPID  C STIME TTY          TIME CMD
 1000560+    1425       0  0 17:35 pts/0    00:00:00 sh
 1000560+    1431    1425  0 17:35 pts/0    00:00:00 ps -aef
 ```
-```
+
 ## Another session to create MySQL instance
 
 > oc create secret generic mysql --from-literal=password=r3dh4t123<br>
@@ -518,7 +518,7 @@ mysql   ClusterIP   172.30.94.179   <none>        3306/TCP   12m
 > pc set volume dc/mysql -add --name=pvc-mysql --claim-size=2G -t pvc --claim-mode=ReadWriteOnce -m /var/lib/mysql/data<br>
 > oc get pvc<br>
 
-(test again)<br>
+(test again as above)<br>
 
 
 
