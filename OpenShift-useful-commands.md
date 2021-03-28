@@ -520,6 +520,19 @@ mysql   ClusterIP   172.30.94.179   <none>        3306/TCP   12m
 
 (test again as above)<br>
 
+## Service, NodePort
+
+Prepare template.<br>
+
+> oc create service nodeport post-node --dry-run=client --tcp=5432 -o yaml >serv.yml<br>
+
+Important, selector deployment.
+```
+ selector:
+    deployment: postgresl12
+
+```
+
 
 
 
