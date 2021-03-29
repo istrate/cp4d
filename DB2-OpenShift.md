@@ -71,8 +71,8 @@ Go to pod related to *db2ucluster* and open terminal<br>
 ```
 # Open external access to OpenShift DB2
 
-DB2 operator creates a number of services related to DB2. One method to use "OpenShift" route but this option is now always available.<br>
-Another method is to redirect ports in *HAProxy* gateway on infrastructure node.<br>
+DB2 operator creates a number of services related to DB2. One method to use OpenShift *route* netowrking but this option is not always available.<br>
+Another method is to redirect ports in *HAProxy* gateway on the infrastructure node.<br>
 
 Get service ports.<br>
 > oc project db2<br>
@@ -85,7 +85,7 @@ c-db2ucluster-sample-etcd            ClusterIP   None             <none>        
 c-db2ucluster-sample-ldap            ClusterIP   172.30.59.53     <none>        50389/TCP                                                                         14m
 c-db2ucluster-sample-tools           ClusterIP   172.30.32.134    <none>        53/TCP,53/UDP        
 ```
-For *c-db2ucluster-sample-db2u-engn-svc* pod take notice of *NodePort*, *31753* port of non-secure connection and *30397* port for secure connection.<br>
+For *c-db2ucluster-sample-db2u-engn-svc* pod take notice of *NodePort*, *31753* port for non-secure connection and *30397* port for secure connection.<br>
 
 Get *ip* addresses for master node(s).<br>
 ```
