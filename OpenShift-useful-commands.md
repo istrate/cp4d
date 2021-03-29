@@ -131,6 +131,7 @@ spec: {}
 | oc adm policy add-cluster-role-to-group --rolebinding-name self-provisioners self-provisioner system:authenticated:oauth | Add role to virtual group
 | oc adm policy add-cluster-role-to-group --rolebinding-name self-provisioners self-provisioner managers | Add privilege to create a new project to the group managers
 | oc adm policy who-can delete user | Verify that user can perform a specific action
+| oc get clusterrole | List cluster roles
 
 As a user, cannot create a pod. Run a security *review* to find a solution.<br>
 
