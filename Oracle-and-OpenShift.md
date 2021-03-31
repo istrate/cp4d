@@ -64,6 +64,13 @@ Assign Service Account and PVC
 > oc set serviceaccount oracle-sa deployment/db19c-oracle-db<br>
 > oc set volume dc/db19c-oracle-db  --add   --claim-name=db19c-oracle-db --claim-size=100G  <br>
 
+Wait until pod is ready.<br>
+
+> oc get pods<br>
+```
+NAME                               READY   STATUS    RESTARTS   AGE
+db19c-oracle-db-5868559fb4-frmc4   1/1     Running   0          45m
+```
 
 
 
