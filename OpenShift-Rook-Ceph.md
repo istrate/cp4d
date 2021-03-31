@@ -108,7 +108,7 @@ Open a shell in *rook-ceph-tool* container.<br>
   io:
     client:   1.2 KiB/s rd, 2 op/s rd, 0 op/s wr
 ```
-Pay attention to the number of *osd*, number 0 means that although *ceph* management is running but there is no space to be allocated.<br>
+Pay attention to the number of *osd*, number 0 means that although *ceph* management is running there is no space to be allocated.<br>
 
 Example of the wrong status.<br>
 ```
