@@ -39,7 +39,7 @@ Create all remaining objects.<br>
 > oc create -f filesystem.yaml<br>
 > oc create -f ./csi/cephfs/storageclass.yaml<br>
 
-Verify that all appropriate pods are created. Only "Running" and "Completed" pods should be displayed.<br>
+Verify that all appropriate pods are created. Only "Running" and "Completed" pods should be displayed. Make sure that *rook-ceph-osd-prepare* pods are present. If they are not, the deployment failed and try to find a cause before proceeding.<br>
 
 > oc get pods<br>
 ```
