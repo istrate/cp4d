@@ -183,6 +183,7 @@ Remove logical volumes and labels attached to devices fit for *ceph*. The device
 
 ## Create PVC
 
+> oc new-project test<br>
 > oc create -f csi/rbd/pvc.yaml<br>
 > oc get pvc<br>
 
@@ -193,7 +194,7 @@ NAME      STATUS   VOLUME                                     CAPACITY   ACCESS 
 rbd-pvc   Bound    pvc-f5239735-cd74-4269-86d1-c8b2ffbf9d9d   1Gi        RWO            rook-ceph-block   4s
 ```
 ## Write to allocated space
-> oc create -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/rook-ceph/write-box.yaml<br>
+><br>
 > oc get pods -l app=ceph-test<br>
 ```
 NAME        READY   STATUS      RESTARTS   AGE
@@ -209,12 +210,11 @@ write-box   0/1     Completed   0          2m21s
 ```
 
 Open a shell in *read-box* and verify */mnt/SUCCESS* file.<br>
-> oc exec -it read-box -- sh<br>
+> oc rsh read-box<br>
 > cat /mnt/SUCCESS<br>
 ```
 Hello world!
 ```
 
 If successful, delete test objects.<br>
-> oc delete pods -l app=ceph-test<br>
-> oc delete pvc/rbd-pvc<br>
+> oc delete project test<br>
