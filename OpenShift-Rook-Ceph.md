@@ -18,6 +18,12 @@ Security objects are created. Also a designed project *rook-ceph* is created.<br
 <br>
 Create an operator. Image is pulled from *docker.io*, make sure that *docker.io* credentials are deployed or *rook/ceph:master* image is pulled manually. https://github.com/stanislawbartkowski/CP4D/wiki/Docker.io-credentials<br>
 <br>
+
+**Important**. In the latest version, a *rook-ceph-default* Service Account is used to create pods. This SA should be granted as *privileged*, otherwise, pods are not allowed to start.<br>
+
+> oc adm policy add-scc-to-user privileged -z rook-ceph-default -n rook-ceph<br>
+<br>
+
 > oc create -f operator-openshift.yaml<br>
 
 > oc project rook-ceph<br>
