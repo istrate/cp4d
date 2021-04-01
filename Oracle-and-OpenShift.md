@@ -109,6 +109,38 @@ USER is "SYS"
 SQL> 
 
 ```
+# Open external traffic to Oracle instance.
+
+> oc get svc<br>
+```
+NAME              TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)                         AGE
+db19c-oracle-db   NodePort   172.30.147.233   <none>        1521:32753/TCP,5500:30379/TCP   9h
+```
+The NodePort is *32753*. <br>
+
+Modify HAProxy service on infrastructure node.<br>
+> vi /etc/haproxy/haproxy.cfg
+```
+frontend oracle-tcp
+        bind *:1521
+        default_backend oracle-tcp
+        mode tcp
+        option tcplog
+
+backend oracle-tcp
+        balance source
+        mode tcp
+        server worker0 <ip address>:32753 check
+        server worker1 <ip address>:32753 check
+        server worker2 <ip address>:32753 check
+```
+Restart HAProxy.
+
+> systemctl reload haproxy<br>
+
+
+
+
 
 
 
