@@ -111,13 +111,14 @@ SQL>
 ```
 # Open external traffic to Oracle instance.
 
+## Oracle service NodePort
 > oc get svc<br>
 ```
 NAME              TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)                         AGE
 db19c-oracle-db   NodePort   172.30.147.233   <none>        1521:32753/TCP,5500:30379/TCP   9h
 ```
 The NodePort is *32753*. <br>
-
+## HAProxy service<br>
 Modify HAProxy service on infrastructure node.<br>
 > vi /etc/haproxy/haproxy.cfg
 ```
@@ -137,6 +138,29 @@ backend oracle-tcp
 Restart HAProxy.
 
 > systemctl reload haproxy<br>
+## Client node.
+Download and install Oracle client software. https://www.oracle.com/technetwork/database/database-technologies/instant-client/downloads/index.html <br>
+
+Connect to Oracle using *sqllplus* utility.<br>
+
+>  sqlplus system@//\<HAProxy hostname\>:1521/ORCLCDB <br>
+```
+SQL*Plus: Release 19.0.0.0.0 - Production on Thu Apr 1 22:47:58 2021
+Version 19.3.0.0.0
+
+Copyright (c) 1982, 2019, Oracle.  All rights reserved.
+
+Enter password: 
+Last Successful login time: Thu Apr 01 2021 18:46:40 +02:00
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.3.0.0.0
+
+SQL> 
+
+```
+
 
 
 
