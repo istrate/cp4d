@@ -61,8 +61,8 @@ Replace the tag in Oracle images as *latest*, not *19.3.0.0* <br>
 ```
 
 Assign Service Account and PVC
-> oc set serviceaccount oracle-sa deployment/db19c-oracle-db<br>
-> oc set volume dc/db19c-oracle-db  --add   --claim-name=db19c-oracle-db --claim-size=100G  <br>
+> oc set serviceaccount deployment/db19c-oracle-db oracle-sa<br>
+> oc set volume dc/db19c-oracle-db --add --claim-name=db19c-oracle-db --claim-size=100G  <br>
 
 Wait until pod is ready.<br>
 
