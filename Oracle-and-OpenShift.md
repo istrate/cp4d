@@ -138,8 +138,9 @@ backend oracle-tcp
 Restart HAProxy.
 
 > systemctl reload haproxy<br>
-## Client node.
-Download and install Oracle client software. https://www.oracle.com/technetwork/database/database-technologies/instant-client/downloads/index.html <br>
+## Client node, test remote access
+Download and install Oracle client software.<br>
+https://www.oracle.com/technetwork/database/database-technologies/instant-client/downloads/index.html <br>
 
 Connect to Oracle using *sqllplus* utility.<br>
 
