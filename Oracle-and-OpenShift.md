@@ -29,7 +29,7 @@ Successfully packaged chart and saved it to: docker-images/OracleDatabase/Single
 
 > oc new-project oracle<br>
 > oc create sa oracle-sa<br>
->  oc adm policy add-scc-to-user anyuid -z oracle-sa<br>
+> oc adm policy add-scc-to-user anyuid -z oracle-sa<br>
 
 # Create Oracle repository credentials.<br>
 
@@ -47,7 +47,7 @@ Wait until deployment is visible.<br>
 > oc get deployment<br>
 ```
 NAME              READY   UP-TO-DATE   AVAILABLE   AGE
-db19c-oracle-db   1/1     1        
+db19c-oracle-db   0/1     0            0           63s
 ```
 
 Replace the tag in Oracle images as *latest*, not *19.3.0.0* <br>
@@ -62,7 +62,15 @@ Replace the tag in Oracle images as *latest*, not *19.3.0.0* <br>
 
 Assign Service Account and PVC
 > oc set serviceaccount deployment/db19c-oracle-db oracle-sa<br>
-> oc set volume dc/db19c-oracle-db --add --claim-name=db19c-oracle-db --claim-size=100G  <br>
+> oc set volume deployment/db19c-oracle-db --add --claim-name=db19c-oracle-db --claim-size=100G <br>
+
+If PVC already exists, delete it and recreate.
+
+> oc get pvc<br>
+```
+NAME              STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS      AGE
+db19c-oracle-db   Bound    pvc-6e44a69c-4c91-4a53-bf95-8e0e2a0394ee   94Gi       RWO            rook-ceph-block   96s
+```
 
 Wait until pod is ready.<br>
 
