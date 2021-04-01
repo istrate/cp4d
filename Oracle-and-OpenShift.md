@@ -91,6 +91,8 @@ The password is also stored in a secret *db19c-oracle-db*.
 
 Enter Oracle pod.<br>
 > oc rsh db19c-oracle-db-5868559fb4-n8jvl<br>
+> sqlplus / as sysdba<br>
+
 ```
 SQL*Plus: Release 19.0.0.0.0 - Production on Thu Apr 1 20:29:24 2021
 Version 19.3.0.0.0
