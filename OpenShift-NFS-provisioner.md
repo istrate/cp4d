@@ -88,6 +88,8 @@ managed-nfs-storage (default)   fuseim.pri/ifs   Delete          Immediate      
 # Test
 ## Create test PVC
 
+> oc new-project test<br>
+
 > oc create -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/test-claim.yaml
 ```
 persistentvolumeclaim/test-claim created
@@ -122,10 +124,9 @@ Logon to NFS server host and verify the SUCCESS file.<br>
 -rw-r--r-- 1 root root 0 12-31 15:55 SUCCESS
 ```
 
-> oc delete pod/test-pod<br>
-> oc delete pvc/test-claim<br>
+> oc delete project test<br>
 
-# Create another StorageClass using different NFS server
+# Create another StorageClass using a different NFS server
 
 ## Create
 
