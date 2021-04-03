@@ -35,5 +35,19 @@ Pull the image to local podman registry<br>
 Retag<br>
 > podman tag docker.io/rook/ceph:master  image-registry.openshift-image-registry.svc:5000/openshift/rook/ceph:master<br>
 
-Push to OpenShift<br>
+Login to OpenShift internal registry:<br>
+> oc login -u kubeadmin -p <password>
+> podman login -u kubeadmin -p $(oc whoami -t) image-registry.openshift-image-registry.svc:5000<br>
+
+Test.<br>
+> podman search  image-registry.openshift-image-registry.svc:5000/
+```
+INDEX                              NAME                                                                                          DESCRIPTION  STARS   OFFICIAL  AUTOMATED
+openshift-image-registry.svc:5000  image-registry.openshift-image-registry.svc:5000/openshift/apicast-gateway
+openshift-image-registry.svc:5000  image-registry.openshift-image-registry.svc:5000/openshift/apicurito-ui 
+openshift-image-registry.svc:5000  image-registry.openshift-image-registry.svc:5000/openshift/cli
+................
+
+````
+Push to registry<br>
 > podman push  image-registry.openshift-image-registry.svc:5000/openshift/rook/ceph:master<br>
