@@ -37,7 +37,7 @@ Retag<br>
 
 Login to OpenShift internal registry:<br>
 
-> oc login -u kubeadmin -p <password><br>
+> oc login -u kubeadmin -p \<password\> <br>
 > podman login -u kubeadmin -p $(oc whoami -t) image-registry.openshift-image-registry.svc:5000<br>
 
 Test.<br>
