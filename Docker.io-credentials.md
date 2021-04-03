@@ -36,7 +36,8 @@ Retag<br>
 > podman tag docker.io/rook/ceph:master  image-registry.openshift-image-registry.svc:5000/openshift/rook/ceph:master<br>
 
 Login to OpenShift internal registry:<br>
-> oc login -u kubeadmin -p <password>
+
+> oc login -u kubeadmin -p <password><br>
 > podman login -u kubeadmin -p $(oc whoami -t) image-registry.openshift-image-registry.svc:5000<br>
 
 Test.<br>
