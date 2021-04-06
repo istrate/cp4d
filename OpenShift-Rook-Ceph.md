@@ -194,7 +194,7 @@ NAME      STATUS   VOLUME                                     CAPACITY   ACCESS 
 rbd-pvc   Bound    pvc-f5239735-cd74-4269-86d1-c8b2ffbf9d9d   1Gi        RWO            rook-ceph-block   4s
 ```
 ## Write to allocated space
-><br>
+>oc create -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/rook-ceph/write-box.yaml<br>
 > oc get pods -l app=ceph-test<br>
 ```
 NAME        READY   STATUS      RESTARTS   AGE
