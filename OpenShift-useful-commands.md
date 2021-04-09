@@ -350,6 +350,7 @@ spec:
 | oc expose deployment/loadtest --port 80 --target-port 8080 | Expose deployment, create service
 | oc describe dns.operator/default | DNS
 | oc describe network/cluster  | Cluster Network Operator
+| oc run ubi8 --image=registry.redhat.io/ubi8/ubi --serviceaccount=s-aa  --command -- /bin/bash -c 'while true; do sleep 3; done' | Linux box for testing
 
 # Project template
 
