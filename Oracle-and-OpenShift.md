@@ -144,7 +144,7 @@ https://www.oracle.com/technetwork/database/database-technologies/instant-client
 
 Connect to Oracle using *sqllplus* utility.<br>
 
->  sqlplus system@//\<HAProxy hostname\>:1521/ORCLCDB <br>
+>  sqlplus system@//\<HAProxy hostname\>:1521/ORCLPDB1 <br>
 ```
 SQL*Plus: Release 19.0.0.0.0 - Production on Thu Apr 1 22:47:58 2021
 Version 19.3.0.0.0
