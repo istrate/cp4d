@@ -141,3 +141,23 @@ db2u-release-db2u-engn-svc   NodePort    172.30.159.211   <none>        50000:31
 db2u-release-db2u-internal   ClusterIP   None             <none>        50000/TCP,9443/TCP
 .......
 ```
+
+In-secure NodePort: 31644 and assuming HAProxy hostname *boreal-inf*.
+
+> vi /etc/haproxy/haproxy.cfg
+````
+...........
+frontend db2-tcp
+        bind *:1521
+        default_backend db2-tcp
+        mode tcp
+        option tcplog
+
+backend db2-tcp
+        balance source
+        mode tcp
+        server worker0 10.17.50.214:31644 check
+        server worker1 10.17.61.140:31644 check
+        server worker2 10.17.62.176:31644 check
+```
+> systemctl reload haproxy<br>
