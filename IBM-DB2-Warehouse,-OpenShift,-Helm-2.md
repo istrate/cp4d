@@ -96,6 +96,14 @@ Create secret credentials to access IBM image repository, as *docker password* u
 > oc create secret docker-registry ibm-registry --docker-server=icr.io --docker-username=iamapikey --docker-password=\<APIKey\><br>
 > oc secrets link db2u ibm-registry --for=pull<br>
 
+Pick up "DB2 release name" - it is an identifier used to create a name of different OpenShift objects, here *db2u-release*.
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-04-14%2015-34-07.png)
+
+Create secrets containing DB2 and LDAP admins passwords, ${RELEASE_NAME}-db2u-ldap-bluadmin ${RELEASE_NAME}-db2u-instance
+
+> oc create secret generic db2u-release-db2u-instance --from-literal=password=secret<br>
+>oc create secret generic db2u-release-db2u-ldap-bluadmin --from-literal=password=secret<br>
+
 The next step is to consider storage for DB2 Warehouse instance. It can be NFS storage or Rook/Ceph-filesystem.<br>
 
 To deploy IBM DB2 Warehouse, use *db2u-install* utility. There are plenty of options available: https://artifacthub.io/packages/helm/ibm-charts/ibm-db2#X-chart-installation.
