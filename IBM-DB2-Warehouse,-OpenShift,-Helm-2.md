@@ -169,7 +169,7 @@ Client desktop.<br>
 > db2 catalog tcpip node DB2WH remote boreal-inf server 50000<br>
 > db2 catalog database bludb at node db2wh<br>
 
-Connect, admin credentials *buladmin/secret*<br>
+Connect, admin credentials: *bluadmin/secret*<br>
 
 > db2 connect to bludb user bluadmin<br>
 ```
