@@ -131,3 +131,13 @@ storage.storageLocation.metaStorage.pvc.claim.size="40Gi"
 
 > ./db2u-install --db-type db2wh --namespace db2  --release-name db2u-release --helm-opt-file ./helm_options<br>
 
+# Expose Db2 Warehouse
+
+> oc get svc<br>
+```
+NAME                         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S) AGE
+.......
+db2u-release-db2u-engn-svc   NodePort    172.30.159.211   <none>        50000:31644/TCP,50001:30406/TCP 
+db2u-release-db2u-internal   ClusterIP   None             <none>        50000/TCP,9443/TCP
+.......
+```
