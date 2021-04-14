@@ -38,7 +38,7 @@ IBM DB2 Warehouse charts are compatible with Helm 2.x only.
 
 https://www.openshift.com/blog/getting-started-helm-openshift
 
-Steps in nutshell. <br>
+Steps in a nutshell.<br>
 You need *cluster-admin* authority.<br>
 > oc new-project tiller<br>
 > export TILLER_NAMESPACE=tiller<br>
@@ -69,6 +69,11 @@ Client: &version.Version{SemVer:"v2.9.0", GitCommit:"f6025bb9ee7daf9fee0026541c9
 Server: &version.Version{SemVer:"v2.9.0", GitCommit:"f6025bb9ee7daf9fee0026541c90a6f557a3e0bc", GitTreeState:"clean"}
 
 ```
+# Install IBM DB2 Warehouse.
+
+https://artifacthub.io/packages/helm/ibm-charts/ibm-db2warehouse
+
+Steps in a nutshell.<br>
 
 
 
