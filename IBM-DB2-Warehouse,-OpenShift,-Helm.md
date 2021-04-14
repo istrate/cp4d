@@ -75,6 +75,24 @@ https://artifacthub.io/packages/helm/ibm-charts/ibm-db2warehouse
 
 Steps in a nutshell.<br>
 
+> git clone https://github.com/IBM/charts.git<br>
+> cd charts/stable/ibm-db2warehouse/ibm_cloud_pak/pak_extensions<br>
 
+Create a separate project.<br>
+> oc new-project db2<br>
 
+Give tiller access to *db2* project.<br>
+> export TILLER_NAMESPACE=tiller<br>
+> oc policy add-role-to-user edit "system:serviceaccount:${TILLER_NAMESPACE}:tiller"<br>
+```
+clusterrole.rbac.authorization.k8s.io/edit added: "system:serviceaccount:tiller:tiller"
+```
+
+Create DB2 security artifacts.<br>
+> ./pre-install/clusterAdministration/createSecurityClusterPrereqs.sh<br>
+> ./pre-install/namespaceAdministration/createSecurityNamespacePrereqs.sh db2<br>
+
+Create secret credentials to access IBM image repository, as *docker password* use your IBM Api Key.<br>
+> oc create secret docker-registry ibm-registry --docker-server=icr.io --docker-username=iamapikey --docker-password=\<APIKey\><br>
+> oc secrets link db2u ibm-registry --for=pull<br>
 
