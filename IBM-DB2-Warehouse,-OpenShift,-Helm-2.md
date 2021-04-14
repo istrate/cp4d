@@ -34,7 +34,7 @@ Copying blob bd1ab57c0158 [>-------------------------------------] 351.4KiB / 15
 ````
 # Install Helm 2.9
 
-IBM DB2 Warehouse charts are compatible with Helm 2.x only. 
+IBM DB2 Warehouse charts are compatible with Helm 2 and Helm 3, the description here is dealing with Helm 2 only.
 
 https://www.openshift.com/blog/getting-started-helm-openshift
 
@@ -95,4 +95,12 @@ Create DB2 security artifacts.<br>
 Create secret credentials to access IBM image repository, as *docker password* use your IBM Api Key.<br>
 > oc create secret docker-registry ibm-registry --docker-server=icr.io --docker-username=iamapikey --docker-password=\<APIKey\><br>
 > oc secrets link db2u ibm-registry --for=pull<br>
+
+The next step is to consider storage for DB2 Warehouse instance. It can be NFS storage or Rook/Ceph-filesystem.<br>
+
+To deploy IBM DB2 Warehouse, use *db2u-install* utility. There are plenty of options available: https://artifacthub.io/packages/helm/ibm-charts/ibm-db2#X-chart-installation.
+
+> cd common<br>
+> ./db2u-install --db-type db2wh --namespace db2 --release-name db2u-release  --storage-class rook-cephfs<br>
+
 
