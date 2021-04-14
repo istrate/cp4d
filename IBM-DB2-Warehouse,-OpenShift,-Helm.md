@@ -34,5 +34,42 @@ Copying blob bd1ab57c0158 [>-------------------------------------] 351.4KiB / 15
 ````
 # Install Helm 2.9
 
-IBM DB2 Warehouse charts are compatible with Helm 2.x only.
+IBM DB2 Warehouse charts are compatible with Helm 2.x only. 
+
+https://www.openshift.com/blog/getting-started-helm-openshift
+
+Steps in nutshell. <br>
+You need *cluster-admin* authority.<br>
+> oc new-project tiller<br>
+> export TILLER_NAMESPACE=tiller<br>
+
+Download and unpack Helm 2.9 packaged.<br>
+
+> curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.9.0-linux-amd64.tar.gz | tar xz<br>
+
+Make a link to *helm* executable in any *PATH* directories, for instance: */usr/local/bin* or *~/bin*.
+
+> ln -s ..../helm/linux-amd64/helm <br>
+
+Warning: at this stage, *helm version* will hang.<br>
+
+Initialize Helm.<br>
+>  helm init --stable-repo-url https://charts.helm.sh/stable --client-only<br>
+> oc process -f https://github.com/openshift/origin/raw/master/examples/helm/tiller-template.yaml -p TILLER_NAMESPACE="${TILLER_NAMESPACE}" -p HELM_VERSION=v2.9.0 | oc create -f -<br>
+> oc rollout status deployment tiller<br>
+```
+deployment "tiller" successfully rolled out
+```
+
+Now run *helm version*.<br>
+> export TILLER_NAMESPACE=tiller<br>
+> helm version<br>
+```
+Client: &version.Version{SemVer:"v2.9.0", GitCommit:"f6025bb9ee7daf9fee0026541c90a6f557a3e0bc", GitTreeState:"clean"}
+Server: &version.Version{SemVer:"v2.9.0", GitCommit:"f6025bb9ee7daf9fee0026541c90a6f557a3e0bc", GitTreeState:"clean"}
+
+```
+
+
+
 
