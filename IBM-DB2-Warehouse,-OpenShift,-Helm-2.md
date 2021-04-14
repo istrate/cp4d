@@ -162,3 +162,22 @@ backend db2-tcp
 ```
 
 > systemctl reload haproxy<br>
+
+# Test
+Client desktop.<br>
+
+> db2 catalog tcpip node DB2WH remote boreal-inf server 50000<br>
+> db2 catalog database bludb at node db2wh<br>
+
+Connect, admin credentials *buladmin/secret*<br>
+
+> db2 connect to bludb user bluadmin<br>
+```
+Enter current password for bluadmin: 
+
+   Database Connection Information
+
+ Database server        = DB2/LINUXX8664 11.5.4.0
+ SQL authorization ID   = BLUADMIN
+ Local database alias   = BLUDB
+```
