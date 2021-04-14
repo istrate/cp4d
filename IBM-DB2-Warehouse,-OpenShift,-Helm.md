@@ -17,7 +17,8 @@ API Key looks like: 8Rlp7JAeTglt4N8Z69UsUv_Dc6r89F6kINK33TIpU4yu
 
 Verify that you can authenticate in IBM registry as *iamapikey* user entering API Key as a password and pull images using credentials provided.<br>
 > podman login icr.io -u iamapikey
-```Password:
+```
+Password:
 Login Succeeded!
 ```
 >  podman pull icr.io/obs/hdm/db2u/db2u.instdb:11.5.4.0-56-x86_64<br>
