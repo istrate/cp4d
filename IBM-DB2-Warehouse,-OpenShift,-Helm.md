@@ -32,3 +32,7 @@ Copying blob dc0665975713 [>-------------------------------------] 579.4KiB / 30
 Copying blob 8e3c93d02cd2 done  
 Copying blob bd1ab57c0158 [>-------------------------------------] 351.4KiB / 15.7MiB
 ````
+# Install Helm 2.9
+
+IBM DB2 Warehouse charts are compatible with Helm 2.x only.
+
