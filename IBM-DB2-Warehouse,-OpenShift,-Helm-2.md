@@ -148,7 +148,7 @@ In-secure NodePort: 31644 and assuming HAProxy hostname *boreal-inf*.
 ```
 ...........
 frontend db2-tcp
-        bind *:1521
+        bind *:50000
         default_backend db2-tcp
         mode tcp
         option tcplog
