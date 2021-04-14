@@ -111,4 +111,23 @@ To deploy IBM DB2 Warehouse, use *db2u-install* utility. There are plenty of opt
 > cd common<br>
 > ./db2u-install --db-type db2wh --namespace db2 --release-name db2u-release  --storage-class rook-cephfs<br>
 
+Another approach, different Storage Class for metadata storage and Db2 storage.<br>
+
+> cat helm_options
+```
+rest.enabled="false"
+storage.useDynamicProvisioning="true"
+storage.enableVolumeClaimTemplates="true"
+storage.storageLocation.dataStorage.enablePodLevelClaim="true"
+storage.storageLocation.dataStorage.enabled="true"
+storage.storageLocation.dataStorage.volumeType="pvc"
+storage.storageLocation.dataStorage.pvc.claim.storageClassName=rook-ceph-block
+storage.storageLocation.dataStorage.pvc.claim.size="140Gi"
+storage.storageLocation.metaStorage.enabled="true"
+storage.storageLocation.metaStorage.volumeType="pvc"
+storage.storageLocation.metaStorage.pvc.claim.storageClassName=rook-cephfs
+storage.storageLocation.metaStorage.pvc.claim.size="40Gi"
+```
+
+> ./db2u-install --db-type db2wh --namespace db2  --release-name db2u-release --helm-opt-file ./helm_options<br>
 
