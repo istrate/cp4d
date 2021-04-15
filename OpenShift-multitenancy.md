@@ -19,4 +19,6 @@ The command to access the *nginx* service.<br>
 
 It is expected that applications in the project can access services only in the same project and are blocked from accessing services in another project.
 
+# Create projects
+
 
