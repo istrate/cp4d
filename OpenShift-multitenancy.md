@@ -73,7 +73,7 @@ Verify that *nginx* is accessible externally.<br>
 ```
 
 Verify that *nginx* services can access each other internally.<br>
-Enter service in *test*
+Enter service in *test*.
 > oc -n test rsh  app-68bb6db796-9t9df  <br>
 
 Call service in project *test1*<br>
@@ -81,5 +81,16 @@ Call service in project *test1*<br>
 ```
 <p><em>Thank you for using nginx.</em></p>
 ```
+# Multitenancy
+Now we want to harden policy, internal traffic is allowed only between pods in a single project.
 
+```
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: deny-all
+spec:
+  podSelector: {}
+```
+> oc create -n test -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/miltitenancy/deny-all.yaml
 
