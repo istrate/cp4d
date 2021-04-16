@@ -23,8 +23,8 @@ It is expected that applications in the project can access services only in the 
 
 > oc new-project test<br>
 > oc new-project test1<br>
-> oc new-app --name app --docker-image quay.io/redhattraining/hello-world-nginx:v1.0 -n test<br>
-> oc new-app --name app --docker-image quay.io/redhattraining/hello-world-nginx:v1.0 -n test1<br>
+> oc new-app --name app --docker-image docker.io/library/nginx:latest -n test<br>
+> oc new-app --name app --docker-image docker.io/library/nginx:latest -n test1<br>
 
 
 
