@@ -157,3 +157,9 @@ Test again.
 <p><em>Thank you for using nginx.</em></p>
 
 ```
+# Make exception
+Assume we want to give access to custom *app-share* service in *test1* to a specific *ubi8* service in *test*. Only this inter-project traffic is allowed, all other restrictions are in place.<br>
+
+> oc new-app --name app-share --docker-image docker.io/library/nginx:latest -n test1<br>
+> oc set serviceaccount deployment app-share supersa -n test1<br>
+> oc -n test run ubi8 --image=registry.redhat.io/ubi8/ubi --command -- /bin/bash -c 'while true; do sleep 3; done'
