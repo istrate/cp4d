@@ -35,7 +35,7 @@ As *admin* user<br>
 > oc adm policy add-scc-to-user anyuid -z supersa -n test<br>
 > oc adm policy add-scc-to-user anyuid -z supersa -n test1<br>
 
-As *developer* user.
+As a *developer* user.
 
 > oc new-app --name app --docker-image docker.io/library/nginx:latest -n test<br>
 > oc set serviceaccount deployment app supersa -n test<br>
@@ -127,7 +127,7 @@ openshift-monitoring                  Active   name=openshift-monitoring,network
 
 *openshift-ingress* project managing *route* traffic is labelled *network.openshift.io/policy-group=ingress* and *openshift-monitoring* is labelled *network.openshift.io/policy-group=monitoring*
 
-Network policy to release *router* service allows traffic from *project* labelled *network.openshift.io/policy-group: ingress*
+Network policy to release *router* service allows traffic from project labelled *network.openshift.io/policy-group: ingress*
 ```
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
