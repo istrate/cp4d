@@ -74,7 +74,7 @@ Verify that *nginx* is accessible externally.<br>
 
 Verify that *nginx* services can access each other internally.<br>
 Enter service in *test*.
-> oc -n test rsh  app-68bb6db796-9t9df  <br>
+> oc -n test rsh  app-68bb6db796-c4t6k<br>
 
 Call service in project *test1*<br>
 > curl -s 172.30.184.11 | grep Thank
@@ -92,5 +92,11 @@ metadata:
 spec:
   podSelector: {}
 ```
-> oc create -n test -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/miltitenancy/deny-all.yaml
+> oc create -n test -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/miltitenancy/deny-all.yaml<br>
+> oc create -n test -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/miltitenancy/deny-all.yaml<br>
 
+Test again.<br>
+> oc -n test rsh  app-68bb6db796-9t9df<br>
+> curl -s 172.30.184.11<br>
+
+Cancel with <CTRL>C.
