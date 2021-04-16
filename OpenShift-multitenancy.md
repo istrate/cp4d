@@ -163,3 +163,44 @@ Assume we want to give access to custom *app-share* service in *test1* to a spec
 > oc new-app --name app-share --docker-image docker.io/library/nginx:latest -n test1<br>
 > oc set serviceaccount deployment app-share supersa -n test1<br>
 > oc -n test run ubi8 --image=registry.redhat.io/ubi8/ubi --command -- /bin/bash -c 'while true; do sleep 3; done'
+```
+ oc get service app-share -n test1
+NAME        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+app-share   ClusterIP   172.30.155.211   <none>        80/TCP    51s
+
+```
+As admin user.<br>
+> oc label namespace test name=test<br>
+
+As developer user.<br>
+> oc get project test --show-labels
+```
+NAME   DISPLAY NAME   STATUS   LABELS
+test                  Active   name=test
+```
+
+Prepare exception policy. The police opens traffic to *app-share* pod from pod *run=ubi8* deployed in project labelled *name=test* and on *80* port only.
+
+```
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+   name: network-exception
+spec:
+   podSelector:
+      matchLabels:
+        deployment: app-share
+   ingress:
+   - from:
+     - namespaceSelector:
+         matchLabels:
+           name : test
+       podSelector:
+         matchLabels:
+           run: ubi8
+         ports:
+           - port: 80
+             protocol: TCP
+
+```
+
