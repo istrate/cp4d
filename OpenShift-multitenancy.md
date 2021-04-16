@@ -99,4 +99,10 @@ Test again.<br>
 > oc -n test rsh  app-68bb6db796-9t9df<br>
 > curl -s 172.30.184.11<br>
 
-Cancel with <CTRL>C.
+Cancel with \<CTRL\>C.
+
+Check traffic inside project *test1*.<br>
+> curl -s app-68bb6db796-c4t6k | grep Thank<br>
+```
+<p><em>Thank you for using nginx.</em></p>
+```
