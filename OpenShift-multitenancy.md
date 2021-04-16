@@ -113,4 +113,47 @@ Try external access.<br>
 
 Break with \<Ctrl\>C. The external access using route is blocked because the *deny-all* policy is very restrictive and does not differentiate between traffic from OpenShift native services like *router* and developer projects.<br>
 We need to soften restriction and allow traffic from OpenShift *router* and *monitoring* services.<br>
-:
+
+> oc get project openshift-ingress --show-labels
+```
+NAME                DISPLAY NAME   STATUS   LABELS
+openshift-ingress                  Active   name=openshift-ingress,network.openshift.io/policy-group=ingress,olm.operatorgroup.uid/4e616a48-8931-4b71-8dd4-5c5232a40fa7=,openshift.io/cluster-monitoring=true
+```
+> oc get project openshift-monitoring --show-labels<br>
+```
+NAME                   DISPLAY NAME   STATUS   LABELS
+openshift-monitoring                  Active   name=openshift-monitoring,network.openshift.io/policy-group=monitoring,olm.operatorgroup.uid/4e616a48-8931-4b71-8dd4-5c5232a40fa7=,openshift.io/cluster-monitoring=true
+```
+
+*openshift-ingress* project managing *route* traffic is labelled *network.openshift.io/policy-group=ingress* and *openshift-monitoring* is labelled *network.openshift.io/policy-group=monitoring*
+
+Network policy to release *router* service allows traffic from *project* labelled *network.openshift.io/policy-group: ingress*
+```
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+   name: allow-from-openshift-ingress
+spec:
+   ingress:
+   - from:
+     - namespaceSelector:
+         matchLabels:
+             network.openshift.io/policy-group: ingress
+   podSelector: {}
+   policyTypes:
+   - Ingress
+```
+
+>oc create -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/miltitenancy/allow-from-openshift-ingress.yaml -n test<br>
+>oc create -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/miltitenancy/allow-from-openshift-ingress.yaml -n test1<br>
+
+> oc create -f https://github.com/stanislawbartkowski/CP4D/raw/main/miltitenancy/allow-from-openshift-monitoring.yaml -n test<br>
+> oc create -f https://github.com/stanislawbartkowski/CP4D/raw/main/miltitenancy/allow-from-openshift-monitoring.yaml -n test1<br>
+
+Test again.
+>curl -s app-test.apps.boreal.cp.fyre.ibm.com | grep Thank
+>curl -s app-test1.apps.boreal.cp.fyre.ibm.com | grep Thank
+```
+<p><em>Thank you for using nginx.</em></p>
+
+```
