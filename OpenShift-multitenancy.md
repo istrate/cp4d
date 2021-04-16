@@ -207,4 +207,13 @@ spec:
 
 Test access.
 > oc -n test rsh ubi8<br>
+> curl  -s  172.30.155.211 | grep Thank 
+```
+<p><em>Thank you for using nginx.</em></p>
+```
+Check access to another service in *test1*<br>
+
+> curl -s 172.30.184.11
+
+Access is blocked.
 
