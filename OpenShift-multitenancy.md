@@ -106,3 +106,11 @@ Check traffic inside project *test1*.<br>
 ```
 <p><em>Thank you for using nginx.</em></p>
 ```
+
+Try external access.<br>
+
+> curl -s app-test.apps.boreal.cp.fyre.ibm.com <br>
+
+Break with \<Ctrl\>C. The external access using route is blocked because the *deny-all* policy is very restrictive and does not differentiate between traffic from OpenShift native services like *router* and developer projects.<br>
+We need to soften restriction and allow traffic from OpenShift *router* and *monitoring* services.<br>
+:
