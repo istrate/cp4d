@@ -58,6 +58,28 @@ Run<br>
 
 > oc get pods -n test1<br>
 > oc get svc -n test1<br>
-> oc get svc -n test1<br>
+> oc get route -n test1<br>
+
+Collect all access data.<br>
+| Project | nginx pod | Service Cluster IP | Route
+| ---- | ---- | ---- | ---- |
+| test | app-68bb6db796-c4t6k | 172.30.128.219 | app-test.apps.boreal.cp.fyre.ibm.com
+| test1 | app-68bb6db796-9t9df | 172.30.184.11 | app-test1.apps.boreal.cp.fyre.ibm.com
+
+Verify that *nginx* is accessible externally.<br>
+> curl -s app-test.apps.boreal.cp.fyre.ibm.com | grep Thank
+```
+<p><em>Thank you for using nginx.</em></p>
+```
+
+Verify that *nginx* services can access each other internally.<br>
+Enter service in *test*
+> oc -n test rsh  app-68bb6db796-9t9df  <br>
+
+Call service in project *test1*<br>
+> curl -s 172.30.184.11 | grep Thank
+```
+<p><em>Thank you for using nginx.</em></p>
+```
 
 
