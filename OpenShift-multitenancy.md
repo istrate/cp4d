@@ -42,5 +42,22 @@ As *developer* user.
 > oc new-app --name app --docker-image docker.io/library/nginx:latest -n test1<br>
 > oc set serviceaccount deployment app supersa -n test1<br>
 
+Expose services<br>
+> oc expose service app -n test<br>
+> oc expose service app -n test1<br>
+
+# Test
+
+Services are accessible from outside, service from *test* can access service *test1* and opposite.<br>
+
+Run<br>
+
+> oc get route -n test<br>
+> oc get svc -n test<br>
+> oc get route -n test<br>
+
+> oc get pods -n test1<br>
+> oc get svc -n test1<br>
+> oc get svc -n test1<br>
 
 
