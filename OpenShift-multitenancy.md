@@ -203,4 +203,8 @@ spec:
              protocol: TCP
 
 ```
+> oc create -n test1 -f https://github.com/stanislawbartkowski/CP4D/raw/main/miltitenancy/network-exception.yaml
+
+Test access.
+> oc -n test rsh ubi8<br>
 
