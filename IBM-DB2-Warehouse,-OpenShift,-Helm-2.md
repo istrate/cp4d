@@ -233,5 +233,6 @@ db-console   db-console-db2.apps.boreal.cp.fyre.ibm.com          db-console-ibm-
 
 Open https://db-console-db2.apps.boreal.cp.fyre.ibm.com  (secure port)
 
-
-
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-04-21%2001-04-05.png)
+<br>
+User/password: bluadmin/{password}
