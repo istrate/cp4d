@@ -32,7 +32,7 @@ Copying blob dc0665975713 [>-------------------------------------] 579.4KiB / 30
 Copying blob 8e3c93d02cd2 done  
 Copying blob bd1ab57c0158 [>-------------------------------------] 351.4KiB / 15.7MiB
 ````
-# Install Helm 2.9
+# Install Helm 2.17
 
 IBM DB2 Warehouse charts are compatible with Helm 2 and Helm 3, the description here is dealing with Helm 2 only.
 
@@ -43,9 +43,9 @@ You need *cluster-admin* authority.<br>
 > oc new-project tiller<br>
 > export TILLER_NAMESPACE=tiller<br>
 
-Download and unpack Helm 2.9 packaged.<br>
+Download and unpack Helm 2.17 packaged.<br>
 
-> curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.9.0-linux-amd64.tar.gz | tar xz<br>
+> curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.17.0-linux-amd64.tar.gz | tar xz<br>
 
 Make a link to *helm* executable in any *PATH* directories, for instance: */usr/local/bin* or *~/bin*.
 
@@ -55,7 +55,7 @@ Warning: at this stage, *helm version* will hang.<br>
 
 Initialize Helm.<br>
 >  helm init --stable-repo-url https://charts.helm.sh/stable --client-only<br>
-> oc process -f https://github.com/openshift/origin/raw/master/examples/helm/tiller-template.yaml -p TILLER_NAMESPACE="${TILLER_NAMESPACE}" -p HELM_VERSION=v2.9.0 | oc create -f -<br>
+> oc process -f https://github.com/openshift/origin/raw/master/examples/helm/tiller-template.yaml -p TILLER_NAMESPACE="${TILLER_NAMESPACE}" -p HELM_VERSION=v2.17.0 | oc create -f -<br>
 > oc rollout status deployment tiller<br>
 ```
 deployment "tiller" successfully rolled out
@@ -65,8 +65,8 @@ Now run *helm version*.<br>
 > export TILLER_NAMESPACE=tiller<br>
 > helm version<br>
 ```
-Client: &version.Version{SemVer:"v2.9.0", GitCommit:"f6025bb9ee7daf9fee0026541c90a6f557a3e0bc", GitTreeState:"clean"}
-Server: &version.Version{SemVer:"v2.9.0", GitCommit:"f6025bb9ee7daf9fee0026541c90a6f557a3e0bc", GitTreeState:"clean"}
+Client: &version.Version{SemVer:"v2.17.0", GitCommit:"f6025bb9ee7daf9fee0026541c90a6f557a3e0bc", GitTreeState:"clean"}
+Server: &version.Version{SemVer:"v2.17.0", GitCommit:"f6025bb9ee7daf9fee0026541c90a6f557a3e0bc", GitTreeState:"clean"}
 
 ```
 # Install IBM DB2 Warehouse.
