@@ -183,7 +183,7 @@ Enter current password for bluadmin:
 ```
 # Install DB2 Warehouse Universal Console
 
-Without Web UI the worlds of Warehouse is grey and sad.<br>
+Without Web UI the world of DB2 Warehouse is grey and sad.<br>
 
 https://www.ibm.com/docs/en/db2/11.5?topic=installing-db2-unified-console
 
