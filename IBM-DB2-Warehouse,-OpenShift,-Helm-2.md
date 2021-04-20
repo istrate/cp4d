@@ -181,3 +181,57 @@ Enter current password for bluadmin:
  SQL authorization ID   = BLUADMIN
  Local database alias   = BLUDB
 ```
+# Install DB2 Warehouse Universal Console
+
+Without Web UI the worlds of Warehouse is grey and sad.<br>
+
+https://www.ibm.com/docs/en/db2/11.5?topic=installing-db2-unified-console
+
+You need at least Helm 2.12 to install the console, not 2.9 as described in the documentation.<br>
+The Db2 Unified Console is not a standalone application, it is paired with an already installed DB2 Warehouse instance.<br>
+
+Collect necessary information.<br>
+* db2-release-name: it is the release name of the DB2 Warehouse installed previously. Here: *db2u-release*
+* console-release-name: it is the prefix added to all OpenShift Unified Console objects: Here: *db-console*
+
+Make sure that local and remote *helm* versions match.
+
+> export TILLER_NAMESPACE=tiller<br>
+> helm version<br>
+```
+Client: &version.Version{SemVer:"v2.17.0", GitCommit:"a690bad98af45b015bd3da1a41f6218b1a451dbe", GitTreeState:"clean"}
+Server: &version.Version{SemVer:"v2.17.0", GitCommit:"a690bad98af45b015bd3da1a41f6218b1a451dbe", GitTreeState:"clean"}
+```
+
+*Helm* list should report already installed DB2 Warehouse instance.
+
+> helm list<br>
+```
+NAME        	REVISION	UPDATED                 	STATUS  	CHART                    	APP VERSION	NAMESPACE
+db2u-release	1       	Wed Apr 14 20:15:10 2021	DEPLOYED	ibm-db2warehouse-3.0.2   	11.5.4.0   	db2   
+```
+
+> cd charts/stable/ibm-unified-console/ibm_cloud_pak/pak_extensions<br>
+> ./deploy_console.sh --db-release-name  db2u-release --console-release-name db-console<br>
+
+Wait several minutes until all *Univeral Console* pods are up and ready.<br>
+
+>  oc get pods
+```
+NAME                                                  READY   STATUS    RESTARTS   AGE
+db-console-ibm-unified-console-api-6c97db5fcc-8m99k   1/1     Running   0          24m
+db-console-ibm-unified-console-ui-6c54797f66-464xm    1/1     Running   0          24m
+```
+
+Identify Unified Console *route* address, here *db-console-db2.apps.boreal.cp.fyre.ibm.com* <br>
+
+> oc get route<br>
+```
+NAME         HOST/PORT                                    PATH   SERVICES                            PORT    TERMINATION   WILDCARD
+db-console   db-console-db2.apps.boreal.cp.fyre.ibm.com          db-console-ibm-unified-console-ui   https   passthrough   None
+```
+
+Open https://db-console-db2.apps.boreal.cp.fyre.ibm.com  (secure port)
+
+
+
