@@ -337,6 +337,7 @@ spec:
 | Command | Description |
 | --- | ---- |
 | oc new-project demo --node-selector "tier=special" | Create a project where all containers will be labelled "ties=special"
+| oc annotate namespace demo openshift.io/node-selector="tier=2" --overwrite | Modify node-selector on existing project
 | oc create deployment loadtest --dry-run=client --image quay.io/redhattraining/loadtest:v1.0  -o yaml >loadtest.yaml | Creates a yaml specification only
 | oc adm node-logs --role=master -u kubelet | Get master nodes logs
 | oc whoami --show-console | OC console hostname
