@@ -6,6 +6,8 @@ https://artifacthub.io/packages/helm/ibm-charts/ibm-db2warehouse
 
 Installing DB2 Warehouse on OpenShift is easy and described in the documentation but there are some caveats requiring more clarification.
 
+Important: The last DB2 Warehouse release supported by Help is DB2 11.5.4. The latest DB2 11.5.5 release can be installed using OpenShift DB2 operator. https://www.ibm.com/docs/en/db2/11.5?topic=1155-installing-db2
+
 # IBM Cloud API Access Key
 
 Make sure you are authorized to pull IBM DB2 Warehouse docker images.
