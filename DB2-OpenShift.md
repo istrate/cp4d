@@ -54,7 +54,44 @@ The simplest option is "Db2u Cluster". "OC Console" -> Project db2 -> Installed 
 
 In order to use non-default storage, open "YAML View" and enter appropriate StorageClass name in the *storageClassName* property.<br>
 
-It can take a half an hour to provision DB2 instance for NFS storage and around 10 minutes in case of Ceph backed storage.<br>
+It can take half an hour to provision DB2 instance for NFS storage and around 10 minutes in case of Ceph backed storage.<be>
+
+# ImagePullBackOff error
+
+Verify that credential are valid. As a password, paste *Entitlement Key* <br>
+<br>
+> podman login  cp.icr.io -u cp
+```
+Password: 
+Login Succeeded!
+```
+Identify the URL image from *pod* event and pull it manually as a test.
+<br>
+> podman pull cp.icr.io/cp/db2u.instdb@sha256:2f7d28e01153aaf516e750ba6463fb21d867cba2c66fa982b64f20af01e1434a
+```
+Trying to pull cp.icr.io/cp/db2u.instdb@sha256:2f7d28e01153aaf516e750ba6463fb21d867cba2c66fa982b64f20af01e1434a...
+Getting image source signatures
+Copying blob 4a876aa7c77a done  
+Copying blob 2814fe1cf24f done  
+Copying blob af076c7c771c done  
+```
+
+Verify that *Entitlement Key* is pasted correctly in *ibm-registry*.
+
+Identify the Service Account, the name can be different according to the release name. Here: *dbu-release*.
+
+>oc get a<br>
+```
+NAME                       SECRETS   AGE
+account-db2-db2u-release   2         38m
+builder                    2         8d
+...
+```
+Assign DB2 Service Account to DB2 pull secret.
+
+> oc secrets link account-db2-db2u-release ibm-registry --for=pull<br>
+
+Delete failed pods and wait until recreated.
 
 # Verify that DB2 is up and running
 
