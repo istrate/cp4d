@@ -78,7 +78,7 @@ Copying blob af076c7c771c done
 
 Verify that *Entitlement Key* is pasted correctly in *ibm-registry*.
 
-Identify the Service Account, the name can be different according to the release name. Here: *dbu-release*.
+Identify the Service Account, the name can be different according to the release name. Here: *db2u-release*.
 
 >oc get a<br>
 ```
