@@ -48,6 +48,48 @@ OpenShift Container Storage. https://www.openshift.com/blog/introducing-openshif
 <br>
 Rook-Ceph: use *rook-cephfs* (file system)
 
+More detailed storage assignment.<br>
+* data: root-ceph-block
+* meta data: rook-cephfs
+* backup: managed-nfs-storage
+
+Important: make sure that *storage* key is at the same level as *version*. Otherwise, no error is reported but DB2 cluster will not be created.
+
+```
+  version: 11.5.5.0-cn4
+
+  storage:
+    - name: meta
+      type: create
+      spec:
+        storageClassName: rook-cephfs
+        accessModes:
+          - ReadWriteMany
+        resources:
+          requests:
+            storage: 10Gi
+    - name: data
+      type: create
+      spec:
+        storageClassName: rook-ceph-block
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 100Gi
+    - name: backup
+      type: create
+      spec:
+        storageClassName: managed-nfs-storage
+        accessModes:
+         - ReadWriteMany
+        resources:
+          requests:
+            storage: 50Gi
+
+```
+
+
 # Install DB2 database
 
 The simplest option is "Db2u Cluster". "OC Console" -> Project db2 -> Installed Operators -> IBM DB2 -> Db2u Cluster -> Create Instance<br>
