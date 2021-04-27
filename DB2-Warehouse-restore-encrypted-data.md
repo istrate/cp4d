@@ -78,4 +78,9 @@ Update DB2 Warehouse instance.<br>
 ## Restore encrypted backup
 
 > db2 restore db bludb from /mnt/backup taken at 20210425102241 no encrypt<br>
+```
+DB20000I  The RESTORE DATABASE command completed successfully.
+```
+>  db2 rollforward db bludb complete<br>
+
 
