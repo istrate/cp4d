@@ -82,5 +82,19 @@ Update DB2 Warehouse instance.<br>
 DB20000I  The RESTORE DATABASE command completed successfully.
 ```
 >  db2 rollforward db bludb complete<br>
+```
+                                 Rollforward Status
 
+ Input database alias                   = bludb
+ Number of members have returned status = 1
+
+ Member ID                              = 0
+ Rollforward status                     = not pending
+ Next log file to be read               =
+ Log files processed                    =  -
+ Last committed transaction             = 2021-04-25-10.23.01.000000 UTC
+
+DB20000I  The ROLLFORWARD command completed successfully.
+
+```
 
