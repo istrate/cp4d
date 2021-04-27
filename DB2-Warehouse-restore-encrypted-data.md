@@ -75,3 +75,7 @@ Update DB2 Warehouse instance.<br>
 
 > db2 update dbm cfg using keystore_location  /mnt/blumeta0/db2/keystore/keystore.p12  keystore_type pkcs12<br>
 
+## Restore encrypted backup
+
+> db2 restore db bludb from /mnt/backup taken at 20210425102241 no encrypt<br>
+
