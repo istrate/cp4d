@@ -97,4 +97,11 @@ DB20000I  The RESTORE DATABASE command completed successfully.
 DB20000I  The ROLLFORWARD command completed successfully.
 
 ```
+## Troubleshooting
+```
+SQL1643C  The database manager failed to allocate shared memory because the 
+database manager instance memory limit has been reached.
+```
+>  db2 update dbm cfg using INSTANCE_MEMORY 100000 automatic immediate<br>
+> db2stop ; db2start<br>
 
