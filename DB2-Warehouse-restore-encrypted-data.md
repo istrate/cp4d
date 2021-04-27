@@ -4,7 +4,7 @@ Encrypted backup cannot be immediately restored in a separate environment. Below
 
 In this article, the DB2 backup of BLUDB database is stored in /mnt/backup/BLUDB.0.db2inst1.DBPART000.20210425102241.001
 
-# Verify that backup is encrypted
+## Verify that backup is encrypted
 
 > db2ckbkp -H /mnt/backup/BLUDB.0.db2inst1.DBPART000.20210425102241.001 
 ```
@@ -13,7 +13,7 @@ In this article, the DB2 backup of BLUDB database is stored in /mnt/backup/BLUDB
 	                                  Source DB was encrypted
 ```
 
-# Identify keystore and the secret key label
+## Identify keystore and the secret key label
 
 > db2 "restore db bludb from /mnt/backup taken at 20210425102241   encropts 'show master key details'"
 
@@ -43,7 +43,7 @@ The location of keystore and label is stored in a specific file. Important: this
          Encryption Key Length: 256
               Master Key Label: DB2_SYSGEN_db2inst1_BLUDB_2021-03-19-13.57.02_A8CF4EED
 ```
-# Extract master secret key from the source database.
+## Extract master secret key from the source database.
 
 List the content of source keystore.<br>
 
@@ -51,7 +51,7 @@ List the content of source keystore.<br>
 ```
 Certificates found
 * default, - personal, ! trusted, # secret key
-#	DB2_SYSGEN_db2inst1_BLUDB_2021-03-19-13.57.02_A8CF4EED
+ #	DB2_SYSGEN_db2inst1_BLUDB_2021-03-19-13.57.02_A8CF4EED
 ```
 The master key label is the same as report by *'show master key details'*
 
@@ -63,7 +63,7 @@ Target database password :
 ```
 The *Target password* is the key use to encrypt *secretkey.p12*
 
-# Create the keystore in the target DB2 instance.
+## Create the keystore in the target DB2 instance.
 
 Assume the keystore is stored in */mnt/blumeta0/db2/keystore/*. Create directory, keystore and import *secretkey.p12* using the same master key label.<br>
 
