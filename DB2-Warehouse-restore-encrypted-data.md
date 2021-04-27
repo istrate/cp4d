@@ -105,3 +105,10 @@ database manager instance memory limit has been reached.
 >  db2 update dbm cfg using INSTANCE_MEMORY 100000 automatic immediate<br>
 > db2stop ; db2start<br>
 
+```
+SQL1668N  The operation failed because the operation is not supported with 
+this environment. Reason code: "5".
+
+```
+> db2 update dbm cfg using INTRA_PARALLEL YES<br>
+> db2stop ; db2start<br>
