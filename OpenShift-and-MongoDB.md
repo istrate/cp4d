@@ -57,7 +57,52 @@ mongos>
 ```
 ![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-04-29%2014-03-31.png)
 
+# Configure external connectivity
 
+As a default, MongoDB operator creates *ClusterIP* service. Create manually *NodePort* service and remap the port on *HAProxy* node.
 
+> oc expose deployment mydbcluster-mongos --type NodePort --name mydbcluster-mongosp<br>
+> oc get svc
+```
+NAME                  TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)           AGE
+mydbcluster-cfg       ClusterIP   None            <none>        27017/TCP         45m
+mydbcluster-mongos    ClusterIP   172.30.4.255    <none>        27017/TCP         45m
+mydbcluster-mongosp   NodePort    172.30.110.20   <none>        27017:32290/TCP   22s
+mydbcluster-rs0       ClusterIP   None            <none>        27017/TCP         45m
+```
+
+On *HAProxy* infrastructure node.
+
+>  vi /etc/haproxy/haproxy.cfg 
+```
+rontend mgop-tcp
+        bind *:27017
+        default_backend mgop-tcp
+        mode tcp
+        option tcplog
+
+backend mgop-tcp
+        balance source
+        mode tcp
+        server worker0 10.17.50.214:32290 check
+        server worker1 10.17.61.140:32290 check
+        server worker2 10.17.62.176:32290 check
+
+```
+> systemctl reload haproxy<br>
+
+# Verify external connection
+
+## mongo CLI
+(Assuming *boreal-inf* as HAProxy node).
+> cps$  mongo mongodb://userAdmin:b3LvOkwVefeDXPXK@boreal-inf --authenticationDatabase 'admin'<br>
+> show dbs
+```
+admin   0.001GB
+config  0.001GB
+mongos> 
+
+```
+# Compass GUI
 
 
