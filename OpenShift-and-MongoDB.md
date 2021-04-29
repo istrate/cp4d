@@ -19,3 +19,5 @@ Update OAUth entry and make sure that *mongoadmin* user can log on.<br>
 > oc adm policy add-role-to-user admin mongoadmin  -n mongodb<br>
 
 From OpenShift Console install Percona Operator into *mongodb* project.
+
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-04-29%2012-49-06.png)
