@@ -229,6 +229,15 @@ Verify.
 
 Insert more documents to WARM zone.
 
->db.userdata.insertOne({ "creation_date":ISODate("2021-03-02"),"userid" :124,"photo_location":"example.net/storage/usr/photo_2.jpg"})<br>
->db.userdata.insertOne({ "creation_date":ISODate("2021-03-03"),"userid" :125,"photo_location":"example.net/storage/usr/photo_3.jpg"})<br>
->db.userdata.insertOne({ "creation_date":ISODate("2021-03-04"),"userid" :126,"photo_location":"example.net/storage/usr/photo_4.jpg"})<br>
+>db.userdata.insertOne({ "creation_date":ISODate("2021-03-02"), "userid" :124, "photo_location":"example.net/storage/usr/photo_2.jpg"})<br>
+>db.userdata.insertOne({ "creation_date":ISODate("2021-03-03"), "userid" :125, "photo_location":"example.net/storage/usr/photo_3.jpg"})<br>
+>db.userdata.insertOne({ "creation_date":ISODate("2021-03-04"), "userid" :126, "photo_location":"example.net/storage/usr/photo_4.jpg"})<br>
+
+Verify again shard allocation using *find*.*explain*. *rs0* is reported.
+
+Insert more document to COLD zone.
+> db.userdata.insertOne({ "creation_date" : ISODate("2019-10-01"),   "userid" : 10,   "photo_location" : "example.net/storage/usr/photo_01.jpg"})<br>
+> db.userdata.insertOne({ "creation_date" : ISODate("2018-10-01"),   "userid" : 9,   "photo_location" : "example.net/storage/usr/photo_02.jpg"})<br>
+> db.userdata.insertOne({ "creation_date" : ISODate("2017-10-01"),   "userid" : 8,   "photo_location" : "example.net/storage/usr/photo_03.jpg"})<br>
+
+Verify again shard allocation using *find*.*explain*. *rs1* is reported.
