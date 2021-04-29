@@ -153,11 +153,18 @@ Verify that different storage is allocated for new pods.<br>
 
 # Simple test, use sharding to allocate document in the collection to "warm" and "cold" zones.
 
+https://docs.mongodb.com/manual/tutorial/manage-shard-zone/
+
 Assume that shard *rs0* is "warm" and *rs1* is *cold*  (here NFS Storage Class). Old and rarely accessed document should be moved to "cold" zone maintaining cheap storage and current document to "warm" zone.<br>
+
+Test environment.<br>
+
+* two shards: *rs0* WARM and *rs1* COLD
+* userdata collection: { creation_date, userid, photo_location}.  All documents older then '2020-12-31' allocated in COLD zone, and all newer in WARM zone
 
 ## Create a test database
 
-> use test<br>
+> use testdb<br>
 > db.createUser(
   {
     user: 'admin',
@@ -166,3 +173,62 @@ Assume that shard *rs0* is "warm" and *rs1* is *cold*  (here NFS Storage Class).
   }
 );
 <br>
+## Create and populate collection
+
+> db.userdata.insertOne({ "creation_date" : ISODate("2021-03-01"),   "userid" : 123,   "photo_location" : "example.net/storage/usr/photo_1.jpg"})<br>
+> db.userdata.insertOne({ "creation_date" : ISODate("2020-10-01"),   "userid" : 123,   "photo_location" : "example.net/storage/usr/photo_99.jpg"})<br>
+
+## Assign zone tags to shards
+
+> sh.addShardToZone("rs0", "WARM")<br>
+> sh.addShardToZone("rs1", "COLD")<br>
+
+## Enable sharding for collection
+
+> sh.enableSharding("testdb")
+> db.userdata.createIndex({ "creation_date"  : 1 })<br>
+> sh.shardCollection( "testdb.userdata", { "creation_date" : 1 } )<br>
+
+## Check document allocation
+
+The shard allocation can be detected by adding *explain()* clause. Look for "shardName" field. Without shard zone enabled, the shard assignment is managed by MongoDB engine and is dependent on the current workload.
+
+> db.userdata.find( {"creation_date" :  ISODate("2021-03-01") } ).explain()
+> db.userdata.find( {"creation_date" :  ISODate("2020-10-01") } ).explain()
+
+In my environment at this point, both document are allocated to shard *rs1*.
+
+## Enable shard zones
+
+> sh.updateZoneKeyRange( "testdb.userdata", {"creation_date":ISODate("1970-01-01")},{"creation_date":ISODate("2020-12-31")},"COLD")<br>
+> sh.updateZoneKeyRange( "testdb.userdata", {"creation_date":ISODate("2021-01-01")},{"creation_date":ISODate("2029-12-31")},"WARM")<br>
+
+Verify.
+> sh.status()
+```
+            { "creation_date" : ISODate("2029-12-31T00:00:00Z") } -->> { "creation_date" : { "$maxKey" : 1 } } on : rs1 Timestamp(1, 6) 
+                         tag: COLD  { "creation_date" : ISODate("1970-01-01T00:00:00Z") } -->> { "creation_date" : ISODate("2020-12-31T00:00:00Z") }
+                         tag: WARM  { "creation_date" : ISODate("2021-01-01T00:00:00Z") } -->> { "creation_date" : ISODate("2029-12-31T00:00:00Z") }
+
+```
+
+## Verify document allocation after defining shard zones
+
+>  db.userdata.find( {"creation_date" :  ISODate("2020-10-01") } ).explain()<br>
+```
+				{
+					"shardName" : "rs1",
+
+```
+> db.userdata.find( {"creation_date" :  ISODate("2021-03-01") } ).explain()<br>
+```
+				{
+					"shardName" : "rs0",
+
+```
+
+Insert more documents to WARM zone.
+
+>db.userdata.insertOne({ "creation_date":ISODate("2021-03-02"),"userid" :124,"photo_location":"example.net/storage/usr/photo_2.jpg"})<br>
+>db.userdata.insertOne({ "creation_date":ISODate("2021-03-03"),"userid" :125,"photo_location":"example.net/storage/usr/photo_3.jpg"})<br>
+>db.userdata.insertOne({ "creation_date":ISODate("2021-03-04"),"userid" :126,"photo_location":"example.net/storage/usr/photo_4.jpg"})<br>
