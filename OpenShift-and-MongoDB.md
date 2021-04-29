@@ -105,4 +105,43 @@ mongos>
 ```
 # Compass GUI
 
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-04-29%2014-35-49.png)
+
+# Add more shards and use different Storage Class
+
+Adding new shards require modifying *yaml* definition file.
+
+MongoDB Operator-> All instances -> PerconsServerMongoDB -> YAML<br>
+
+Add new entry in *spec.replsets*. You can copy and paste existing *rs0* and change name to *rs1*. In *volumeSpec* a *storageClass* is defined to bypass a default storage.<br>
+```
+    - affinity:
+        antiAffinityTopologyKey: kubernetes.io/hostname
+      arbiter:
+        affinity:
+          antiAffinityTopologyKey: kubernetes.io/hostname
+        enabled: false
+        size: 1
+      expose:
+        enabled: false
+        exposeType: LoadBalancer
+      name: rs1
+      podDisruptionBudget:
+        maxUnavailable: 1
+      resources:
+        limits:
+          cpu: 300m
+          memory: 0.5G
+        requests:
+          cpu: 300m
+          memory: 0.5G
+      size: 3
+      volumeSpec:
+        persistentVolumeClaim:
+          storageClassName: managed-nfs-storage
+          resources:
+            requests:
+              storage: 3Gi
+```
+
 
