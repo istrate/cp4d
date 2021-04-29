@@ -41,6 +41,21 @@ Wait until pods are ready.<br>
 
 # Verify connectivity
 
+Open terminal in one of *mongos* pods and connect using *userAdmin* credentials.
+
+> mongo -u userAdmin<br>
+```
+Percona Server for MongoDB shell version v4.4.4-6
+Enter password:
+```
+> show dbs<br>
+```
+mongos> show dbs
+admin   0.001GB
+config  0.001GB
+mongos> 
+```
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-04-29%2014-03-31.png)
 
 
 
