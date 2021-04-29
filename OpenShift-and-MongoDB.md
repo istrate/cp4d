@@ -173,6 +173,7 @@ Test environment.<br>
   }
 );
 <br>
+
 ## Create and populate collection
 
 > db.userdata.insertOne({ "creation_date" : ISODate("2021-03-01"),   "userid" : 123,   "photo_location" : "example.net/storage/usr/photo_1.jpg"})<br>
