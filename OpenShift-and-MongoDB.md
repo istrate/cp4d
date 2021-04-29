@@ -41,7 +41,7 @@ Wait until pods are ready.<br>
 
 # Verify connectivity
 
-Open terminal in one of *mongos* pods and connect using *userAdmin* credentials.
+Open a terminal in one of *mongos* pods and connect using *userAdmin* credentials.
 
 > mongo -u userAdmin<br>
 ```
@@ -155,7 +155,7 @@ Verify that different storage is allocated for new pods.<br>
 
 https://docs.mongodb.com/manual/tutorial/manage-shard-zone/
 
-Assume that shard *rs0* is "warm" and *rs1* is *cold*  (here NFS Storage Class). Old and rarely accessed document should be moved to "cold" zone maintaining cheap storage and current document to "warm" zone.<br>
+Assume that shard *rs0* is "warm" and *rs1* is *cold*  (here NFS Storage Class). Old and rarely accessed document should be moved to "cold" zone maintaining cheap storage and the current document to the "warm" zone.<br>
 
 Test environment.<br>
 
@@ -174,7 +174,7 @@ Test environment.<br>
 );
 <br>
 
-## Create and populate collection
+## Create and populate a collection
 
 > db.userdata.insertOne({ "creation_date" : ISODate("2021-03-01"),   "userid" : 123,   "photo_location" : "example.net/storage/usr/photo_1.jpg"})<br>
 > db.userdata.insertOne({ "creation_date" : ISODate("2020-10-01"),   "userid" : 123,   "photo_location" : "example.net/storage/usr/photo_99.jpg"})<br>
@@ -184,7 +184,7 @@ Test environment.<br>
 > sh.addShardToZone("rs0", "WARM")<br>
 > sh.addShardToZone("rs1", "COLD")<br>
 
-## Enable sharding for collection
+## Enable sharding for the collection
 
 > sh.enableSharding("testdb")
 > db.userdata.createIndex({ "creation_date"  : 1 })<br>
@@ -197,7 +197,7 @@ The shard allocation can be detected by adding *explain()* clause. Look for "sha
 > db.userdata.find( {"creation_date" :  ISODate("2021-03-01") } ).explain()<br>
 > db.userdata.find( {"creation_date" :  ISODate("2020-10-01") } ).explain()<br>
 
-In my environment at this point, both document are allocated to shard *rs1*.
+In my environment at this point, both documents are allocated to shard *rs1*.
 
 ## Enable shard zones
 
@@ -228,7 +228,7 @@ Verify.
 
 ```
 
-Insert more documents to WARM zone.
+Insert more documents to the WARM zone.
 
 >db.userdata.insertOne({ "creation_date":ISODate("2021-03-02"), "userid" :124, "photo_location":"example.net/storage/usr/photo_2.jpg"})<br>
 >db.userdata.insertOne({ "creation_date":ISODate("2021-03-03"), "userid" :125, "photo_location":"example.net/storage/usr/photo_3.jpg"})<br>
