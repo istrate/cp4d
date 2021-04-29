@@ -147,6 +147,6 @@ Wait until the next set of pods is created.
 ![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-04-29%2014-47-17.png)
 
 Verify that different storage is allocated for new pods.<br>
-|[](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-04-29%2014-49-02.png)
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-04-29%2014-49-02.png)
 
 
