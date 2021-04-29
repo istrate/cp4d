@@ -59,6 +59,8 @@ mongos>
 
 # Configure external connectivity
 
+https://www.percona.com/doc/kubernetes-operator-for-psmongodb/expose.html
+
 As a default, MongoDB operator creates *ClusterIP* service. Create manually *NodePort* service and remap the port on *HAProxy* node.
 
 > oc expose deployment mydbcluster-mongos --type NodePort --name mydbcluster-mongosp<br>
@@ -149,4 +151,18 @@ Wait until the next set of pods is created.
 Verify that different storage is allocated for new pods.<br>
 ![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-04-29%2014-49-02.png)
 
+# Simple test, use sharding to allocate document in the collection to "warm" and "cold" zones.
 
+Assume that shard *rs0* is "warm" and *rs1* is *cold*  (here NFS Storage Class). Old and rarely accessed document should be moved to "cold" zone maintaining cheap storage and current document to "warm" zone.<br>
+
+## Create a test database
+
+> use test<br>
+> db.createUser(
+  {
+    user: 'admin',
+    pwd: 'secret',
+    roles: [ { role: 'root', db: 'admin' } ]
+  }
+);
+<br>
