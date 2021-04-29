@@ -193,8 +193,8 @@ Test environment.<br>
 
 The shard allocation can be detected by adding *explain()* clause. Look for "shardName" field. Without shard zone enabled, the shard assignment is managed by MongoDB engine and is dependent on the current workload.
 
-> db.userdata.find( {"creation_date" :  ISODate("2021-03-01") } ).explain()
-> db.userdata.find( {"creation_date" :  ISODate("2020-10-01") } ).explain()
+> db.userdata.find( {"creation_date" :  ISODate("2021-03-01") } ).explain()<br>
+> db.userdata.find( {"creation_date" :  ISODate("2020-10-01") } ).explain()<br>
 
 In my environment at this point, both document are allocated to shard *rs1*.
 
