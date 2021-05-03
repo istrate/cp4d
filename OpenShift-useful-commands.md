@@ -238,6 +238,8 @@ metadata:
 | oc get pod --loglevel 10 | More verbose 
 | oc get pod -n </project name> | List pods in a project
 | skopeo inspect docker://docker.io/centos/postgresql-12-centos7 | Image info
+| skopeo --insecure-policy copy --dest-creds=developer:${TOKEN}  oci:$PWD/ubi-info  docker://image-registry.openshift-image-registry.svc:5000/registry/ubi-info:1.0 --tls-verify=false | Copy image to internal registry
+
 
 # Secrets
 | Command | Description
