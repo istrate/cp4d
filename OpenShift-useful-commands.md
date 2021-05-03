@@ -248,7 +248,8 @@ metadata:
 | oc set volume deployment/mysql --add --type secret --mount-path /run/secrets/mysql --secret-name MySQL | Store secrets as text files in mounted directory
 | oc new-app --name quotes  --docker-image quay.io/redhattraining/famous-quotes:2.1 | Deploy client application, will fail because environment variables are not set
 | oc set env deployment/quotes --from secret/mysql  --prefix QUOTES_ | Assign expected variables from secret
-| oc create secret generic quayio --from-file .dockerconfigjson=${XDG_RUNTIME_DIR}/containers/auth.json --type kubernetes.io/dockerconfigjson | Create external registry credentials
+| oc create secret generic quayio --from-file .dockerconfigjson=${XDG_RUNTIME_DIR}/containers/auth.json --type kubernetes.io/dockerconfigjson | Create external registry temporary credentials valid until API access key expires
+| oc secrets link default quayio --for pull | Link to the default service account
 # Insecure registry
 
 Assuming a non-secure registry is used to pull docker images. Example, image registry *broth1.fyre.ibm.com:5000* <br>
