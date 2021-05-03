@@ -343,6 +343,7 @@ spec:
 | oc adm node-logs --role=master -u kubelet | Get master nodes logs
 | oc whoami --show-console | OC console hostname
 | oc whoami -t | Get authentication token
+| TOKEN=$(oc whoami -t) | Store authentication token as env variable
 | oc status | Info about the project
 | oc get events | Events related to project
 | oc describe no | Statistics on all nodes
