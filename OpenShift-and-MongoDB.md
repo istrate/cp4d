@@ -97,7 +97,7 @@ backend mgop-tcp
 
 ## mongo CLI
 (Assuming *boreal-inf* as HAProxy node).
-> cps$  mongo mongodb://userAdmin:b3LvOkwVefeDXPXK@boreal-inf --authenticationDatabase 'admin'<br>
+> mongo mongodb://userAdmin:b3LvOkwVefeDXPXK@boreal-inf --authenticationDatabase 'admin'<br>
 > show dbs
 ```
 admin   0.001GB
@@ -242,3 +242,74 @@ Insert more document to COLD zone.
 > db.userdata.insertOne({ "creation_date" : ISODate("2017-10-01"),   "userid" : 8,   "photo_location" : "example.net/storage/usr/photo_03.jpg"})<br>
 
 Verify again shard allocation using *find()*.*explain()*. *rs1* is reported.
+
+# Backup
+
+https://www.percona.com/doc/kubernetes-operator-for-psmongodb/backups.html
+
+Percona MongoDB operator provides an easy method to do backups outside OpenShift cluster. The only storage supported is Amazon S3 object store or storage compatible with Amazon S3. Backups can be done on-demand or in a scheduled fashion. <br>
+Before configuring backup make sure that Amazon S3 connection data are at hand.
+
+| Parameter | Sample value |
+| ----- | ----- |
+| AWS_ACCESS_KEY_ID | UkVQTEFDRS1XSVRILUFXUy1BQ0NFU1MtS0VZ
+| AWS_SECRET_ACCESS_KEY | UkVQTEFDRS1XSVRILUFXUy1TRUNSRVQtS0VZ 
+| S3 bucket | amhara-kops-region-store
+| S3 region | us-west-2
+
+Create a Kubernetes secret containing Amazon S3 credentials.<br>
+
+> oc create secret generic s3-secret  --from-literal=UkVQTEFDRS1XSVRILUFXUy1BQ0NFU1MtS0VZ  --from-literal=AWS_SECRET_ACCESS_KEY=UkVQTEFDRS1XSVRILUFXUy1TRUNSRVQtS0VZ <br>
+
+The next step is to define the backup destination in the PerconaServerMongoDB yaml file. *Installed Operator->Percona Server MongoDB Operator->PerconaServerMongoDB->YAML*
+```YAML
+  backup:
+....
+
+  storages:
+      s3-us-west:
+        s3:
+          bucket: amhara-kops-region-store
+          credentialsSecret: s3-secret
+          region: us-west-2
+        type: s3
+```
+Pay attention to proper indentation, otherwise, no error is reported but backup is not configured. The following elements are important:<br>
+* s3-us-west: the backup storage name
+* s3-secret: the OpenShift secret name created previously
+* amhara-kops-region-store : Amazon S3 bucket name
+
+The next step is to create PerconaServerMongoDBBackups instance. *Installed Operator->Percona Server MongoDB Operator->PerconaServerMongoDBBackup->Create PerconaServerMongoDBBackup*.
+
+Switch to YAML view and create the following definition.<br>
+```YAML
+apiVersion: psmdb.percona.com/v1
+kind: PerconaServerMongoDBBackup
+metadata:
+  name: backup1
+  namespace: mongodb
+spec:
+  psmdbCluster: mydbcluster
+  storageName: s3-us-west
+```
+* mydbcluster: the name of the PerconaServerMongoDB instance
+* s2-us-west: the backup storage name.
+
+Create the PerconaServerMongoDBBackup instance and wait until the state is reported as ready.
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-05-06%2000-46-02.png)
+
+If an error is reported, verify the PerconaServerMongoDBBackup yaml status section. (in the example the status reports success).
+```
+status:
+  completed: '2021-05-05T20:14:07Z'
+  destination: '2021-05-05T20:13:37Z'
+  lastTransition: '2021-05-05T20:14:07Z'
+  pbmName: '2021-05-05T20:13:37Z'
+  s3:
+    bucket: nrekha-kops-state-store
+    credentialsSecret: s3-secret
+    region: us-west-2
+  start: '2021-05-05T20:13:54Z'
+  state: ready
+  storageName: s3-us-westt
+```
