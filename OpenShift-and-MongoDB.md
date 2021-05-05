@@ -298,7 +298,7 @@ spec:
 Create the PerconaServerMongoDBBackup instance and wait until the state is reported as ready.
 ![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-05-06%2000-46-02.png)
 
-If an error is reported, verify the PerconaServerMongoDBBackup yaml status section. (in the example the status reports success).
+If an error is reported, verify the PerconaServerMongoDBBackup yaml status section. (in this example the status reports success).
 ```
 status:
   completed: '2021-05-05T20:14:07Z'
@@ -312,4 +312,24 @@ status:
   start: '2021-05-05T20:13:54Z'
   state: ready
   storageName: s3-us-westt
+```
+
+When PerconaServerMongoDBBackup is deployed successfully, the MongoDB backup is done immediately.
+```
+2021-05-05T20:13:37Z_rs0.dump.gz
+2021-05-05T20:13:37Z_rs1.dump.gz
+2021-05-05T20:13:37Z_cfg.dump.gz
+2021-05-05T20:13:37Z_rs0.oplog.gz
+2021-05-05T20:13:37Z_cfg.oplog.gz
+2021-05-05T20:13:37Z_rs1.oplog.gz
+```
+# Scheduled backup
+
+The scheduled backup is defined in PerconaServerMongoDB yaml file in *crontab* fashion.
+```
+ tasks:
+   - name: "sat-night-backup"
+     schedule: "0 0 * * 6"
+     keep: 3
+     storageName: s3-us-west
 ```
