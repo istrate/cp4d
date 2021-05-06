@@ -325,11 +325,13 @@ When PerconaServerMongoDBBackup is deployed successfully, the MongoDB backup is 
 ```
 # Scheduled backup
 
-The scheduled backup is defined in PerconaServerMongoDB yaml file in *crontab* fashion.
-```
- tasks:
-   - name: "sat-night-backup"
-     schedule: "0 0 * * 6"
-     keep: 3
-     storageName: s3-us-west
+The scheduled backup is defined in PerconaServerMongoDB yaml file in *crontab* fashion. In order to activate the schedule, add *enabled* field set to *true*. The default is *false*, so without this field, the backup schedule is disabled.
+
+```YAML
+  tasks:
+     - enabled: true
+       keep: 3
+       name: sat-night-backup
+       schedule: 30 * * * 6
+       storageName: s3-us-west
 ```
