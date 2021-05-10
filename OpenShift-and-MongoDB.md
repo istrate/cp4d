@@ -25,6 +25,16 @@ From OpenShift Console install Percona Operator into *mongodb* project.
 
 # Install MongoDB Server
 
+Consider also *exposeType* for *mongos* service. As a default, a *ClusterIP* service is created. If external access is expected, change to *NodePort*.
+
+```
+   mongos:
+      affinity:
+        antiAffinityTopologyKey: kubernetes.io/hostname
+      expose:
+        exposeType: NodePort
+```
+
 As *mongoadmin* user, install MongoDB ServerDB cluster. A simple cluster: single shard and three replicas, accepts defaults without changing anything.
 
 ![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-04-29%2013-19-40.png)
