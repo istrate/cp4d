@@ -35,6 +35,19 @@ Log into MyIBM
 Copy the Entitled Key
 ............
 ```
+# Pull secret
+
+Make sure that *pull secrets* are present in the DB2Cluster *yaml*.
+
+```
+  account:
+    privileged: true
+    imagePullSecrets:
+      '0': ibm-registry
+```
+
+Another method is to make *ibm-registry* available across the OCP cluster as described in DB2 Operator help text - chapter 2.
+
 
 # Storage options
 
