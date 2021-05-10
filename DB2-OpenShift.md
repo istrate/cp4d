@@ -309,9 +309,25 @@ associated with the target database will be deleted.
 Do you want to continue ? (y/n) y
 
 ```
+> db2 connect to bludb<br>
 > db2 rollforward db bludb complete<br>
-> db2 activate db bludb<br>
-> db2 unquiesce database<br>
+```
+db2 rollforward db bludb complete
+
+                                 Rollforward Status
+
+ Input database alias                   = bludb
+ Number of members have returned status = 1
+
+ Member ID                              = 0
+ Rollforward status                     = not pending
+ Next log file to be read               =
+ Log files processed                    =  -
+ Last committed transaction             = 2021-05-10-15.50.41.000000 UTC
+
+DB20000I  The ROLLFORWARD command completed successfully.
+
+```
 
 
 
