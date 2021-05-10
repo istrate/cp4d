@@ -250,3 +250,56 @@ Enter current password for db2inst1:
  Authorization ID       = DB2INST1
  Local instance alias   = DB2BLU
 ```
+# Backup and restore
+
+Backup and restore in DB2 Warehouse is controlled by the same command as standalone DB2 Instance. The default backup directory is */mnt/backup*. Make sure that the backup directory is externalized and attached to DB2 pod as PV. <br>
+Identify the pod running DB2 Warehouse instance.<br>
+
+> oc get pod<br>
+```
+NAME                                         READY   STATUS      RESTARTS   AGE
+c-db2ucluster-sample-db2u-0                  1/1     Running     0          3h25m
+c-db2ucluster-sample-etcd-0                  1/1     Running     0          3h25m
+c-db2ucluster-sample-instdb-qfpwl            0/1     Completed   0          3h25m
+c-db2ucluster-sample-instdb-xxg9s            0/1     OOMKilled   0          3h26m
+c-db2ucluster-sample-ldap-69777ffc89-9b2gc   1/1     Running     0          3h26m
+c-db2ucluster-sample-restore-morph-777p2     0/1     Completed   0          3h17m
+c-db2ucluster-sample-tools-b79bdfd67-rdl86   1/1     Running     0          3h26m
+db2u-operator-manager-d6cf846f4-c6brl        1/1     Running     0          3h37m
+```
+> oc rsh c-db2ucluster-sample-db2u-0<br>
+
+> su - db2inst1<br>
+> db2 connect to bludb<br>
+> db2 quiesce database immediate force connections <br>
+> db2 deactivate db bludb<br>
+> db2 backup database bludb to /mnt/backup
+```
+Backup successful. The timestamp for this backup image is : 20210510155003
+```
+Off-line backup is done. Not bring database back to live again<br>
+> db2 connect to bludb<br>
+> db2 unquiesce database<br>
+<br>
+Now find the backup file and move the file to another instance where the database is going to be restored. On the source DB2, the */mnt/backup* is attached as NFS Storage Class.
+<br>
+> ls /data/db2-c-db2ucluster-sample-backup-pvc-191bb80e-446d-4c5f-b2a4-89cae6f3ad6f/ -ltr
+```
+May 10 08:50 BLUDB.0.db2inst1.DBPART000.20210510155003.001
+```
+Copy the file to the */mnt/backup* PV of target DB2 Warehouse instance.<br>
+>  scp /data/db2-c-db2ucluster-sample-backup-pvc-191bb80e-446d-4c5f-b2a4-89cae6f3ad6f/BLUDB.0.db2inst1.DBPART000.20210510155003.001 root@9.46.102.217:/data/nfs/db2-c-db2ucluster-sample-backup-pvc-b5a51060-0b50-4806-9c0a-597570a6c1bd/
+
+On the target DB2 Warehouse, identity the DB2 Warehouse pod and enter the pod.<br>
+> oc rsh c-db2ucluster-sample-db2u-0 <br>
+> su - db2inst1<br>
+> ls /mnt/backup
+```
+BLUDB.0.db2inst1.DBPART000.20210510155003.001
+```
+
+
+
+
+
+
