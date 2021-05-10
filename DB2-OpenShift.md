@@ -14,6 +14,10 @@ Create a separate OpenShift project to maintain DB2 instances.<br>
 
 > oc new-project db2<br>
 
+Create also additional *db2admin* user to install and manage DB2 cluster. After the operator is installed, *db2admin* will provision and manage DB2 cluster. When *db2admin* is created, assign *admin* role in *db2* project.
+
+> oc adm policy add-role-to-user admin db2admin -n db2<br>
+
 In OpenShift console, go to Operators->OperatorHub and search for "Db2". Click "IBM Db2" tile and wait a moment until the info page is displayed. Deploy *Entitlement Key* following the instruction attached to the operator. Make sure to pass all points: 1,2 and 3.
 ```
 ............
