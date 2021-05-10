@@ -297,6 +297,23 @@ On the target DB2 Warehouse, identity the DB2 Warehouse pod and enter the pod.<b
 ```
 BLUDB.0.db2inst1.DBPART000.20210510155003.001
 ```
+> db2 connect to bludb<br>
+> db2 quiesce database immediate <br>
+> db2 deactivate db bludb
+> db2 restore db bludb from /mnt/backup taken at 20210510155003<br>
+```
+SQL2523W  Warning!  Restoring to an existing database that is different from 
+the database on the backup image, but have matching names. The target database 
+will be overwritten by the backup version.  The Roll-forward recovery logs 
+associated with the target database will be deleted.
+Do you want to continue ? (y/n) y
+
+```
+> db2 rollforward db bludb complete<br>
+> db2 activate db bludb<br>
+> db2 unquiesce database<br>
+
+
 
 
 
