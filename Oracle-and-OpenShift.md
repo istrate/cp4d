@@ -10,7 +10,7 @@ https://profile.oracle.com/myprofile/account/create-account.jspx
 
 Make sure that you are authorized to pull Oracle image.<br>
 
-> podman podman login container-registry.oracle.com<br>
+> podman login container-registry.oracle.com<br>
 > podman pull container-registry.oracle.com/database/enterprise:latest<br>
 
 # Clone Oracle GitHub repository
