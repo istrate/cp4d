@@ -546,6 +546,15 @@ Important, selector deployment.
     deployment: postgresl12
 
 ```
+## Build
+| Command | Description
+| --- | ---- |
+| oc new-app --as-deployment-config --name jhost -i redhat-openjdk18-openshift:1.5 https://github.com/stanislawbartkowski/DO288-apps#manage-builds  --context-dir java-serverhost | New build based on java source code, simple REST service
+| oc logs -f bc/jhost | Monitor the progress
+| oc get bc | Build config
+| oc get build | Builds
+| oc start-build bc/jhost | Start new build after committing new changes
+| oc cancel-build bc/jhost | Cancel running build
 
 
 
