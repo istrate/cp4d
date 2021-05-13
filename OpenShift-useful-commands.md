@@ -360,6 +360,7 @@ spec:
 | oc run ubi8 --image=registry.redhat.io/ubi8/ubi --command -- /bin/bash -c 'while true; do sleep 3; done' | Linux box for testing
 | oc rollout status deployment tiller | Wait until deployment completed
 | oc api-resource | list resources
+| skopeo copy docker://quay.io/stanislawbartkowski/php7-original docker-archive:orig.tgz | Copy docker-image as tgz
 
 # Project template
 
