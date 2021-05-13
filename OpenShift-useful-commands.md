@@ -252,6 +252,7 @@ metadata:
 | oc set env deployment/quotes --from secret/mysql  --prefix QUOTES_ | Assign expected variables from secret
 | oc create secret generic quayio --from-file .dockerconfigjson=${XDG_RUNTIME_DIR}/containers/auth.json --type kubernetes.io/dockerconfigjson | Create external registry temporary credentials valid until API access key expires
 | oc secrets link default quayio --for pull | Link to the default service account
+| oc secrets link builder quay-registry | Link sa builder to docker quay.io credentials
 # Insecure registry
 
 Assuming a non-secure registry is used to pull docker images. Example, image registry *broth1.fyre.ibm.com:5000* <br>
