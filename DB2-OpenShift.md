@@ -262,6 +262,48 @@ US Government Users Restricted Rights - Use, duplication or
 disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 > 
 ```
+# Connection on a secure port.
+
+A secure connection can be exposed as OpenShift route.
+
+> oc get scv<br>
+```
+c-db2ucluster-db2u-engn-svc   NodePort    172.30.138.45    <none>        50000:31847/TCP,50001:31883/TCP   
+```
+> oc create route passthrough db2route --service=c-db2ucluster-db2u-engn-svc --port=50001<br>
+> oc get route<br>
+```
+NAME       HOST/PORT                                 PATH   SERVICES                      PORT    TERMINATION   WILDCARD
+db2route   db2route-db2.apps.adown.cp.fyre.ibm.com          c-db2ucluster-db2u-engn-svc   50001   passthrough   None
+```
+The connection hostname is *db2route-db2.apps.adown.cp.fyre.ibm.com* and the port is *443* (not 50001). Secure port *443* is redirected by internal OpenShift LoadBalancer to 50001 secure port in DB2 instance.<br>
+
+Verify SSL connection.<br>
+> openssl s_client -connect db2route-db2.apps.adown.cp.fyre.ibm.com:443<br>
+```
+.............
+No ALPN negotiated
+SSL-Session:
+    Protocol  : TLSv1.2
+    Cipher    : AES256-GCM-SHA384
+    Session-ID: 64B271D48EE8D18DEE2CD7C7D2E4098AB346AA1317A9AB4494C4E2087F4019EF
+    Session-ID-ctx: 
+    Master-Key: 73AA0534922AEAEEC02B4189C7FD83D5E3C9A40DDC170E57D0C47C1292687F7A83CF60CB6823D91C6D504D8F733F1656
+    PSK identity: None
+    PSK identity hint: None
+    SRP username: None
+    Start Time: 1621025764
+    Timeout   : 7200 (sec)
+    Verify return code: 19 (self signed certificate in certificate chain)
+    Extended master secret: yes
+---
+```
+
+From output copy and paste server certificate.
+```
+```
+
+
 
 # Backup and restore
 
