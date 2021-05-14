@@ -139,7 +139,7 @@ Verify that *Entitlement Key* is pasted correctly in *ibm-registry*.
 
 Identify the Service Account, the name can be different according to the release name. Here: *db2u-release*.
 
->oc get a<br>
+>oc get sa<br>
 ```
 NAME                       SECRETS   AGE
 account-db2-db2u-release   2         38m
