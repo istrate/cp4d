@@ -308,7 +308,7 @@ MIIEgzCCAmugAwIBAgIJAOWcmi2nUUX2MA0GCSqGSIb3DQEBCwUAMF8xCzAJBgNV
 -----END CERTIFICATE-----
 
 ```
-Save the certificate in */tmp/db2.crt* file and create keystore using a password.
+Save the certificate in */tmp/db2.crt* file and create a keystore protected by a password.
 > keytool -import -file /tmp/db2.crt -keystore {directory}/server.jks<br>
 
 In DBeaver connection wizard, add the following parameters to database name. Pay attention to colon (:) at the beginning and semicolon(;) at the end. *:sslConnection=true;sslTrustStoreLocation={directory}/server.jks;sslTrustStorePassword=secret;*
