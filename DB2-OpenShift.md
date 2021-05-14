@@ -262,7 +262,7 @@ US Government Users Restricted Rights - Use, duplication or
 disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
 > 
 ```
-# Connection on a secure port.
+# Connection on a secure port using DBeaver
 
 A secure connection can be exposed as OpenShift route.
 
@@ -299,10 +299,21 @@ SSL-Session:
 ---
 ```
 
-From output copy and paste server certificate.
+Copy and paste server certificate from *openssl* output.
 ```
-```
+-----BEGIN CERTIFICATE-----
+MIIEgzCCAmugAwIBAgIJAOWcmi2nUUX2MA0GCSqGSIb3DQEBCwUAMF8xCzAJBgNV
+......................
++qBKrHnk1A==
+-----END CERTIFICATE-----
 
+```
+Save the certificate in */tmp/db2.crt* file and create keystore using a password.
+> keytool -import -file /tmp/db2.crt -keystore {directory}/server.jks<br>
+
+In DBeaver connection wizard, add the following parameters to database name. Pay attention to colon (:) at the beginning and semicolon(;) at the end. *:sslConnection=true;sslTrustStoreLocation={directory}/server.jks;sslTrustStorePassword=secret;*
+
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-05-14%2023-03-45.png)
 
 
 # Backup and restore
