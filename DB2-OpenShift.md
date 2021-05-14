@@ -299,6 +299,7 @@ BLUDB.0.db2inst1.DBPART000.20210510155003.001
 ```
 > db2 connect to bludb<br>
 > db2 quiesce database immediate <br>
+> db2 terminate<br>
 > db2 deactivate db bludb<br>
 > db2 restore db bludb from /mnt/backup taken at 20210510155003<br>
 ```
@@ -328,8 +329,15 @@ db2 rollforward db bludb complete
 DB20000I  The ROLLFORWARD command completed successfully.
 
 ```
+Several useful commands.<br>
 
+Release instance memory<br>
 
+> db2 update dbm cfg using INSTANCE_MEMORY AUTOMATIC<br>
+
+Enable column-oriented table<br>
+
+> db2 update dbm cfg using INTRA_PARALLEL YES<br>
 
 
 
