@@ -250,6 +250,19 @@ Enter current password for db2inst1:
  Authorization ID       = DB2INST1
  Local instance alias   = DB2BLU
 ```
+# Verify using db2cli
+
+>  db2cli  execsql  -connstring "DATABASE=BLUDB;HOSTNAME=adown-inf;PORT=50000;UID=db2inst1;PWD=1XmevGtqeTa8lxe"<br>
+```
+IBM DATABASE 2 Interactive CLI Sample Program
+(C) COPYRIGHT International Business Machines Corp. 1993,1996
+All Rights Reserved
+Licensed Materials - Property of IBM
+US Government Users Restricted Rights - Use, duplication or
+disclosure restricted by GSA ADP Schedule Contract with IBM Corp.
+> 
+```
+
 # Backup and restore
 
 Backup and restore in DB2 Warehouse is controlled by the same command as standalone DB2 Instance. The default backup directory is */mnt/backup*. Make sure that the backup directory is externalized and attached to DB2 pod as PV. <br>
