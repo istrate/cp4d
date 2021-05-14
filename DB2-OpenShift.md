@@ -310,7 +310,6 @@ associated with the target database will be deleted.
 Do you want to continue ? (y/n) y
 
 ```
-> db2 connect to bludb<br>
 > db2 rollforward db bludb complete<br>
 ```
 db2 rollforward db bludb complete
