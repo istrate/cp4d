@@ -6,6 +6,8 @@ A practical example of OpenShift network tenancy.
 
 Create two projects/namespaces: *test* and *test1*. The test application is *nginx*.
 
+> oc new-project test<br>
+> oc new-project test1<br>
 > oc new-app --name nginx --docker-image docker.io/library/nginx:latest<br>
 > oc set serviceaccount deployment nginx \<anyuid enabled Service Account\>
 
