@@ -362,6 +362,8 @@ spec:
 | oc rollout status deployment tiller | Wait until deployment completed
 | oc api-resource | list resources
 | skopeo copy docker://quay.io/stanislawbartkowski/php7-original docker-archive:orig.tgz | Copy docker-image as tgz
+| oc completion bash >oc_bash_comletion | Prepare
+| source oc_bash_comletion | Enable
 
 # Project template
 
