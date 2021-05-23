@@ -8,7 +8,7 @@
 | oc get nodes -L tier | List nodes and *tier* labels
 | oc get nodes --show-labels | List nodes and all labels
 | oc label node -l env env- | Remove label from nodes
-
+| oc label namespace network-test name=network-test | Label namespace. Important: use namespace resource, not a project!
 ## Deploy the application running on a specified node
 
 Create a deployment configuration without creating any object.
