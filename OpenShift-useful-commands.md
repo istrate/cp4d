@@ -240,6 +240,7 @@ metadata:
 | skopeo inspect docker://docker.io/centos/postgresql-12-centos7 | Image info
 | skopeo --insecure-policy copy --dest-creds=developer:${TOKEN}  oci:$PWD/ubi-info  docker://image-registry.openshift-image-registry.svc:5000/registry/ubi-info:1.0 --tls-verify=false | Copy image to internal registry
 |  podman login -u developer boreal-inf:5000 --tls-verify=false -p ${TOKEN} | Login using token
+| oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"defaultRoute":true}}' --type=merge | Expose registry route
 
 # Secrets
 | Command | Description
