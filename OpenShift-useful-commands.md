@@ -561,6 +561,9 @@ Important, selector deployment.
 | oc start-build bc/jhost | Start new build after committing new changes
 | oc cancel-build bc/jhost | Cancel running build
 
+## Internal registry
 
-
+> HOST=$(oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}')<br>
+> oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"defaultRoute":true}}' --type=merge<br>
+> podman login -u kubeadmin -p $(oc whoami -t) --tls-verify=false $HOST <br>
 
