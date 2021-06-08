@@ -4,6 +4,15 @@ https://github.com/rook/rook/blob/master/Documentation/ceph-openshift.md<br>
 
 This webpage contains recommendation on Rook Ceph in OpenShit Kubernetes. Below are practical steps on how to do it.
 
+# Clean disk on worker nodes
+
+If there was a previous storage configuration on worker disks, the Rook Ceph installation  will fail. Clean disk manually or use the following script.
+
+https://github.com/stanislawbartkowski/CP4D/blob/main/rook-ceph/cleanfs.sh
+
+Important: review the script contents before running, the disk cleansing is irreversible!
+
+# Download ceph-rook repository
 > git clone https://github.com/rook/rook.git<br>
 > cd rook/cluster/examples/kubernetes/ceph<br>
 
