@@ -15,7 +15,7 @@ As OpenShift cluster-admin, create a project, project admin and deploy the opera
 ```
 mongoadmin:$apr1$7eJnodEE$1HErN.W2Lweq6.BU4VjR5.
 ```
-Update OAUth entry and make sure that *mongoadmin* user can log on.<br>
+Update OAuth entry and make sure that *mongoadmin* user can log on.<br>
 
 > oc adm policy add-role-to-user admin mongoadmin  -n mongodb<br>
 
