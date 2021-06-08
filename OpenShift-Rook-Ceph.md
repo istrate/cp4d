@@ -101,7 +101,7 @@ rook-cephfs                 rook-ceph.cephfs.csi.ceph.com   Delete          Imme
 # Health-check
 
 Open a shell in *rook-ceph-tool* container.<br>
-> oc exec -it rook-ceph-tools-7865b9c9f6-7b7bf -- bash<br>
+> oc rsh rook-ceph-tools-7865b9c9f6-7b7bf<br>
 > ceph status<br>
 ```
   cluster:
