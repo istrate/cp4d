@@ -47,3 +47,24 @@ If necessary, create *NodePort* for external access.<br>
 
 > oc expose deployment/mariadb --name mariadbn --type=NodePort
 
+## Verify the deployment
+
+> oc get pods
+```
+NAME                       READY   STATUS    RESTARTS   AGE
+mariadb-547c6d45fd-4pfbz   1/1     Running   0          49m
+```
+> oc rsh mariadb-547c6d45fd-4pfbz<br>
+
+> mysql -u root
+```
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 21
+Server version: 10.5.9-MariaDB MariaDB Server
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> 
+```
