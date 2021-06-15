@@ -64,7 +64,7 @@ kind: LDAPSyncConfig
 apiVersion: v1
 url: ldap://verse1.fyre.ibm.com:389
 insecure: true
-bindDN: hadoopadmin@FYRE.NET
+bindDN: hadoopsearch
 bindPassword: secret
 augmentedActiveDirectory:
     groupsQuery:
@@ -83,3 +83,14 @@ augmentedActiveDirectory:
     userNameAttributes: [ sAMAccountName ] 
     groupMembershipAttributes: [ memberOf ] 
 ```
+
+>  oc adm groups sync --sync-config=config.yaml --confirm<br>
+
+It *--confirm* flags is removed, it is a dry run, the command reports the change to be applied without making any changes.<br>
+
+The command is dealing with groups and group membership but does not create or remove any users. If in the command output a user is reported as belonging to the group, it means only that user name is bound to the group but in order to make it effective, the user identity should be created in OpenShift.<br>
+
+The command does not remove groups. If the group is removed in AD, a separate job needs to be executed.
+
+>  oc adm prune groups --sync-config=config.yaml --confirm<br>
+
