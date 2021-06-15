@@ -1,6 +1,8 @@
 # OpenShift and AD
 
-OpenShift AD/LDAP integration is a more flexible authentication and authorization method compared to the HTPasswd identity provider. It involves two steps: authentication and authorization, group membership.
+OpenShift AD/LDAP integration is a more flexible authentication and authorization method compared to the HTPasswd identity provider. It involves two steps: authentication and authorization, group membership.<br>
+
+This article covers only a basic scenario. There are a lot more options covered in OpenShift 4.7 documentation.
 
 # Authentication
 
@@ -86,11 +88,11 @@ augmentedActiveDirectory:
 
 >  oc adm groups sync --sync-config=config.yaml --confirm<br>
 
-It *--confirm* flags is removed, it is a dry run, the command reports the change to be applied without making any changes.<br>
+It *--confirm* flags is removed, it is a dry run, the command reports the changes to be applied without executing them.<br>
 
 The command is dealing with groups and group membership but does not create or remove any users. If in the command output a user is reported as belonging to the group, it means only that user name is bound to the group but in order to make it effective, the user identity should be created in OpenShift.<br>
 
-The command does not remove groups. If the group is removed in AD, a separate job needs to be executed.
+The command does not remove groups. If the group has been removed in AD, a separate job is needed. 
 
 >  oc adm prune groups --sync-config=config.yaml --confirm<br>
 
