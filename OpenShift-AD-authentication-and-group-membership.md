@@ -53,6 +53,8 @@ spec:
 ```
 # Authorization, group membership
 
+https://docs.openshift.com/container-platform/4.7/authentication/ldap-syncing.html
+
 AD - OpenShift group synchronization is a separate activity. It is done on-demand, every change in AD group is reflected in OpenShift only after running the synchronization job.<br>
 
 Prepare synchronization config file.<br>
@@ -63,7 +65,7 @@ apiVersion: v1
 url: ldap://verse1.fyre.ibm.com:389
 insecure: true
 bindDN: hadoopadmin@FYRE.NET
-bindPassword: Arkadiusz123?
+bindPassword: secret
 augmentedActiveDirectory:
     groupsQuery:
         baseDN: "cn=centos,DC=fyre,DC=net"
