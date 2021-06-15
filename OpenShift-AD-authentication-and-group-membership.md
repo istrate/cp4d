@@ -4,6 +4,8 @@ OpenShift AD/LDAP integration is a more flexible authentication and authorizatio
 
 # Authentication
 
+## Collect data
+
 https://docs.openshift.com/container-platform/4.7/authentication/identity_providers/configuring-ldap-identity-provider.html
 
 Before configuring, collect all necessary information. Let's describe my AD configuration.
@@ -14,4 +16,12 @@ Before configuring, collect all necessary information. Let's describe my AD conf
 | ---------- | ---------- | ----- |
 | AD hostname | | verse1.fyre.ibm.com
 | Port number | Usually 389 for non-secure and 636 for secure connection | 389
-| Secure/non-secure 
+| Secure/non-secure | Secure connection requires certificate | false
+| baseDB | Starting point in AD tree to look for user | cn=centos,DC=fyre,DC=net
+| binding user | Read-only user authorized to scan AD directory tree. Required when AD does not allow anonymous access | hadoopsearch
+| binding user password | AD password for binding user | secret
+| id | Attribute used for identity | sAMAccountName
+
+# Create a secret with a binding password
+
+> 
