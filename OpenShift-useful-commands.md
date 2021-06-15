@@ -64,6 +64,8 @@ Create a deployment configuration without creating any object.
 | oc adm groups new dev-group | Create new group 'dev-group'
 | adm groups add-users dev-group developer| Add user 'developer' to group 'dev-group'
 | oc get rolebindings -o wide | Display all role-binding in current project
+| oc login --loglevel=10 -u | More verbose
+
 
 ## Specify OpenShift credentials
 > oc create secret generic localusers --from-file htpasswd=htpasswd -n openshift-config<br>
