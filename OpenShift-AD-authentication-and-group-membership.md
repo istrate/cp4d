@@ -92,7 +92,7 @@ It *--confirm* flags is removed, it is a dry run, the command reports the change
 
 The command is dealing with groups and group membership but does not create or remove any users. If in the command output a user is reported as belonging to the group, it means only that user name is bound to the group but in order to make it effective, the user identity should be created in OpenShift.<br>
 
-The command does not remove groups. If the group has been removed in AD, a separate job is needed. 
+The command does not remove groups. If the group has been removed in AD and is expected to be removed also in OpenShift, a separate job is needed.
 
 >  oc adm prune groups --sync-config=config.yaml --confirm<br>
 
