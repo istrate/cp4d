@@ -51,3 +51,33 @@ spec:
       insecure: true
       url: "ldap://verse1.fyre.ibm.com:389/cn=centos,DC=fyre,DC=net?sAMAccountName" 
 ```
+# Authorization, group membership
+
+AD - OpenShift group synchronization is a separate activity. It is done on-demand, every change in AD group is reflected in OpenShift only after running the synchronization job.<br>
+
+Prepare synchronization config file.<br>
+> vi config.yaml
+```
+kind: LDAPSyncConfig
+apiVersion: v1
+url: ldap://verse1.fyre.ibm.com:389
+insecure: true
+bindDN: hadoopadmin@FYRE.NET
+bindPassword: Arkadiusz123?
+augmentedActiveDirectory:
+    groupsQuery:
+        baseDN: "cn=centos,DC=fyre,DC=net"
+        scope: sub
+        derefAliases: never
+        pageSize: 0
+    groupUIDAttribute: dn 
+    groupNameAttributes: [ cn ] 
+    usersQuery:
+        baseDN: "cn=centos,dc=fyre,dc=net"
+        scope: sub
+        derefAliases: never
+        filter: (objectclass=person)
+        pageSize: 0
+    userNameAttributes: [ sAMAccountName ] 
+    groupMembershipAttributes: [ memberOf ] 
+```
