@@ -7,6 +7,7 @@ This article describes how to integrate CP4D with AD server specified under this
 # Collect necessary data
 
 | Field | Value
+| ---- | ----
 | LDAP protocol | ldap:// (non secure connection)
 | LDAP hostname | verse1.fyre.ibm.com
 | LDAP port | 389 (default non-secure)
