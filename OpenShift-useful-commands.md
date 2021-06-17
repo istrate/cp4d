@@ -617,7 +617,7 @@ Apply a command to the container template.<br>
 Create a privileged pod<br>
 > oc set serviceaccount deployment/ce8 redhatsa<br>
 
-The storage used by the pod is ephemeral, it will disappear every time the pod is recreated. Assign Persistent Volume to the pod and data stored on the persisted volume will survive..<br>
+The storage used by the pod is ephemeral, it will disappear every time the pod is recreated. Assign Persistent Volume to the pod and data stored on the persisted volume will survive.<br>
 
 >  oc set volume deployment/ce8 --add --name=ce8   -t pvc --claim-size=20G -m /data<br>
 
