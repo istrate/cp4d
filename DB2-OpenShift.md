@@ -406,6 +406,16 @@ Enable column-oriented table<br>
 
 > db2 update dbm cfg using INTRA_PARALLEL YES<br>
 
+# SQL1564N during RESTORE
+```
+SQL1564N  The restore or rollforward operation did not complete successfully 
+because the specified operation is not supported. Reason code "9".
+
+```
+Add *WITHOUT ROLLING FORWARD*
+
+> db2 restore db bludb from  /mnt/backup/backup_off_1  taken at 20210425102241 WITHOUT ROLLING FORWARD
+
 
 
 
