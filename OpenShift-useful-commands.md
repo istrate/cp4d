@@ -580,7 +580,7 @@ Non-root access<br>
 
 Root access<br>
 > oc create sa redhatsa<br>
-> oc adm policy add-scc-to-user anyuid redhatsa<br>
+> oc adm policy add-scc-to-user anyuid -z redhatsa<br>
 > oc run ubi8 --serviceaccount=redhatsa --image=registry.redhat.io/ubi8/ubi --command -- /bin/bash -c 'while true; do sleep 3; done'<br>
 
 Enter
@@ -588,5 +588,44 @@ Enter
 
 The same for CentOS8
 
-> oc run ce8 --serviceaccount=redhatsa --image=docker.io/library/centos -- /bin/bash -c 'while true; do sleep 3; done'
+> oc run ce8 --serviceaccount=redhatsa --image=docker.io/library/centos -- /bin/bash -c 'while true; do sleep 3; done'<br>
+<br>
+> oc run ce8<br>
+
+Create as deployment
+
+The pods started as *oc run* are a not-managed pod, if the pod is deleted, it is not restarted. <br>
+In order to have a long-running pod, use *oc new-app*. <br>
+
+> oc new-app --docker-image=docker.io/library/centos  --name=ce8<br>
+Immediately after executing this command, the pod will run into *CrashLoopBackOff* cycle. <br>
+
+Apply a command to the container template.<br>
+> oc edit deployment/ce8
+```
+ spec:
+      containers:
+      - args:
+        - /bin/bash
+        - -c
+        - while true; do sleep 3; done
+        image: docker.io/library/centos@sha256:dbbacecc49b088458781c16f3775f2a2ec7521079034a7ba499c8b0bb7f86875
+        imagePullPolicy: IfNotPresent
+
+```
+
+Create a privileged pod<br>
+> oc set serviceaccount deployment/ce8 redhatsa<br>
+
+The storage used by the pod is ephemeral, it will disappear every time the pod is recreated. Assign Persistent Volume to the pod and data stored on the persisted volume will survive..<br>
+
+>  oc set volume deployment/ce8 --add --name=ce8   -t pvc --claim-size=20G -m /data<br>
+
+Enter the pod.
+> oc get pods<br>
+```NAME                   READY   STATUS    RESTARTS   AGE
+ce8-7675b66746-sslll   1/1     Running   0          7m43s
+```
+> oc rsh ce8-7675b66746-sslll<br>
+
 
