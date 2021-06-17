@@ -349,12 +349,14 @@ Off-line backup is done. Not bring database back to live again<br>
 <br>
 Now find the backup file and move the file to another instance where the database is going to be restored. On the source DB2, the */mnt/backup* is attached as NFS Storage Class.
 <br>
+
 > ls /data/db2-c-db2ucluster-sample-backup-pvc-191bb80e-446d-4c5f-b2a4-89cae6f3ad6f/ -ltr
 ```
 May 10 08:50 BLUDB.0.db2inst1.DBPART000.20210510155003.001
 ```
 Copy the file to the */mnt/backup* PV of target DB2 Warehouse instance.<br>
->  scp /data/db2-c-db2ucluster-sample-backup-pvc-191bb80e-446d-4c5f-b2a4-89cae6f3ad6f/BLUDB.0.db2inst1.DBPART000.20210510155003.001 root@9.46.102.217:/data/nfs/db2-c-db2ucluster-sample-backup-pvc-b5a51060-0b50-4806-9c0a-597570a6c1bd/
+
+> scp /data/db2-c-db2ucluster-sample-backup-pvc-191bb80e-446d-4c5f-b2a4-89cae6f3ad6f/BLUDB.0.db2inst1.DBPART000.20210510155003.001 root@9.46.102.217:/data/nfs/db2-c-db2ucluster-sample-backup-pvc-b5a51060-0b50-4806-9c0a-597570a6c1bd/
 
 On the target DB2 Warehouse, identity the DB2 Warehouse pod and enter the pod.<br>
 > oc rsh c-db2ucluster-sample-db2u-0 <br>
