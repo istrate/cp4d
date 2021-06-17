@@ -572,3 +572,19 @@ Important, selector deployment.
 
 > podman login -u kubeadmin -p $(oc whoami -t) --tls-verify=false $HOST <br>
 
+## RedHat Ubi8 box
+> oc new-project redhatbox
+
+Non-root access<br>
+> oc run ubi8 --image=registry.redhat.io/ubi8/ubi --command -- /bin/bash -c 'while true; do sleep 3; done'
+
+Root access<br>
+> oc create sa redhatsa<br>
+> oc adm policy add-scc-to-user anyuid redhatsa<br>
+> oc run ubi8 --serviceaccount=redhatsa --image=registry.redhat.io/ubi8/ubi --command -- /bin/bash -c 'while true; do sleep 3; done'<br>
+
+Enter
+> oc rsh ubi8<br>
+
+
+
