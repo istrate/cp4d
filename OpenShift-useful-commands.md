@@ -583,7 +583,8 @@ Root access<br>
 > oc adm policy add-scc-to-user anyuid -z redhatsa<br>
 > oc run ubi8 --serviceaccount=redhatsa --image=registry.redhat.io/ubi8/ubi --command -- /bin/bash -c 'while true; do sleep 3; done'<br>
 
-Enter
+Enter the pod.
+
 > oc rsh ubi8<br>
 
 The same for CentOS8
