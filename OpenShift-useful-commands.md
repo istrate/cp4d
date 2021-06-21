@@ -599,6 +599,7 @@ The pods started as *oc run* are a not-managed pod, if the pod is deleted, it is
 In order to have a long-running pod, use *oc new-app*. <br>
 
 > oc new-app --docker-image=docker.io/library/centos  --name=ce8<br>
+
 Immediately after executing this command, the pod will run into *CrashLoopBackOff* cycle. <br>
 
 Apply a command to the container template.<br>
