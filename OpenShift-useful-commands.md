@@ -591,6 +591,7 @@ The same for CentOS8
 
 > oc run ce8 --serviceaccount=redhatsa --image=docker.io/library/centos -- /bin/bash -c 'while true; do sleep 3; done'<br>
 <br>
+
 > oc run ce8<br>
 
 Create as deployment
