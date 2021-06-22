@@ -53,11 +53,11 @@ postgres=# \l
 postgres=# 
 
 ```
-# Redeploy the instance
+# Recreate the instance
 
 If you want to remove an existing cluster and deploy a new one, make sure that appropriate ConfigMaps are removed.
 
-!()[https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-06-22%2021-20-54.png]
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-06-22%2021-20-54.png)
 
 Otherwise, the pod for the new FEP instance will run into a nasty CrashLoopBackOff event.
 
