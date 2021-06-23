@@ -631,4 +631,12 @@ ce8-7675b66746-sslll   1/1     Running   0          7m43s
 ```
 > oc rsh ce8-7675b66746-sslll<br>
 
+# MSSQL
 
+https://developers.redhat.com/blog/2020/10/27/using-microsoft-sql-server-on-red-hat-openshift#deploying_microsoft_sql_server
+<br>
+Increase the capacity.<br>
+> oc new-app --template=mssql2019 -p ACCEPT_EULA=Y -p VOLUME_CAPACITY=20G<br>
+
+
+>
