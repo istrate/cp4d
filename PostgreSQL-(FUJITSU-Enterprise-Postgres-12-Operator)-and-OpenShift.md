@@ -26,8 +26,19 @@ with
   max_worker_processes = 42
 ```
 
-and wait several minutes until the pod is ready.
+Increase also the limit for CPU and memory, example:
+```YAML
+   mcSpec:
+      limits:
+        cpu: 2
+        memory: 4G
+      requests:
+        cpu: 200m
+        memory: 512Mi
+```
 
+
+Wait several minutes until the pod is ready.
 # Test
 
 Get *postgres* user password from *new-fep* secret (default is *admin-password*). The secret name corresponds to the name of FEP PostgreSQL created. <br>
