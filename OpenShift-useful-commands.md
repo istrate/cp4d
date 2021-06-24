@@ -633,10 +633,87 @@ ce8-7675b66746-sslll   1/1     Running   0          7m43s
 
 # MSSQL
 
+## Installation
+
 https://developers.redhat.com/blog/2020/10/27/using-microsoft-sql-server-on-red-hat-openshift#deploying_microsoft_sql_server
 <br>
 Increase the capacity.<br>
 > oc new-app --template=mssql2019 -p ACCEPT_EULA=Y -p VOLUME_CAPACITY=20G<br>
 
+Wait until deployment is completed.
 
->
+## Expose
+
+Create NodePort service.
+```YAML
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: mssql2019
+    app.kubernetes.io/component: mssql2019
+    app.kubernetes.io/instance: mssql2019
+  name: mssql-ext
+spec:
+  ports:
+  - name: tcp
+    port: 1433
+    protocol: TCP
+    targetPort: 1433
+  selector:
+    name: mssql
+  type: NodePort
+```
+
+> oc create -f csv.yaml <br>
+
+>oc get svc<br>
+```
+NAME        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+mssql       ClusterIP   172.30.128.147   <none>        1433/TCP         10h
+mssql-ext   NodePort    172.30.201.179   <none>        1433:32294/TCP   12m
+```
+
+NodePort assigned automatically is *32294*. On HAProxy infrastructure node, reconfigure HAProxy. Example<br>
+
+>vi /etc/haproxy/haproxy.cfg
+
+```
+frontend ingress-mssql
+        bind *:1433
+        default_backend ingress-mssql
+        mode tcp
+        option tcplog
+
+backend ingress-mssql
+        balance source
+        mode tcp
+        server master0 10.17.43.9:32294 check
+        server master1 10.17.46.40:32294 check
+        server master2 10.17.48.179:32294 check
+        server worker0 10.17.57.166:32294 check
+        server worker1 10.17.59.104:32294 check
+        server worker2 10.17.61.175:32294 check
+```
+
+> systemctl reload haproxy<br>
+
+Verify port responsiveness.
+> nc -nv <\haproxy node\> 1433<br>
+```
+Ncat: Version 7.70 ( https://nmap.org/ncat )
+Ncat: Connected to 9.46.197.101:1433.
+Ncat: 0 bytes sent, 0 bytes received in 0.22 seconds.
+
+```
+## Connect to MSSQL server<br>
+
+Get *SA* password: Workloads -> Secrets -> mssql-secret -> SA_PASSWORD<br>
+
+Download and install mssql tools. 
+
+https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-ver15
+
+> sqlcmd -S tcp:\<haproxy node\>,1433 -U SA
+Password: 
+1> 
