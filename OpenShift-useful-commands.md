@@ -714,6 +714,9 @@ Download and install mssql tools.
 
 https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql-server-ver15
 
-> sqlcmd -S tcp:\<haproxy node\>,1433 -U SA
+> sqlcmd -S tcp:\<haproxy node\>,1433 -U SA<br>
+
+```
 Password: 
 1> 
+```
