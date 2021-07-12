@@ -27,7 +27,7 @@ role.rbac.authorization.k8s.io/leader-locking-nfs-client-provisioner created
 rolebinding.rbac.authorization.k8s.io/leader-locking-nfs-client-provisioner created
 ```
 
-If different then *nfs-storage*, replace *nfs-storage* in the command below with project used (for instance: default).<br>
+Give *nfs-client-provisioner* service account privilege to mount volumes. If namespace different than *nfs-storage*, replace *nfs-storage* in the command below with the project used (for instance: default).<br>
 
 >  oc adm policy add-scc-to-user hostmount-anyuid system:serviceaccount:nfs-storage:nfs-client-provisioner
 ```
