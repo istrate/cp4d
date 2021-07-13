@@ -226,6 +226,7 @@ metadata:
 | oc debug node/\<node name> | Shell session on a specific node
 | (inside the node) systemctl status kubelet | Node health-check
 | (inside the node) systemctl status cri-o | Node health-check
+| (inside the node) journalctl -u kubelet | Detailed log
 | (inside node) crictl ps --name openvswitch | Node health-check
 | (inside node) crictl images | List images available
 | (inside node) crictl pods | List pods
