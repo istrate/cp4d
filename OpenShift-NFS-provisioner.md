@@ -3,6 +3,9 @@
 This page is an adaptation of:<br>
 https://medium.com/faun/openshift-dynamic-nfs-persistent-volume-using-nfs-client-provisioner-fcbb8c9344e
 
+Also, another excellent webpage:<br>
+https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=storage-setting-up-nfs
+
 # Prerequisities
 
 Install and configure the NFS server. Make sure that NFS host is visible and NFS volume can be mounted from all nodes in OpenShift cluster. Prepare NFS mount parameters. Example:
