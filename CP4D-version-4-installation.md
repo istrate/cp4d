@@ -204,6 +204,9 @@ EOF
 # Installing the scheduling service
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=service-installing-scheduling
+
+Make it is installed in *ibm-common-services* namespace.
+
 ```
 cat <<EOF |oc apply -f -
 apiVersion: scheduler.spectrumcomputing.ibm.com/v1
