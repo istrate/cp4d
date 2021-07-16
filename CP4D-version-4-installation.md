@@ -213,6 +213,7 @@ metadata:
     release: cpd-scheduler
     velero.io/exclude-from-backup: "true"
   name: ibm-cpd-scheduler
+  namespace: ibm-common-services   
 spec:
   appVersion: 1.2.1
   version: 1.2.1
