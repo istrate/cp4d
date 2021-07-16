@@ -65,6 +65,19 @@ spec:
 EOF
 ```
 
+Wait until all nodes are ready again.<br>
+
+> oc get nodes
+```
+NAME                             STATUS                     ROLES    AGE   VERSION
+master0.starry.cp.fyre.ibm.com   Ready                      master   14h   v1.20.0+87cc9a4
+master1.starry.cp.fyre.ibm.com   Ready                      master   14h   v1.20.0+87cc9a4
+master2.starry.cp.fyre.ibm.com   Ready                      master   14h   v1.20.0+87cc9a4
+worker0.starry.cp.fyre.ibm.com   Ready                      worker   14h   v1.20.0+87cc9a4
+worker1.starry.cp.fyre.ibm.com   Ready                      worker   14h   v1.20.0+87cc9a4
+worker2.starry.cp.fyre.ibm.com   Ready,SchedulingDisabled   worker   14h   v1.20.0+87cc9a4
+```
+
 
 # Projects
 
