@@ -86,10 +86,6 @@ NAME     CONFIG                                             UPDATED   UPDATING  
 master   rendered-master-434719fcbfb7ad75acf961087a4fc7d0   True      False      False      3              3                   3                     0                      15h
 worker   rendered-worker-fb5f23408c52da40a27de27455657022   True      False      False      3              3                   3                     0                      15h
 ```
-
-
-
-
 # Projects
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-creating-projects-namespaces
@@ -126,7 +122,7 @@ OpenShift console -> Projects -> openshift-config -> Secrets -> pull-secret -> A
 
 Add new secret using data:
 * Registry Server Address: cp.icr.io
-* Username: oc
+* Username: cp
 * Password: your API KEY as plain-text, not base64 encrypted
 
 ![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-07-16%2012-13-22.png)
