@@ -78,6 +78,17 @@ worker1.starry.cp.fyre.ibm.com   Ready                      worker   14h   v1.20
 worker2.starry.cp.fyre.ibm.com   Ready,SchedulingDisabled   worker   14h   v1.20.0+87cc9a4
 ```
 
+When it is completed, the command should report all nodes UPDATED and not UPDATING.
+
+> oc get mcp
+```
+NAME     CONFIG                                             UPDATED   UPDATING   DEGRADED   MACHINECOUNT   READYMACHINECOUNT   UPDATEDMACHINECOUNT   DEGRADEDMACHINECOUNT   AGE
+master   rendered-master-434719fcbfb7ad75acf961087a4fc7d0   True      False      False      3              3                   3                     0                      15h
+worker   rendered-worker-fb5f23408c52da40a27de27455657022   True      False      False      3              3                   3                     0                      15h
+```
+
+
+
 
 # Projects
 
