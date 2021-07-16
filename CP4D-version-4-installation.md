@@ -289,3 +289,40 @@ status:
     reconciled: 1.2.1
 
 ```
+# Install Cloud Pak for Data 
+
+https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=installing-cloud-pak-data
+
+Install the operand request.<br>
+```
+cat <<EOF |oc apply -f -
+apiVersion: operator.ibm.com/v1alpha1
+kind: OperandRequest
+metadata:
+  name: empty-request
+  namespace: cpd-instance
+spec:
+  requests: []
+EOF
+```
+
+Install Cloud Pak For Data control plane. Pay attention to:
+* License (here *Standard*)
+* Storage Class (here *managed-nfs-storage*)
+
+```
+cat <<EOF |oc apply -f -
+apiVersion: cpd.ibm.com/v1
+kind: Ibmcpd
+metadata:
+  name: ibmcpd-cr
+  namespace: cpd-instance
+spec:
+  license:
+    accept: true
+    license: Standard
+  storageClass: managed-nfs-storage
+  zenCoreMetadbStorageClass: managed-nfs-storage
+  version: "4.0.1"
+EOF
+```
