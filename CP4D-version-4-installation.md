@@ -27,7 +27,7 @@ Obtain *crio.conf* configuration file from any of Worker Nodes and store it in t
 
 > scp core@$node /etc/crio/crio.conf /tmp
 
-Apply at least two change to */tmp/crio.conf* file<br>
+Make at least two changes to */tmp/crio.conf* file<br>
 
 > vi /tmp/crio.conf
 ```
@@ -40,6 +40,29 @@ default_ulimits = [
 ..............
 # Maximum number of processes allowed in a container.
 pids_limit = 12288
+```
+
+Apply reconfigured *crio* to the cluster.<br>
+```
+cat << EOF | oc apply -f -
+apiVersion: machineconfiguration.openshift.io/v1
+kind: MachineConfig
+metadata:
+  labels:
+    machineconfiguration.openshift.io/role: worker
+  name: 51-worker-cp4d-crio-conf
+spec:
+  config:
+    ignition:
+      version: 3.1.0
+    storage:
+      files:
+      - contents:
+          source: data:text/plain;charset=utf-8;base64,$(cat /tmp/crio.conf | base64 -w0)
+        filesystem: root
+        mode: 0644
+        path: /etc/crio/crio.conf
+EOF
 ```
 
 
