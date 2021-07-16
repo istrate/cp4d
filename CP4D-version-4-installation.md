@@ -17,6 +17,33 @@ Also: https://github.com/stanislawbartkowski/CP4D/wiki/OpenShift-NFS-provisioner
 * CP4D entitlement, API Key: https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-obtaining-your-entitlement-api-key
 * Authorized OpenShift *admin-cluster* user
 
+# Change node settings
+
+https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-changing-required-node-settings
+
+As a minimum apply changes to crio and kernel setting.
+
+Obtain *crio.conf* configuration file from any of Worker Nodes and store it in the local */tmp* directory.
+
+> scp core@$node /etc/crio/crio.conf /tmp
+
+Apply at least two change to */tmp/crio.conf* file<br>
+
+> vi /tmp/crio.conf
+```
+[crio.runtime]
+
+default_ulimits = [
+  "nofile=66536:66536"
+]
+
+
+
+
+
+```
+
+
 # Projects
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-creating-projects-namespaces
