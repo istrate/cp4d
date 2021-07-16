@@ -154,3 +154,27 @@ spec:
 EOF
 
 ```
+# Create Operator Subscriptions
+
+https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-creating-operator-subscriptions
+```
+cat <<EOF |oc apply -f -
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: ibm-common-service-operator
+  namespace: ibm-common-services
+spec:
+  channel: v3
+  installPlanApproval: Automatic
+  name: ibm-common-service-operator
+  source: ibm-operator-catalog
+  sourceNamespace: openshift-marketplace
+EOF
+```
+
+Verify the status of the operators:
+> oc --namespace ibm-common-services get csv<br>
+> oc get crd | grep operandrequest<br>
+> oc api-resources --api-group operator.ibm.com
+<br>
