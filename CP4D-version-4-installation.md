@@ -200,8 +200,8 @@ EOF
 # Installing the scheduling service
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=service-installing-scheduling
-
-Make it is installed in *ibm-common-services* namespace.
+<br>
+Install in *ibm-common-services* namespace. Mind Storage Class, here *managed-nfs-storage*
 
 ```
 cat <<EOF |oc apply -f -
@@ -225,7 +225,7 @@ spec:
     license: Standard       # Specify the license you purchased
   registry: cp.icr.io/cp/cpd
   releasename: ibm-cpd-scheduler
-  storageClass: managed-nfs-service     # See the guidance in "Information you need to complete this task"
+  storageClass: managed-nfs-storage     # See the guidance in "Information you need to complete this task"
   scheduler:
     image: ibm-cpd-scheduler
     imagePullPolicy: Always
