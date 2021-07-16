@@ -222,7 +222,7 @@ spec:
       size: 10G
   license:
     accept: true
-    license: Enterprise|Standard       # Specify the license you purchased
+    license: Standard       # Specify the license you purchased
   registry: cp.icr.io/cp/cpd
   releasename: ibm-cpd-scheduler
   storageClass: managed-nfs-service     # See the guidance in "Information you need to complete this task"
