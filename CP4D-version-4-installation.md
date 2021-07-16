@@ -36,11 +36,10 @@ Apply at least two change to */tmp/crio.conf* file<br>
 default_ulimits = [
   "nofile=66536:66536"
 ]
-
-
-
-
-
+..............
+..............
+# Maximum number of processes allowed in a container.
+pids_limit = 12288
 ```
 
 
