@@ -1,6 +1,6 @@
 # Introduction
 
-This article describes the minimal steps to install Cloud Pak for Data version 4 installation on OpenShift cluster.
+This article describes the minimal steps to install Cloud Pak for Data version 4 installation on OpenShift cluster. It is using IBM Public Repositories to download CP4D images.
 
 Source of truth: https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=installing
 
@@ -24,11 +24,28 @@ https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-creating-projects
 > oc new-project ibm-common-services<br>
 > oc new-project cpd-instance<br>
 
+# Operator Group
+
+Create Operator Group (Express installation).
+
+```
+cat <<EOF |oc apply -f -
+apiVersion: operators.coreos.com/v1alpha2
+kind: OperatorGroup
+metadata:
+  name: operatorgroup
+  namespace: ibm-common-services
+spec:
+  targetNamespaces:
+  - ibm-common-services
+EOF
+```
+
 # Configure cluster pull secrets to download CP4D artefacts
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-configuring-your-cluster-pull-images
 
-Obtain CP4D entitlement, the API Key looks like: eyghbGciOiPOUzI1NiJ9.eyJcvbMiOiJJQk0gTWFya2V0cGxhY2UiLCJpYXQiOjE1OAcENTM2PDPsImp0aSI6IjM0YWU1ZjlkYjc3MjQ3NTM4OWIyOTFhMjY3YWQ3OTE0In0.ww83p2eFCpVon13UQXTqJP4nBy_piNh6cPi-3oR0ylZ
+Obtain CP4D entitlement, the API Key looks like: *eyghbGciOiPOUzI1NiJ9.eyJcvbMiOiJJQk0gVCFya2V0cGxhY2UiLCJpYXQiOjE1OAcENTM2PDPsImp0aSI6IjM0YWU1ZjlkYjc3MjQ3NTM4OWIyOTFhMjY3YWQ3OTE0In0.ww83p2eBNIpVon13UQXTqJP4nBy_piNh6cPi-3oR0ylZ*
 
 You can configure cluster pull secrets using the *oc* command line or through the OpenShift console.
 
