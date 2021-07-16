@@ -178,3 +178,96 @@ Verify the status of the operators:
 > oc get crd | grep operandrequest<br>
 > oc api-resources --api-group operator.ibm.com
 <br>
+#  Creating an operator subscription for the scheduling service
+
+https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-creating-operator-subscriptions
+
+```
+cat <<EOF |oc apply -f -
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  annotations:
+  labels:
+    operators.coreos.com/ibm-cpd-scheduling-operator.aks: ""
+    velero.io/exclude-from-backup: "true"
+  name: ibm-cpd-scheduling-catalog-subscription
+  namespace: ibm-common-services    # Pick the project that contains the Cloud Pak for Data operator
+spec:
+  channel: alpha
+  installPlanApproval: Automatic
+  name: ibm-cpd-scheduling-operator
+  source: ibm-operator-catalog
+  sourceNamespace: openshift-marketplace
+EOF
+```
+# Installing the scheduling service
+
+https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=service-installing-scheduling
+```
+cat <<EOF |oc apply -f -
+apiVersion: scheduler.spectrumcomputing.ibm.com/v1
+kind: Scheduling
+metadata:
+  labels:
+    release: cpd-scheduler
+    velero.io/exclude-from-backup: "true"
+  name: ibm-cpd-scheduler
+spec:
+  appVersion: 1.2.1
+  version: 1.2.1
+  cluster:
+    pvc:
+      dynamicStorage: true
+      size: 10G
+  license:
+    accept: true
+    license: Enterprise|Standard       # Specify the license you purchased
+  registry: cp.icr.io/cp/cpd
+  releasename: ibm-cpd-scheduler
+  storageClass: managed-nfs-service     # See the guidance in "Information you need to complete this task"
+  scheduler:
+    image: ibm-cpd-scheduler
+    imagePullPolicy: Always
+    replicas: 1
+    resources:
+      limits:
+        cpu: "1"
+        memory: 4G
+      requests:
+        cpu: "1"
+        memory: 4G
+  agent:
+    image: ibm-cpd-scheduler-agent
+    imagePullPolicy: Always
+    resources:
+      limits:
+        cpu: 200m
+        memory: 750M
+      requests:
+        cpu: 200m
+        memory: 750M
+  mwebhook:
+    image: ibm-cpd-scheduler-mutate-webhook
+    imagePullPolicy: Always
+    replicas: 1
+    resources:
+      limits:
+        cpu: 200m
+        memory: 1G
+      requests:
+        cpu: 200m
+        memory: 1G
+  vwebhook:
+    image: ibm-cpd-scheduler-webhook
+    imagePullPolicy: Always
+    replicas: 1
+    resources:
+      limits:
+        cpu: 200m
+        memory: 1G
+      requests:
+        cpu: 200m
+        memory: 1G
+EOF
+```
