@@ -273,5 +273,6 @@ spec:
 EOF
 ```
 <br>
+
 > oc get scheduling ibm-cpd-scheduler -n ibm-common-services -o yaml<br>
 
