@@ -275,3 +275,17 @@ EOF
 
 > oc get scheduling ibm-cpd-scheduler -n ibm-common-services -o yaml<br>
 
+If successful, there will be status reported like below:<br>
+```
+status:
+  conditions:
+  - message: Running reconciliation
+    reason: Running
+    status: "True"
+    type: Running
+  cpd-schedulingStatus: Completed
+  type: Ready
+  versions:
+    reconciled: 1.2.1
+
+```
