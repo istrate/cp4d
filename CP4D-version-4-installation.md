@@ -306,6 +306,23 @@ spec:
 EOF
 ```
 
+Install CPD platform operator:
+```
+cat <<EOF |oc apply -f -
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: cpd-operator
+  namespace: ibm-common-services
+spec:
+  channel: stable-v1
+  installPlanApproval: Automatic
+  name: cpd-platform-operator
+  source: ibm-operator-catalog
+  sourceNamespace: openshift-marketplace
+EOF
+```
+
 Install Cloud Pak For Data control plane. Pay attention to:
 * License (here *Standard*)
 * Storage Class (here *managed-nfs-storage*)
