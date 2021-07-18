@@ -347,3 +347,10 @@ spec:
   version: "4.0.1"
 EOF
 ```
+
+The last step will install CPD Control Pane. It will take 10-20 minutes. Monitor the progress:<br>
+
+> oc get ZenService lite-cr -o jsonpath="{.status.zenStatus}{'\n'}"
+```
+InProgress
+```
