@@ -348,9 +348,31 @@ spec:
 EOF
 ```
 
-The last step will install CPD Control Pane. It will take 10-20 minutes. Monitor the progress:<br>
+The last step will install CPD Control Pane. Monitor the progress:<br>
 
 > oc get ZenService lite-cr -o jsonpath="{.status.zenStatus}{'\n'}"
 ```
 InProgress
+```
+
+It will take 10-20 minutes until completed.
+```
+Completed
+```
+
+# Enter Cloud Pak for Data Console
+
+Get URL
+
+> oc get ZenService lite-cr -o jsonpath="{.status.url}{'\n'}"<br>
+```
+cpd-cpd-instance.apps.starry.cp.fyre.ibm.com
+```
+
+Get the initial password
+
+> oc extract secret/admin-user-details --keys=initial_admin_password --to=-
+```
+# initial_admin_password
+gNKvIwRDpbLk
 ```
