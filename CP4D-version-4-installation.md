@@ -174,6 +174,7 @@ Verify the status of the operators:
 > oc get crd | grep operandrequest<br>
 > oc api-resources --api-group operator.ibm.com
 <br>
+
 #  Creating an operator subscription for the scheduling service
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-creating-operator-subscriptions
@@ -289,6 +290,26 @@ status:
     reconciled: 1.2.1
 
 ```
+# Install CPD platform operator
+
+```
+cat <<EOF |oc apply -f -
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: cpd-operator
+  namespace: ibm-common-services
+spec:
+  channel: stable-v1
+  installPlanApproval: Automatic
+  name: cpd-platform-operator
+  source: ibm-operator-catalog
+  sourceNamespace: openshift-marketplace
+EOF
+```
+
+
+
 # Install Cloud Pak for Data 
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=installing-cloud-pak-data
@@ -303,23 +324,6 @@ metadata:
   namespace: cpd-instance
 spec:
   requests: []
-EOF
-```
-
-Install CPD platform operator:
-```
-cat <<EOF |oc apply -f -
-apiVersion: operators.coreos.com/v1alpha1
-kind: Subscription
-metadata:
-  name: cpd-operator
-  namespace: ibm-common-services
-spec:
-  channel: stable-v1
-  installPlanApproval: Automatic
-  name: cpd-platform-operator
-  source: ibm-operator-catalog
-  sourceNamespace: openshift-marketplace
 EOF
 ```
 
