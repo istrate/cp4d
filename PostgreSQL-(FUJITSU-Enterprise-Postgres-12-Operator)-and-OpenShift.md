@@ -43,7 +43,7 @@ Wait several minutes until the pod is ready.
 
 Get *postgres* user password from *new-fep* secret (default is *admin-password*). The secret name corresponds to the name of FEP PostgreSQL created. <br>
 Open pod terminal and run<br>
-> psql -h localhost -p 27500 -u postgres
+> psql -h localhost -p 27500 -U postgres
 ```
 Password for user postgres: 
 psql (12.5)
