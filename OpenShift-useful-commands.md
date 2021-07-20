@@ -721,3 +721,8 @@ https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-setup-tools?view=sql
 Password: 
 1> 
 ```
+## Create temporary secret from token
+
+> podman login -u \<user\> quay.io<br>
+> oc create secret generic quay-registry --from-file .dockerconfigjson=${XDG_RUNTIME_DIR}/containers/auth.json --type kubernetes.io/dockerconfigjson<br>
+> oc secrets link builder quay-registry<br>
