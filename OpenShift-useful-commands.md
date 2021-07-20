@@ -726,3 +726,13 @@ Password:
 > podman login -u \<user\> quay.io<br>
 > oc create secret generic quay-registry --from-file .dockerconfigjson=${XDG_RUNTIME_DIR}/containers/auth.json --type kubernetes.io/dockerconfigjson<br>
 > oc secrets link builder quay-registry<br>
+
+## HTTPS server
+
+https://github.com/sclorg/httpd-ex
+
+> oc new-app centos/httpd-24-centos7~https://github.com/sclorg/httpd-ex
+
+External storage.
+<br>
+> oc set volume deployment/httpd-ex --add --name=www  -m /var/www/html  -t pvc --claim-size=20G --claim-class=managed-nfs-storage
