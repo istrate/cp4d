@@ -16,7 +16,7 @@ The trial version can be used only for testing and education and the license exp
 
 Installed Operator -> FUJITSU Enterprise Postgres 12 Operator -> FEPC FEPCluster -> Create Instance<br>
 
-Change ti YAML view and replace:
+Change to YAML view and replace:
 ```
   max_worker_processes = 30
 ```
