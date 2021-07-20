@@ -729,10 +729,8 @@ Password:
 
 ## HTTP server
 
-https://github.com/sclorg/httpd-ex
+> oc new-app --docker-image=registry.access.redhat.com/rhscl/httpd-24-rhel7  --name=httpd<br>
+> oc set volume deployment/httpd --add --name=www  -m //var/www/html  -t pvc --claim-size=20G --claim-class=managed-nfs-storage<br>
 
-> oc new-app centos/httpd-24-centos7~https://github.com/sclorg/httpd-ex
+> oc expose svc httpd
 
-External storage.
-<br>
-> oc set volume deployment/httpd-ex --add --name=www  -m /var/www/html  -t pvc --claim-size=20G --claim-class=managed-nfs-storage
