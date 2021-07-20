@@ -727,7 +727,7 @@ Password:
 > oc create secret generic quay-registry --from-file .dockerconfigjson=${XDG_RUNTIME_DIR}/containers/auth.json --type kubernetes.io/dockerconfigjson<br>
 > oc secrets link builder quay-registry<br>
 
-## HTTPS server
+## HTTP server
 
 https://github.com/sclorg/httpd-ex
 
