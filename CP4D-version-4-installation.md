@@ -376,3 +376,48 @@ Get the initial password
 # initial_admin_password
 gNKvIwRDpbLk
 ```
+# Install Watson Studio
+
+https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-creating-operator-subscriptions
+
+Create subscription<br>
+```
+cat <<EOF |oc apply -f -
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  annotations:
+  name: ibm-cpd-ws-operator-catalog-subscription
+  namespace: ibm-common-services
+spec:
+  channel: v2.0
+  installPlanApproval: Automatic
+  name: ibm-cpd-wsl
+  source: ibm-operator-catalog
+  sourceNamespace: openshift-marketplace
+EOF
+```
+
+Create a custom resource<br>
+```
+cat <<EOF |oc apply -f -
+apiVersion: ws.cpd.ibm.com/v1beta1
+kind: WS
+metadata:
+  name: ws-cr
+  namespace: cpd-instance
+spec:
+  license:
+    accept: true
+    license: Enterprise
+  version: 4.0.0
+  storageClass: managed-nfs-storage
+  docker_registry_prefix: cp.icr.io/cp/cpd
+EOF
+```
+
+Monitor the installation progress.<br>
+> oc get WS ws-cr -o jsonpath='{.status.wsStatus} {"\n"}'<br>
+```
+InProgress
+```
