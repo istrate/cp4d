@@ -416,7 +416,7 @@ spec:
 EOF
 ```
 
-Monitor the installation progress.<br>
+Monitor the installation progress. It can take 20-30 minutes until finished.<br>
 > oc get WS ws-cr -o jsonpath='{.status.wsStatus} {"\n"}'<br>
 ```
 InProgress
