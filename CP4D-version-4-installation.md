@@ -398,7 +398,7 @@ spec:
 EOF
 ```
 
-Create a custom resource<br>
+Create a custom resource. Apply proper license (here Standard) and Storage Class (here managed-nfs-storage) <br>
 ```
 cat <<EOF |oc apply -f -
 apiVersion: ws.cpd.ibm.com/v1beta1
@@ -409,7 +409,7 @@ metadata:
 spec:
   license:
     accept: true
-    license: Enterprise
+    license: Standard
   version: 4.0.0
   storageClass: managed-nfs-storage
   docker_registry_prefix: cp.icr.io/cp/cpd
