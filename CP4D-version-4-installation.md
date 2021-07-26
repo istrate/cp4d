@@ -354,8 +354,25 @@ spec:
 EOF
 ```
 
-
-
+Install CSS Common Core Services
+```
+cat <<EOF |oc apply -f -
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: ibm-cpd-ccs-operator-catalog
+  namespace: openshift-marketplace
+spec:
+  sourceType: grpc
+  image: icr.io/cpopen/ibm-cpd-ccs-operator-catalog@sha256:34854b0b5684d670cf1624d01e659e9900f4206987242b453ee917b32b79f5b7
+  imagePullPolicy: Always
+  displayName: CPD Common Core Services
+  publisher: IBM
+  updateStrategy:
+    registryPoll:
+      interval: 45m
+EOF
+```
 # Install Cloud Pak for Data 
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=installing-cloud-pak-data
