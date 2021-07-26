@@ -25,7 +25,7 @@ As a minimum apply changes to crio and kernel setting.
 
 Obtain *crio.conf* configuration file from any of Worker Nodes and store it in the local */tmp* directory.
 
-> scp core@$node:/etc/crio/crio.conf /tmp
+> scp core@\<node\>:/etc/crio/crio.conf /tmp
 
 Make at least two changes to */tmp/crio.conf* file<br>
 
@@ -228,6 +228,13 @@ EOF
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=service-installing-scheduling
 <br>
+
+Assign RBAC role.<br>
+
+> oc adm policy add-cluster-role-to-user system:kube-scheduler system:serviceaccount:ibm-common-services:ibm-cpd-scheduling-operator 
+--rolebinding-name=ibm-cpd-scheduling-operator-kube-sched-crb-ibm-common-services<br>
+
+
 Install in *ibm-common-services* namespace. Mind Storage Class, here *managed-nfs-storage*
 
 ```
