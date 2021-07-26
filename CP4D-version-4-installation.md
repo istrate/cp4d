@@ -444,6 +444,7 @@ spec:
   imagePullPolicy: Always
   displayName: CPD IBM Watson Studio
   publisher: IBM
+------
 apiVersion: operators.coreos.com/v1alpha1
 kind: CatalogSource
 metadata:
