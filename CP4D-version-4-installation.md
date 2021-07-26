@@ -394,7 +394,7 @@ spec:
 EOF
 ```
 
-The last step will install CPD Control Pane. Monitor the progress:<br>
+The last step will install CPD Control Pane. It will take several minutes to create *ZenService* kind and *lite-cr* instance. Monitor the progress:<br>
 
 > oc get ZenService lite-cr -o jsonpath="{.status.zenStatus}{'\n'}"
 ```
