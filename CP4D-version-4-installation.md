@@ -444,6 +444,17 @@ spec:
   imagePullPolicy: Always
   displayName: CPD IBM Watson Studio
   publisher: IBM
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: ibm-cpd-ws-runtimes-operator-catalog
+  namespace: openshift-marketplace
+spec:
+  sourceType: grpc
+  image: icr.io/cpopen/ibm-cpd-ws-runtimes-operator-catalog@sha256:c1faf293456261f418e01795eecd4fe8b48cc1e8b37631fb6433fad261b74ea4
+  imagePullPolicy: Always
+  displayName: CPD Watson Studio Runtimes
+  publisher: IBM
 EOF
 ```
 
