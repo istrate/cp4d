@@ -176,6 +176,7 @@ ibm-common-service-operator.v3.9.0            IBM Cloud Pak foundational service
 ibm-namespace-scope-operator.v1.3.0           IBM NamespaceScope Operator            1.3.0     ibm-namespace-scope-operator.v1.2.0           Succeeded
 operand-deployment-lifecycle-manager.v1.7.0   Operand Deployment Lifecycle Manager   1.7.0     operand-deployment-lifecycle-manager.v1.6.0   Succeeded
 ```
+
 > oc get crd | grep operandrequest<br>
 ```
 operandrequests.operator.ibm.com                                  2021-07-26T11:57:51Z
@@ -191,6 +192,7 @@ operandrequests     opreq        operator.ibm.com/v1alpha1   true         Operan
 podpresets                       operator.ibm.com/v1alpha1   true         PodPreset
 ```
 <br>
+
 > oc get pod -n ibm-common-services
 ```
 ibm-common-service-operator-d656945f9-zrdft             1/1     Running   0          3m56s
