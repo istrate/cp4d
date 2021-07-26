@@ -171,10 +171,34 @@ EOF
 
 Verify the status of the operators:
 > oc --namespace ibm-common-services get csv<br>
+```
+ibm-common-service-operator.v3.9.0            IBM Cloud Pak foundational services    3.9.0     ibm-common-service-operator.v3.8.0            Succeeded
+ibm-namespace-scope-operator.v1.3.0           IBM NamespaceScope Operator            1.3.0     ibm-namespace-scope-operator.v1.2.0           Succeeded
+operand-deployment-lifecycle-manager.v1.7.0   Operand Deployment Lifecycle Manager   1.7.0     operand-deployment-lifecycle-manager.v1.6.0   Succeeded
+```
 > oc get crd | grep operandrequest<br>
+```
+operandrequests.operator.ibm.com                                  2021-07-26T11:57:51Z
+```
 > oc api-resources --api-group operator.ibm.com
+```
+commonservices                   operator.ibm.com/v3         true         CommonService
+namespacescopes     nss          operator.ibm.com/v1         true         NamespaceScope
+operandbindinfos    opbi         operator.ibm.com/v1alpha1   true         OperandBindInfo
+operandconfigs      opcon        operator.ibm.com/v1alpha1   true         OperandConfig
+operandregistries   opreg        operator.ibm.com/v1alpha1   true         OperandRegistry
+operandrequests     opreq        operator.ibm.com/v1alpha1   true         OperandRequest
+podpresets                       operator.ibm.com/v1alpha1   true         PodPreset
+```
 <br>
-
+> oc get pod -n ibm-common-services
+```
+ibm-common-service-operator-d656945f9-zrdft             1/1     Running   0          3m56s
+ibm-common-service-webhook-79bb458694-h9j4m             1/1     Running   0          3m21s
+ibm-namespace-scope-operator-5d869759c9-6trpl           1/1     Running   0          3m29s
+operand-deployment-lifecycle-manager-5c74799b47-xxhc8   1/1     Running   0          2m57s
+secretshare-7c9fdc588d-d8n8b                            1/1     Running   0          3m15s
+```
 #  Creating an operator subscription for the scheduling service
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-creating-operator-subscriptions
