@@ -430,6 +430,23 @@ gNKvIwRDpbLk
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-creating-operator-subscriptions
 
+Install Catalog Source
+```
+cat <<EOF |oc apply -f -                                                                              
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: ibm-cpd-ws-operator-catalog
+  namespace: openshift-marketplace
+spec:
+  sourceType: grpc
+  image: icr.io/cpopen/ibm-cpd-ws-operator-catalog@sha256:bf6b42df3d8cee32740d3273154986b28dedbf03349116fba39974dc29610521
+  imagePullPolicy: Always
+  displayName: CPD IBM Watson Studio
+  publisher: IBM
+EOF
+```
+
 Create subscription<br>
 ```
 cat <<EOF |oc apply -f -
