@@ -25,7 +25,7 @@ As a minimum apply changes to crio and kernel setting.
 
 Obtain *crio.conf* configuration file from any of Worker Nodes and store it in the local */tmp* directory.
 
-> scp core@$node /etc/crio/crio.conf /tmp
+> scp core@$node:/etc/crio/crio.conf /tmp
 
 Make at least two changes to */tmp/crio.conf* file<br>
 
