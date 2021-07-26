@@ -129,7 +129,7 @@ Add new secret using data:
 
 # Create CatalogSource
 
-https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-configuring-your-cluster-pull-images
+https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-configuring-your-cluster-pull-images<br>
 (3. Creating the catalog source)
 
 ```
