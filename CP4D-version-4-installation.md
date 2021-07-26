@@ -323,6 +323,19 @@ status:
     reconciled: 1.2.1
 
 ```
+
+> oc get pod -n ibm-common-services | grep scheduler
+```
+ibm-cpd-scheduler-agent-r24qz                           1/1     Running   0          5m28s
+ibm-cpd-scheduler-agent-rwxh9                           1/1     Running   0          5m28s
+ibm-cpd-scheduler-agent-sfxqc                           1/1     Running   0          5m28s
+ibm-cpd-scheduler-agent-whrvv                           1/1     Running   0          5m28s
+ibm-cpd-scheduler-agent-xsnc2                           1/1     Running   0          5m28s
+ibm-cpd-scheduler-agent-zhnd5                           1/1     Running   0          5m28s
+ibm-cpd-scheduler-mutating-webhook-68b4d56c5c-p2dvk     1/1     Running   0          4m40s
+ibm-cpd-scheduler-scheduler-57f5d56758-8jhkr            1/1     Running   0          5m25s
+ibm-cpd-scheduler-webhook-f4cc67567-pxg4h               1/1     Running   0          5m23s
+```
 # Install CPD platform operator
 
 ```
