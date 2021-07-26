@@ -235,7 +235,7 @@ Assign RBAC role.<br>
 --rolebinding-name=ibm-cpd-scheduling-operator-kube-sched-crb-ibm-common-services<br>
 
 
-Install in *ibm-common-services* namespace. Mind Storage Class, here *managed-nfs-storage*
+Install in *ibm-common-services* namespace. Consider *storageClass*, here *managed-nfs-storage*
 
 ```
 cat <<EOF |oc apply -f -
@@ -397,6 +397,10 @@ EOF
 The last step will install CPD Control Pane. It will take several minutes to create *ZenService* kind and *lite-cr* instance. Monitor the progress:<br>
 
 > oc get ZenService lite-cr -o jsonpath="{.status.zenStatus}{'\n'}"
+```
+error: the server doesn't have a resource type "ZenService"
+
+```
 ```
 InProgress
 ```
