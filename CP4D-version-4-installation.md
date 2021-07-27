@@ -354,7 +354,7 @@ spec:
 EOF
 ```
 
-Install CSS Common Core Services
+Install Catalog Source: CSS Common Core Services
 ```
 cat <<EOF |oc apply -f -
 apiVersion: operators.coreos.com/v1alpha1
@@ -373,6 +373,26 @@ spec:
       interval: 45m
 EOF
 ```
+Install Catalog Source: Data Refinery
+```
+cat <<EOF |oc apply -f -
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: ibm-cpd-datarefinery-operator-catalog
+  namespace: openshift-marketplace
+spec:
+  sourceType: grpc
+  image: icr.io/cpopen/ibm-cpd-datarefinery-operator-catalog@sha256:27c6b458244a7c8d12da72a18811d797a1bef19dadf84b38cedf6461fe53643a
+  imagePullPolicy: Always
+  displayName: Cloud Pak for Data IBM DataRefinery
+  publisher: IBM
+  updateStrategy:
+    registryPoll:
+      interval: 45m
+EOF
+```
+
 # Install Cloud Pak for Data 
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=installing-cloud-pak-data
