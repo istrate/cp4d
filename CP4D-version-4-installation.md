@@ -658,3 +658,10 @@ spec:
   docker_registry_prefix: cp.icr.io/cp/cpd 
 EOF
 ```
+
+Monitor the progress<br>
+
+> oc get WKC wkc-cr -o jsonpath='{.status.wkcStatus} {"\n"}'<br>
+```
+InProgress 
+```
