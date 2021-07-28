@@ -520,9 +520,11 @@ Wait until resource is ready.<br>
 error: the server doesn't have a resource type "WS"
 ```
 ```
+Error from server (NotFound): zenservices.zen.cpd.ibm.com "lite-cr" not found
+```
+```
 No resources found in cpd-instance namespace.
 ```
-
 Create a custom resource. Apply proper license (here Standard) and Storage Class (here managed-nfs-storage) <br>
 ```
 cat <<EOF |oc apply -f -
