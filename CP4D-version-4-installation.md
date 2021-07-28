@@ -611,3 +611,23 @@ Verify<br>
 NAME          PRIV    CAPS         SELINUX     RUNASUSER   FSGROUP    SUPGROUP   PRIORITY     READONLYROOTFS   VOLUMES
 wkc-iis-scc   false   <no value>   MustRunAs   MustRunAs   RunAsAny   RunAsAny   <no value>   false            ["configMap","downwardAPI","emptyDir","persistentVolumeClaim","projected","secret"]
 ```
+## Create WKC Operator Subscription
+```
+cat << EOF | oc apply -f -
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    app.kubernetes.io/instance:  ibm-cpd-wkc-operator-catalog-subscription
+    app.kubernetes.io/managed-by: ibm-cpd-wkc-operator
+    app.kubernetes.io/name:  ibm-cpd-wkc-operator-catalog-subscription
+  name: ibm-cpd-wkc-operator-catalog-subscription
+  namespace: ibm-common-services
+spec:
+  channel: v1.0
+  installPlanApproval: Automatic
+  name: ibm-cpd-wkc
+  source: ibm-operator-catalog
+  sourceNamespace: openshift-marketplace
+EOF
+```
