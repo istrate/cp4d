@@ -631,3 +631,30 @@ spec:
   sourceNamespace: openshift-marketplace
 EOF
 ```
+## Install Python2 and yaml dependency
+
+> yum install -y python2<br>
+> alternatives --set python /usr/bin/python2<br>
+> pip2 install pyyaml<br>
+
+## Install Watson Knowledge Catalog
+
+Consider *storageClass* (here managed-nfs-storage) and license (here Standard)
+
+```
+cat << EOF | oc apply -f -
+apiVersion: wkc.cpd.ibm.com/v1beta1
+kind: WKC
+metadata:
+  name: wkc-cr
+  namespace: cpd-instance
+spec:
+  version: 4.0.0
+  license:
+    accept: true
+    license: Standard
+  storageClass: managed-nfs-storage
+  useODLM: true
+  docker_registry_prefix: cp.icr.io/cp/cpd 
+EOF
+```
