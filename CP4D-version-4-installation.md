@@ -557,6 +557,41 @@ Open Cloud Pak for Data console and navigate to "Services Catalog". Watson Studi
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=catalog-installing-watson-knowledge
 
+## Adjust kernel settings
+https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_latest/cpd/install/node-settings.html#concept_vcl_pfg_tpb__kernel#concept_vcl_pfg_tpb__kernel
+
+(Assuming 64GB Worker Nodes)
+
+```
+cat << EOF | oc apply -f -
+apiVersion: tuned.openshift.io/v1
+kind: Tuned
+metadata:
+  name: cp4d-wkc-ipc
+  namespace: openshift-cluster-node-tuning-operator
+spec:
+  profile:
+  - name: cp4d-wkc-ipc
+    data: |
+      [main]
+      summary=Tune IPC Kernel parameters on OpenShift Worker Nodes running WKC Pods
+      [sysctl]
+      kernel.shmall = 33554432
+      kernel.shmmax = 68719476736
+      kernel.shmmni = 32768
+      kernel.sem = 250 1024000 100 32768
+      kernel.msgmax = 65536
+      kernel.msgmnb = 65536
+      kernel.msgmni = 32768
+      vm.max_map_count = 262144
+  recommend:
+  - match:
+    - label: node-role.kubernetes.io/worker
+    priority: 10
+    profile: cp4d-wkc-ipc
+EOF
+```
+
 ## Create Custom CSS
 
 > vi wkc-iis-scc.yaml
