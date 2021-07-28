@@ -602,3 +602,12 @@ volumes:
 users:
 - system:serviceaccount:cpd-instance:wkc-iis-sa
 ```
+> oc create -f wkc-iis-scc.yaml<br>
+
+Verify<br>
+
+> oc get scc wkc-iis-scc<br>
+```
+NAME          PRIV    CAPS         SELINUX     RUNASUSER   FSGROUP    SUPGROUP   PRIORITY     READONLYROOTFS   VOLUMES
+wkc-iis-scc   false   <no value>   MustRunAs   MustRunAs   RunAsAny   RunAsAny   <no value>   false            ["configMap","downwardAPI","emptyDir","persistentVolumeClaim","projected","secret"]
+```
