@@ -436,7 +436,9 @@ The last step will install CPD Control Pane. It will take several minutes to cre
 > oc get ZenService lite-cr -o jsonpath="{.status.zenStatus}{'\n'}"
 ```
 error: the server doesn't have a resource type "ZenService"
-
+```
+```
+Error from server (NotFound): zenservices.zen.cpd.ibm.com "lite-cr" not found
 ```
 ```
 InProgress
@@ -520,10 +522,7 @@ Wait until resource is ready.<br>
 error: the server doesn't have a resource type "WS"
 ```
 ```
-Error from server (NotFound): zenservices.zen.cpd.ibm.com "lite-cr" not found
-```
-```
-No resources found in cpd-instance namespace.
+No resources were found in cpd-instance namespace.
 ```
 Create a custom resource. Apply proper license (here Standard) and Storage Class (here managed-nfs-storage) <br>
 ```
