@@ -664,11 +664,6 @@ Open Cloud Pak for Data console and navigate to "Services Catalog". Watson Studi
 
 # Watson Knowledge Studio and DB2 prerequisites
 
-
-# Watson Knowledge Catalog
-
-https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=catalog-installing-watson-knowledge
-
 ## Adjust kernel settings
 https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_latest/cpd/install/node-settings.html#concept_vcl_pfg_tpb__kernel#concept_vcl_pfg_tpb__kernel
 
@@ -703,6 +698,32 @@ spec:
     profile: cp4d-wkc-ipc
 EOF
 ```
+## Additional kernel settings for DB2
+
+> oc label machineconfigpool worker db2u-kubelet=sysctl
+
+```
+cat << EOF | oc apply -f -
+  apiVersion: machineconfiguration.openshift.io/v1
+  kind: KubeletConfig
+  metadata:
+    name: db2u-kubelet
+  spec:
+    machineConfigPoolSelector:
+      matchLabels:
+        db2u-kubelet: sysctl
+    kubeletConfig:
+      allowedUnsafeSysctls:
+        - "kernel.msg*"
+        - "kernel.shm*"
+        - "kernel.sem"
+EOF
+```
+
+# Watson Knowledge Catalog
+
+https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=catalog-installing-watson-knowledge
+
 
 
 ## Create Custom CSS
