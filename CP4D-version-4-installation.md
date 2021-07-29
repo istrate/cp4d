@@ -17,6 +17,36 @@ Also: https://github.com/stanislawbartkowski/CP4D/wiki/OpenShift-NFS-provisioner
 * CP4D entitlement, API Key: https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-obtaining-your-entitlement-api-key
 * Authorized OpenShift *admin-cluster* user
 
+# Test your API Key
+
+Validate the API Key before running the installation. As password, copy and paste your API Key.
+> podman login cp.icr.io<br>
+```
+Username: cp
+Password: 
+Login Succeeded!
+```
+
+Download one of the images as an access test.
+
+> podman pull icr.io/cpopen/ibm-cpd-ccs-operator-catalog@sha256:34854b0b5684d670cf1624d01e659e9900f4206987242b453ee917b32b79f5b7
+```
+Trying to pull icr.io/cpopen/ibm-cpd-ccs-operator-catalog@sha256:34854b0b5684d670cf1624d01e659e9900f4206987242b453ee917b32b79f5b7...
+Getting image source signatures
+Checking if image destination supports signatures
+Copying blob f557be5d7c54 done  
+Copying blob be14f6f66b43 done  
+Copying blob ee27fede83dd done  
+Copying blob 48182b3ae68a done  
+Copying blob ac7bbcb20bdc done  
+Copying blob 426f520a254b done  
+Copying blob 46d075a4a2fd done  
+Copying config 1a2ab84f3c done  
+Writing manifest to image destination
+Storing signatures
+1a2ab84f3ce3230e867c250641633e37259b5f651f1d4cbb7d84c27221377806
+```
+
 # Change node settings
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-changing-required-node-settings
