@@ -701,3 +701,10 @@ Monitor the progress<br>
 ```
 InProgress 
 ```
+There is also a lot of dependencies installed together with Watson Knowledge Catalog.
+
+> oc get CCS ccs-cr -o jsonpath='{.status.ccsStatus} {"\n"}'<br>
+> oc get DataRefinery datarefinery-sample -o jsonpath='{.status.datarefineryStatus} {"\n"}'<br>
+> oc get Db2aaserviceService db2aaservice-cr -o jsonpath='{.status.db2aaserviceStatus} {"\n"}'<br>
+> oc get IIS iis-cr -o jsonpath='{.status.iisStatus} {"\n"}'<br>
+> oc get UG ug-cr -o jsonpath='{.status.ugStatus} {"\n"}'<br>
