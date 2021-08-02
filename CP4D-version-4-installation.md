@@ -841,3 +841,68 @@ There is also a lot of dependencies installed together with Watson Knowledge Cat
 > oc get Db2aaserviceService db2aaservice-cr -o jsonpath='{.status.db2aaserviceStatus} {"\n"}'<br>
 > oc get IIS iis-cr -o jsonpath='{.status.iisStatus} {"\n"}'<br>
 > oc get UG ug-cr -o jsonpath='{.status.ugStatus} {"\n"}'<br>
+
+# HEE - Hadoop Execution Engine
+
+https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=ieeah-installing-execution-engine-apache-hadoop
+
+Install operator subscription.
+```
+cat <<EOF |oc apply -f -
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    app.kubernetes.io/instance: ibm-cpd-hadoop-operator-catalog-subscription
+    app.kubernetes.io/managed-by: ibm-cpd-hadoop-operator
+    app.kubernetes.io/name: ibm-cpd-hadoop-operator-catalog-subscription
+  name: ibm-cpd-hadoop-operator-catalog-subscription
+  namespace: ibm-common-services
+spec:
+    channel: v1.0
+    installPlanApproval: Automatic
+    name: ibm-cpd-hadoop
+    source: ibm-operator-catalog
+    sourceNamespace: openshift-marketplace
+EOF
+```
+
+Wait until *Hadoop* resource is available.
+
+> oc get Hadoop<br>
+```
+error: the server doesn't have a resource type "Hadoop"
+```
+```
+No resources found in cpd-instance namespace.
+```
+
+Install Customer Resource. Consider license (here *Standard*) and Storage Class (here *nfs-managed-storage*)
+```
+cat <<EOF |oc apply -f -
+apiVersion: hadoop.cpd.ibm.com/v1
+kind: Hadoop
+metadata:
+  name: hadoop-cr  
+  namespace: cpd-instance 
+spec:
+  docker_registry_prefix: cp.icr.io/cp/cpd
+  size: small
+  license:
+    accept: true
+    license: Standard
+  version: 4.0.0
+  storageVendor: ocs
+  storageClass: managed-nfs-storage
+EOF
+
+```
+
+Monitor the progress, it takes several minutes before completing.
+
+> oc get Hadoop hadoop-cr -o jsonpath='{.status.hadoopStatus} {"\n"}'
+```
+Completed
+```
+
+
