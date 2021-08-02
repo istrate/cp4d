@@ -78,6 +78,10 @@ Collect Hadoop endpoints:<br>
 > cd /opt/ibm/dsxhi/conf<br>
 > cp dsxhi_install.conf.template.HDP  dsxhi_install.conf<br>
 
+or (Cloudera)
+
+> cp dsxhi_install.conf.template.CDH  dsxhi_install.conf<br>
+
 Customize *dsxhi_install.conf* property file according to HDP cluster configuration. Below is an example. <br>
 
 > vi dsxhi_install.conf<br>
