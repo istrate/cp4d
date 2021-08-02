@@ -904,5 +904,6 @@ Monitor the progress, it takes several minutes before completing.
 ```
 Completed
 ```
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-08-02%2014-21-11.png)
 
 
