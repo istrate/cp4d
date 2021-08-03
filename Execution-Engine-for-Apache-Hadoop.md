@@ -2,6 +2,8 @@
 
 https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/svc-welcome/hadoopaddon.html
 <br>
+Another installation description step by step: https://developer.ibm.com/recipes/tutorials/i-can-integrate-ibm-cloud-pak-for-data-with-hadoop-for-hdp-cdh/<br>
+<br>
 
 Execution Engine for Apache Hadoop is one of the services available on IBM Cloud Pak for Data platform. The service integrates CP4D and Hadoop, two Hadoop implementations are supported: CDH (Cloudera) and HDP (former HortonWorks, now Cloudera).
 <br>
