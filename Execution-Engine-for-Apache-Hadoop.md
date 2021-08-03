@@ -115,9 +115,9 @@ hive_jdbc_client_url=jdbc:hive2://bushily2.fyre.ibm.com:10000
 
 ## Configure HDFS
 
-Ambari Console->HDFS->Configs->Advanced<br>
+HDP: Ambari Console->HDFS->Configs->Advanced->Custom core-site<br>
 
-Custom core-site<br>
+Cloudera: Cloudera Manager -> HDFS -> Configuration -> HDFS (Service Wide) -> Cluster-wide Advanced Configuration Snippet (Safety Valve) for core-site.xml
 
 | Property | Value
 | ---- | ---- |
