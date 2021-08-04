@@ -244,22 +244,27 @@ Project->Add to project (top button)->Connected data->Select source<br>
 
 ## Jupyter notebook accessing HDFS data
 
-After opening the notebook, Watson Studio can inject a Python code to get access data to remove HDFS file.
+After opening the notebook, Watson Studio can inject a Python code to get access data to remote HDFS file.
+
+Data -> Files -> HelloDataSet -> Insert to code -> Credentials
 
 ![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-01-15%2023-59-50.png)
 
 Using the data injected, we can create an URL and get access to HDFS using KNOX HDFS Rest/API. https://cwiki.apache.org/confluence/display/KNOX/Examples+WebHDFS
 
+This cell is generated automatically.
 ```
 # @hidden_cell
 # The following code contains the credentials for a connection in your Project.
 # You might want to remove those credentials before you share your notebook.
 
-from project_lib import Project
-project = Project.access()
-Hello_txt_credentials = project.get_connected_data(name="Hello.txt")
-h = Hello_txt_credentials
+from ibm_watson_studio_lib import access_project_or_space
+wslib = access_project_or_space()
+HelloDataSet_credentials = wslib.get_connected_data("HelloDataSet")h = Hello_txt_credentials
+```
 
+```
+h = HelloDataSet_credentials
 URL = url = h['url'] + h['datapath']
 headers = {'authorization': 'Bearer ' +  h['access_token']}
 params = {'op' : 'GETFILESTATUS'}
@@ -269,7 +274,9 @@ r = requests.get(url,headers=headers,params=params)
 
 print(r.content)
 Output: b'{"FileStatus":{"accessTime":1610404702071,"blockSize":134217728,"childrenNum":0,"fileId":21279,"group":"admin","length":22,"modificationTime":1610404702276,"owner":"hdfs","pathSuffix":"","permission":"644","replication":3,"storagePolicy":0,"type":"FILE"}}'
+```
 
+```
 # read HDFS file
 params= {'op': 'OPEN'}
 r = requests.get(url,headers=headers,params=params)
