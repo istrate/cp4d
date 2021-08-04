@@ -228,13 +228,19 @@ Cloud Pak for Data -> Connection -> Platform connections -> New connection -> HD
 As *WebHDFS URL* copy and paste *WebHDFS* endpoint from Hadoop platform integration panel.<br>
 Example: https://internal-nginx-svc:12443/ibm-dsxhi-cdpcluster/webhdfs/v1
 
-!()[https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-08-04%2013-09-12.png]
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-08-04%2013-09-12.png)
 
-### Add dataset in CP4D project
+### Add platform connection to CP4D project
+
+Project -> Add to project -> Connection -> From platform -> HDFSWebHDFSConnection (created as above) -> Create
+
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-08-04%2013-20-38.png)
+
+### Add dataset to CP4D project
 
 Project->Add to project (top button)->Connected data->Select source<br>
 
-![](https://github.com/stanislawbartkowski/wikis/blob/master/img/Zrzut%20ekranu%20z%202020-11-02%2023-50-30.png)
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-08-04%2013-22-15.png)
 
 ## Jupyter notebook accessing HDFS data
 
