@@ -23,6 +23,7 @@ This article describes how to integrate CP4D with AD server specified under this
 | Group membership | memberOf
 | Group member field | member
 
+
 Cloud Pak for Data -> Administration -> Access control -> LDAP configuration <br>
 
 
