@@ -263,6 +263,7 @@ wslib = access_project_or_space()
 HelloDataSet_credentials = wslib.get_connected_data("HelloDataSet")h = Hello_txt_credentials
 ```
 
+Insert Python code
 ```
 h = HelloDataSet_credentials
 URL = url = h['url'] + h['datapath']
