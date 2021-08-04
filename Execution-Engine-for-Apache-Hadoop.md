@@ -70,11 +70,20 @@ Create *dsxhi* service user and make him the owner of Hadoop Engine files.
 
 Collect Hadoop endpoints:<br>
 
+HDP
+
 | Endpoint | Example |
 | ---- | ---- |
 | Hive URL | jdbc:hive2://bushily2.fyre.ibm.com:10000
 | Ambari URL | http://exile1.fyre.ibm.com:8080 |
 | Ambari credentials | admin/admin
+
+Cloudera
+
+| Endpoint | Example |
+| ---- | ---- |
+| Cloudera Manager URL | http://aliquant1.fyre.ibm.com:7180 |
+| Cloudera Manager credentials | admin/admin
 
 > cd /opt/ibm/dsxhi/conf<br>
 > cp dsxhi_install.conf.template.HDP  dsxhi_install.conf<br>
@@ -84,6 +93,8 @@ or (Cloudera)
 > cp dsxhi_install.conf.template.CDH  dsxhi_install.conf<br>
 
 Customize *dsxhi_install.conf* property file according to HDP cluster configuration. Below is an example. <br>
+
+As a minimum, it is enough to enable *webhdfs* service.
 
 > vi dsxhi_install.conf<br>
 ```
@@ -107,7 +118,6 @@ exposed_hadoop_services=webhdfs,livyspark2,jeg
 # register this dsxhi service. The URL should include the port number if
 # necessary.
 #known_dsx_list=https://dsxlcluster1.ibm.com,https://dsxlcluster2.ibm.com:31843
-known_dsx_list=https://exile1.fyre.ibm.com:31843
 ...........
 # Optional - Provide client side Hive JDBC url:
 # (e.g., hive_jdbc_client_url=jdbc:hive2://remotehost:port)
@@ -126,7 +136,7 @@ Cloudera: Cloudera Manager -> HDFS -> Configuration -> HDFS (Service Wide) -> Cl
 | hadoop.proxyuser.dsxhi.hosts | * |
 | hadoop.proxyuser.dsxhi.users | * |
 
-Restart all HDP services impacted.
+Restart all HDP/Cloudera services impacted.
 
 ## Install
 
@@ -342,7 +352,7 @@ Project->Add to project->Notebook->Select runtime (JEG environment)
 
 # Kerberized HDP
 
-Register *dsxhi* user in Kerberos and obtain appropriate *keytab* file. Modify Hahdoop Engine configuration file.<br>
+Register *dsxhi* user in Kerberos and obtain appropriate *keytab* file. Modify Hadoop Engine configuration file.<br>
 
 > vi /opt/ibm/dsxhi/conf/dsxhi_install.conf<br>
 ```
@@ -352,6 +362,36 @@ Register *dsxhi* user in Kerberos and obtain appropriate *keytab* file. Modify H
 dsxhi_serviceuser_keytab=/etc/security/keytabs/dsxhi.keytab
 dsxhi_spnego_keytab=/etc/security/keytabs/spnego.service.keytab
 ```
+
+In Cloudera (CDP) it is necessary to activate SPNEGO feature.<br>
+https://docs.cloudera.com/cdp-private-cloud-base/7.1.6/security-kerberos-authentication/topics/cm-security-external-authentication-spnego.html<br>
+Next step is to identify SPNEGO keytab on edge node. In CDP cluster, all keytabs are stored in * /var/run/cloudera-scm-agent/process* directory.<br>
+
+> klist -kt /var/run/cloudera-scm-agent/process/1546338628-hdfs-DATANODE/hdfs.keytab<br>
+```
+Keytab name: FILE:/var/run/cloudera-scm-agent/process/1546338628-hdfs-DATANODE/hdfs.keytab
+KVNO Timestamp           Principal
+---- ------------------- ------------------------------------------------------
+   1 07/25/2021 01:08:57 HTTP/nubbin1.fyre.ibm.com@FYRE.NET
+   1 07/25/2021 01:08:57 hdfs/nubbin1.fyre.ibm.com@FYRE.NET
+
+```
+This keytab contains SPNEGO (HTTP) principal. Copy it to */home/dsxhi* directory and make accessible by *dsxhi* user.
+
+> cp  /var/run/cloudera-scm-agent/process/1546338628-hdfs-DATANODE/hdfs.keytab /home/dsxhi/<br>
+> chown dsxhi: /home/dsxhi/hdfs.keytab<br>
+
+> vi /opt/ibm/dsxhi/conf/dsxhi_install.conf<br>
+```
+# If the CDH cluster is kerberized, it is mandatory to specify the complete
+# path to the keytab for the dsxhi service user and the spnego keytab.
+# If the CDH cluster is not kerberized, these properties should be left blank.
+dsxhi_serviceuser_keytab=/home/dsxhi/dsxhi.keytab
+dsxhi_spnego_keytab=/home/dsxhi/hdfs.keytab
+```
+```
+```
+
 If HDP was Kerberized after Hadoop Engine installation, it is necessary to reinstall it again.<br>
 > cd /opt/ibm/dsxhi/bin<br>
 > ./manage_known_dsx.py -a https://zen-cpd-zen.apps.rumen.os.fyre.ibm.com:443<br>
