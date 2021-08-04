@@ -209,19 +209,27 @@ Copy and paste certificate sent by Hadoop Engine gateway<br>
 ![](https://github.com/stanislawbartkowski/wikis/blob/master/img/Zrzut%20ekranu%20z%202020-11-02%2023-42-49.png)
 
 ### Prepare test data in HDFS
-Assuming CP4D logon user is *admin*<br>
-> su - hdfs<br>
-> hdfs dfs -mkdir /user/admin<br>
-> hdfs dfs -chown admin:admin /user/admin<br>
-> echo "Hello" >hello.txt<br>
+
+Hadoop/HDFS.<br>
+
+>echo "Hello" >hello.txt<br>
 >echo "I am" >>hello.txt<br>
 >echo "Stanisław" >>hello.txt<br>
-> hdfs dfs -copyFromLocal hello.txt /user/admin<br>
-> hdfs dfs -ls /user/admin
+> hdfs dfs -copyFromLocal hello.txt /tmp<br>
+> hdfs dfs -ls /tmp
 ```
 Found 1 items
--rw-r--r--   3 hdfs admin          6 2020-11-02 22:24 /user/admin/hello.txt
+-rw-r--r--   3 hdfs admin          6 2020-11-02 22:24 /tmp/hello.txt
 ```
+### Add new platform connection
+
+Cloud Pak for Data -> Connection -> Platform connections -> New connection -> HDFS via Execution Engine for Hadoop
+
+As *WebHDFS URL* copy and paste *WebHDFS* endpoint from Hadoop platform integration panel.<br>
+Example: https://internal-nginx-svc:12443/ibm-dsxhi-cdpcluster/webhdfs/v1
+
+!()[https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-08-04%2013-09-12.png]
+
 ### Add dataset in CP4D project
 
 Project->Add to project (top button)->Connected data->Select source<br>
