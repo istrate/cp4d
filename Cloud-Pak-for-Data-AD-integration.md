@@ -23,6 +23,9 @@ This article describes how to integrate CP4D with AD server specified under this
 | Group membership | memberOf
 | Group member field | member
 
+Cloud Pak for Data -> Administration -> Access control -> LDAP configuration <br>
+
+
 ![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-06-16%2012-31-07.png)
 
 At the bottom, there is an additional section to test the connection. Enter the credential of any user in the LDAP server and click *Test Connection*. This credential is used only for the test and is not stored.
