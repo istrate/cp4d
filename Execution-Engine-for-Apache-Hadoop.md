@@ -365,7 +365,7 @@ dsxhi_spnego_keytab=/etc/security/keytabs/spnego.service.keytab
 
 In Cloudera (CDP) it is necessary to activate SPNEGO feature.<br>
 https://docs.cloudera.com/cdp-private-cloud-base/7.1.6/security-kerberos-authentication/topics/cm-security-external-authentication-spnego.html<br>
-Next step is to identify SPNEGO keytab on edge node. In CDP cluster, all keytabs are stored in * /var/run/cloudera-scm-agent/process* directory.<br>
+Next step is to identify SPNEGO keytab on edge node. In CDP cluster, all keytabs are stored in */var/run/cloudera-scm-agent/process* directory.<br>
 
 > klist -kt /var/run/cloudera-scm-agent/process/1546338628-hdfs-DATANODE/hdfs.keytab<br>
 ```
@@ -376,7 +376,7 @@ KVNO Timestamp           Principal
    1 07/25/2021 01:08:57 hdfs/nubbin1.fyre.ibm.com@FYRE.NET
 
 ```
-This keytab contains SPNEGO (HTTP) principal. Copy it to */home/dsxhi* directory and make accessible by *dsxhi* user.
+This keytab contains SPNEGO (HTTP) principal. Copy it to */home/dsxhi* directory and make it accessible by *dsxhi* user.
 
 > cp  /var/run/cloudera-scm-agent/process/1546338628-hdfs-DATANODE/hdfs.keytab /home/dsxhi/<br>
 > chown dsxhi: /home/dsxhi/hdfs.keytab<br>
@@ -388,8 +388,6 @@ This keytab contains SPNEGO (HTTP) principal. Copy it to */home/dsxhi* directory
 # If the CDH cluster is not kerberized, these properties should be left blank.
 dsxhi_serviceuser_keytab=/home/dsxhi/dsxhi.keytab
 dsxhi_spnego_keytab=/home/dsxhi/hdfs.keytab
-```
-```
 ```
 
 If HDP was Kerberized after Hadoop Engine installation, it is necessary to reinstall it again.<br>
