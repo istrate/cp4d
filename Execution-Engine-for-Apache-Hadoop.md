@@ -292,6 +292,11 @@ Watson Studio Jupyter Notebook can run distributed Spark application on remote H
 
 https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_current/wsj/local/hadoopmodels.html
 
+### Endpoints
+
+Make sure that JEG endpoint is defined in CPD4D Hadoop integration panel.
+
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-08-07%2023-48-33.png)
 
 ### Prerequisites
 
