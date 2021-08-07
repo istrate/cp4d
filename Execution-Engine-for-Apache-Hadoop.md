@@ -357,6 +357,11 @@ Make sure that SPARK_HOME variable is properly set in kernel specification. It c
    ]
 }
 ```
+Cloudera: *SPARK_HOME* looks like:
+```
+"SPARK_HOME": "/opt/cloudera/parcels/CDH-7.1.5-1.cdh7.1.5.p0.7431829/lib/spark
+```
+
 ## Create JEG Python 3 environment
 
 Project->Environment-> New environment definition
