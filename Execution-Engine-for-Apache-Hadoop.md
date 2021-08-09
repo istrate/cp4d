@@ -382,6 +382,22 @@ Project->Add to project->Notebook->Select runtime (JEG environment)
 
 ![](https://github.com/stanislawbartkowski/wikis/blob/master/img/Zrzut%20ekranu%20z%202020-11-03%2014-10-03.png)
 
+# Livy2
+
+Define *dsxhi* user as *superuser* in Cloudera Livy. <br>
+
+Cloudera Manager -> Livy -> Configuration -> Admin Users/livy.superusers
+
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-08-10%2000-17-56.png)
+
+Follow the Livy example:<br>
+
+https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_latest/wsj/local/hadoopmodels.html
+
+Make sure that Livy session is created in Cloudera, it can take several minutes to be ready.<br>
+
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-08-10%2000-23-12.png)
+
 # Kerberized HDP
 
 Register *dsxhi* user in Kerberos and obtain appropriate *keytab* file. Modify Hadoop Engine configuration file.<br>
@@ -430,14 +446,14 @@ If HDP was Kerberized after Hadoop Engine installation, it is necessary to reins
 
 Also in CP4D, the Hadoop integration should be recreated again.<br>
 <br>
-Hadoop proxy user *dsxhi* impersonates CP4D user to launch Yarn Spark job. Following steps should be performed for CP4D user:<br>
+Hadoop proxy user *dsxhi* impersonates CP4D user to launch Yarn Spark job. Following steps should be performed for CP4D users:<br>
 * register in Kerberos/AD
 * create HDFS */user/{CP4D user}* directory and make CP4D user the owner of this directory
-* if Ranger is installed, create a policy to authorize CP4D user to submit jobs in Yarn
+* if Ranger is installed, create a policy to authorize CP4D users to submit jobs in Yarn
 
 # CP4D user mapping
 
-It is possible to change CP4D user into any other more convenient user name in a backend Hadoop cluster.<br>
+CP4D users can be mapped into any other HDP/Cloudera user.<br>
 
 https://knox.apache.org/books/knox-0-12-0/user-guide.html#Default+Identity+Assertion+Provider
 
