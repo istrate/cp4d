@@ -398,6 +398,12 @@ Make sure that Livy session is created in Cloudera, it can take several minutes 
 
 ![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-08-10%2000-23-12.png)
 
+```
+%%spark -s $session_name 
+rr = spark.sparkContext.textFile("/tmp/hello.txt")
+print(rr.take(3))
+```
+
 # Kerberized HDP
 
 Register *dsxhi* user in Kerberos and obtain appropriate *keytab* file. Modify Hadoop Engine configuration file.<br>
