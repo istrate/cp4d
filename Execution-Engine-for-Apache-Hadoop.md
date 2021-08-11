@@ -382,6 +382,23 @@ Project->Add to project->Notebook->Select runtime (JEG environment)
 
 ![](https://github.com/stanislawbartkowski/wikis/blob/master/img/Zrzut%20ekranu%20z%202020-11-03%2014-10-03.png)
 
+SparkSQL example.
+```
+from os.path import abspath
+from pyspark.sql import SparkSession
+from pyspark.sql import Row
+
+warehouse_location = abspath('spark-warehouse')
+spark = SparkSession \
+    .builder \
+    .appName("Python Spark SQL") \
+    .config("spark.sql.warehouse.dir", warehouse_location) \
+    .enableHiveSupport() \
+    .getOrCreate()
+
+spark.sql("SHOW DATABASES").show()
+```
+
 # Livy2
 
 Define *dsxhi* user as *superuser* in Cloudera Livy. <br>
