@@ -8,6 +8,12 @@ Follow the instruction.<br>
 
 https://www.ibm.com/support/producthub/db2/docs/content/SSEPGG_11.5.0/com.ibm.db2.luw.db2u_openshift.doc/doc/t_db2u_install_op_catalog.html
 
+# Important
+
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-08-15%2001-39-58.png)
+
+Use *1.0.9* version of the operator. The latest *1.1.3* and DB2 version *11.5.6.0* is broken, the creation of *c-db2ucluster-..* pod is stalled in the middle of the deployment without any visible reason.<br>
+
 # Install DB2 Operator
 
 Create a separate OpenShift project to maintain DB2 instances.<br>
