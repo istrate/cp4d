@@ -177,7 +177,9 @@ DB2 operator creates a number of services related to DB2. One method to use Open
 Another method is to redirect ports in *HAProxy* gateway on the infrastructure node.<br>
 
 Get service ports.<br>
+
 > oc project db2<br>
+> oc get svc<br>
 ```
 NAME                                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                                                                           AGE
 c-db2ucluster-sample-db2u            ClusterIP   172.30.83.77     <none>        50000/TCP,50001/TCP,25000/TCP,25001/TCP,25002/TCP,25003/TCP,25004/TCP,25005/TCP   12m
