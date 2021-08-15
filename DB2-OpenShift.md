@@ -76,7 +76,7 @@ More detailed storage assignment.<br>
 * meta data: rook-cephfs
 * backup: managed-nfs-storage
 
-Important: make sure that *storage* key is at the same level as *version*. Otherwise, no error is reported but DB2 cluster will not be created.
+Important: make sure that in the YAML file, the *storage* key is at the same level as the *version*. Otherwise, no error is reported but DB2 cluster will not be created.
 
 ```
   version: 11.5.5.0-cn4
