@@ -37,6 +37,23 @@ Increase also the limit for CPU and memory, example:
         memory: 512Mi
 ```
 
+Increase also the storage size, log space is going out of space quickly.
+```
+    storage:
+      dataVol:
+        size: 10Gi
+      walVol:
+        size: 1200Mi
+      archivewalVol:
+        size: 5Gi
+      logVol:
+        size: 5Gi
+      backupVol:
+        size: 2Gi
+      tablespaceVol:
+        size: 512Mi
+
+```
 
 Wait several minutes until the pod is ready.
 # Test
