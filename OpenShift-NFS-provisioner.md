@@ -39,7 +39,7 @@ clusterrole.rbac.authorization.k8s.io/system:openshift:scc:hostmount-anyuid adde
 
 # Deploy NFS provisioner application
 
-Replace NFS mount data according to your environment.In this example *10.16.65.240* and */data/nfs2/* are used.<br>
+Replace NFS mount data according to your environment.In this example *10.17.2.36* and */data* are used.<br>
 
 > curl -s  https://raw.githubusercontent.com/kubernetes-sigs/nfs-subdir-external-provisioner/master/deploy/deployment.yaml | sed -e "s@10.3.243.101@10.17.2.36@g" | sed -e "s@/ifs/kubernetes@/data@g" | sed -e "s@default@nfs-storage@g" | oc create -f -
 ```
