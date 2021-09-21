@@ -10,8 +10,8 @@ https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=storage-setting-up-nfs
 
 Install and configure the NFS server. Make sure that NFS host is visible and NFS volume can be mounted from all nodes in OpenShift cluster. Prepare NFS mount parameters. Example:
 
-* NFS server: 10.16.65.240
-* NFS mount point: /data/nfs2
+* NFS server: 10.17.2.36
+* NFS mount point: /data
 
 # OpenShift project
 
@@ -41,7 +41,7 @@ clusterrole.rbac.authorization.k8s.io/system:openshift:scc:hostmount-anyuid adde
 
 Replace NFS mount data according to your environment.In this example *10.16.65.240* and */data/nfs2/* are used.<br>
 
-> curl -s https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/deployment.yaml |  sed -e "s@10.10.10.60@10.16.65.240@g" | sed -e "s@/ifs/kubernetes@/data/nfs2@g" | oc create -f -
+> curl -s  https://raw.githubusercontent.com/kubernetes-sigs/nfs-subdir-external-provisioner/master/deploy/deployment.yaml | sed -e "s@10.3.243.101@10.17.2.36@g" | sed -e "s@/ifs/kubernetes@/data@g" | sed -e "s@default@nfs-storage@g" | oc create -f -
 ```
 deployment.apps/nfs-client-provisioner created
 ```
@@ -53,7 +53,7 @@ nfs-client-provisioner-59b865db57-6bf89   1/1     Running   0          38s
 ```
 # Create StorageClass
 
-> oc create -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/nfs-storage/class.yaml
+> curl -s https://raw.githubusercontent.com/kubernetes-sigs/nfs-subdir-external-provisioner/master/deploy/class.yaml | oc create -f -
 ```
 storageclass.storage.k8s.io/managed-nfs-storage created
 ```
