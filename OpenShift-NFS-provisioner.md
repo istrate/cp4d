@@ -122,7 +122,9 @@ test-pod                                  0/1     Completed   0          4m19s
 ```
 
 Logon to NFS server host and verify the SUCCESS file.<br>
-> ll /data/nfs2/nfs-storage-test-claim-pvc-2fd9aeaf-4bff-49a9-b6c4-187fe91ce820/
+
+> ll /data/test-test-claim-pvc-6e2bf9f3-67dc-488e-8f71-2ac6063536a9/
+
 ```
 -rw-r--r-- 1 root root 0 12-31 15:55 SUCCESS
 ```
