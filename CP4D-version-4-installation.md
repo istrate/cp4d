@@ -140,7 +140,6 @@ https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-creating-projects
 
 > oc new-project ibm-common-services<br>
 > oc new-project cpd-instance<br>
-> oc new-project cpd-operators<br>
 
 # Create CatalogSources
 
@@ -392,7 +391,7 @@ metadata:
     operators.coreos.com/ibm-cpd-scheduling-operator.aks: ""
     velero.io/exclude-from-backup: "true"
   name: ibm-cpd-scheduling-catalog-subscription
-  namespace: ibm-common-services    # Pick the project that contains the Cloud Pak for Data operator
+  namespace: ibm-common-services
 spec:
   channel: alpha
   installPlanApproval: Automatic
