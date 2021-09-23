@@ -633,6 +633,7 @@ error: the server doesn't have a resource type "WS"
 ```
 No resources were found in cpd-instance namespace.
 ```
+
 Create a custom resource. Apply proper license (here Standard) and Storage Class (here managed-nfs-storage) <br>
 ```
 cat <<EOF |oc apply -f -
@@ -645,12 +646,10 @@ spec:
   license:
     accept: true
     license: Standard
-  version: 4.0.0
+  version: 4.0.1
   storageClass: managed-nfs-storage
-  docker_registry_prefix: cp.icr.io/cp/cpd
 EOF
 ```
-
 Monitor the installation progress. It can take 1-2 hours until finished.<br>
 > oc get WS ws-cr -o jsonpath='{.status.wsStatus} {"\n"}'<br>
 ```
