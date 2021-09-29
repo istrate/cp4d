@@ -299,11 +299,15 @@ podpresets                       operator.ibm.com/v1alpha1   true         PodPre
 
 > oc get pod -n ibm-common-services
 ```
-ibm-common-service-operator-d656945f9-zrdft             1/1     Running   0          3m56s
-ibm-common-service-webhook-79bb458694-h9j4m             1/1     Running   0          3m21s
-ibm-namespace-scope-operator-5d869759c9-6trpl           1/1     Running   0          3m29s
-operand-deployment-lifecycle-manager-5c74799b47-xxhc8   1/1     Running   0          2m57s
-secretshare-7c9fdc588d-d8n8b                            1/1     Running   0          3m15s
+cpd-platform-operator-manager-64d6d77bf7-zfdcq          1/1     Running   0          2m31s
+ibm-common-service-operator-6c4fcdb885-wscqb            1/1     Running   0          2m30s
+ibm-common-service-webhook-bd65548d7-wzpmg              1/1     Running   0          64s
+ibm-cpd-wkc-operator-5c454c686c-gcz45                   1/1     Running   0          2m30s
+ibm-datastage-operator-59fd75f575-x6dpk                 1/1     Running   0          2m33s
+ibm-dv-operator-controller-manager-fc4946d5-wwjlj       1/1     Running   0          2m9s
+ibm-namespace-scope-operator-747fd7dc-n7g8p             1/1     Running   0          71s
+operand-deployment-lifecycle-manager-59d99c8f9d-2xfk2   1/1     Running   0          38s
+secretshare-5fd5b4fb76-fn225                            1/1     Running   0          58s
 ```
 #  Creating an operator subscription for the scheduling service
 
