@@ -400,27 +400,8 @@ gNKvIwRDpbLk
 ```
 # Install Watson Studio
 
-https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-creating-operator-subscriptions
+Make sure WS resource is ready.<br>
 
-Create subscription<br>
-```
-cat <<EOF |oc apply -f -
-apiVersion: operators.coreos.com/v1alpha1
-kind: Subscription
-metadata:
-  annotations:
-  name: ibm-cpd-ws-operator-catalog-subscription
-  namespace: ibm-common-services
-spec:
-  channel: v2.0
-  installPlanApproval: Automatic
-  name: ibm-cpd-wsl
-  source: ibm-operator-catalog
-  sourceNamespace: openshift-marketplace
-EOF
-```
-
-Wait until resource is ready.<br>
 > oc get WS<br>
 ```
 error: the server doesn't have a resource type "WS"
@@ -459,13 +440,9 @@ Open Cloud Pak for Data console and navigate to "Services Catalog". Watson Studi
 
 # Watson Knowledge Studio and DB2 prerequisites
 
-## Adjust kernel settings
-https://www.ibm.com/support/producthub/icpdata/docs/content/SSQNUZ_latest/cpd/install/node-settings.html#concept_vcl_pfg_tpb__kernel#concept_vcl_pfg_tpb__kernel
-
-(Assuming 64GB Worker Nodes)
-
+Tuned resource, prereq for DB2. The parameters are aligned assuming 64GB RAM. In case of a more tiny environment, adjust accordingly.
 ```
-cat << EOF | oc apply -f -
+cat <<EOF |oc apply -f -
 apiVersion: tuned.openshift.io/v1
 kind: Tuned
 metadata:
@@ -493,35 +470,36 @@ spec:
     profile: cp4d-wkc-ipc
 EOF
 ```
-## Additional kernel settings for DB2
 
-> oc label machineconfigpool worker db2u-kubelet=sysctl
-
+Whitelist unsafe sysctl, DB2 prereq
 ```
 cat << EOF | oc apply -f -
-  apiVersion: machineconfiguration.openshift.io/v1
-  kind: KubeletConfig
-  metadata:
-    name: db2u-kubelet
-  spec:
-    machineConfigPoolSelector:
-      matchLabels:
-        db2u-kubelet: sysctl
-    kubeletConfig:
-      allowedUnsafeSysctls:
-        - "kernel.msg*"
-        - "kernel.shm*"
-        - "kernel.sem"
+apiVersion: machineconfiguration.openshift.io/v1
+kind: KubeletConfig
+metadata:
+  name: db2u-kubelet
+spec:
+  machineConfigPoolSelector:
+    matchLabels:
+      db2u-kubelet: sysctl
+  kubeletConfig:
+    allowedUnsafeSysctls:
+      - "kernel.msg*"
+      - "kernel.shm*"
+      - "kernel.sem"
 EOF
 ```
+Label all worker nodes as unsafe sysctl whilelisted.
+```
+oc label machineconfigpool worker db2u-kubelet=sysctl
+```
+
 
 # Watson Knowledge Catalog
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=catalog-installing-watson-knowledge
 
-
-
-## Create Custom CSS
+## DB2 prereq
 
 > vi wkc-iis-scc.yaml
 ```
@@ -566,6 +544,7 @@ volumes:
 users:
 - system:serviceaccount:cpd-instance:wkc-iis-sa
 ```
+
 > oc create -f wkc-iis-scc.yaml<br>
 
 Verify<br>
