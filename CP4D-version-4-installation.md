@@ -141,7 +141,7 @@ https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-creating-projects
 > oc new-project ibm-common-services<br>
 > oc new-project cpd-instance<br>
 
-# Create CatalogSources
+# Create the CatalogSources
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-configuring-your-cluster-pull-images<br>
 
@@ -163,155 +163,29 @@ spec:
 EOF
 ```
 
-Install Catalog Source: CSS Common Core Services
+Optional: DB2 CatalogSource, a prerequisite for other CP4D components
 ```
 cat <<EOF |oc apply -f -
 apiVersion: operators.coreos.com/v1alpha1
 kind: CatalogSource
 metadata:
-  name: ibm-cpd-ccs-operator-catalog
+  name: ibm-db2uoperator-catalog
   namespace: openshift-marketplace
 spec:
   sourceType: grpc
-  image: icr.io/cpopen/ibm-cpd-ccs-operator-catalog@sha256:34854b0b5684d670cf1624d01e659e9900f4206987242b453ee917b32b79f5b7
+  image: docker.io/ibmcom/ibm-db2uoperator-catalog:latest
   imagePullPolicy: Always
-  displayName: CPD Common Core Services
+  displayName: IBM Db2U Catalog
   publisher: IBM
   updateStrategy:
     registryPoll:
       interval: 45m
-EOF
-```
-Install Catalog Source: Data Refinery
-```
-cat <<EOF |oc apply -f -
-apiVersion: operators.coreos.com/v1alpha1
-kind: CatalogSource
-metadata:
-  name: ibm-cpd-datarefinery-operator-catalog
-  namespace: openshift-marketplace
-spec:
-  sourceType: grpc
-  image: icr.io/cpopen/ibm-cpd-datarefinery-operator-catalog@sha256:27c6b458244a7c8d12da72a18811d797a1bef19dadf84b38cedf6461fe53643a
-  imagePullPolicy: Always
-  displayName: Cloud Pak for Data IBM DataRefinery
-  publisher: IBM
-  updateStrategy:
-    registryPoll:
-      interval: 45m
-EOF
-```
-
-Install more dependent Catalog Sources.
-```
-cat << EOF | oc apply -f -
-apiVersion: operators.coreos.com/v1alpha1
-kind: CatalogSource
-metadata:
-  name: ibm-db2aaservice-cp4d-operator-catalog
-  namespace: openshift-marketplace
-spec:
-  sourceType: grpc
-  image: icr.io/cpopen/ibm-db2aaservice-cp4d-operator-catalog@sha256:a0d9b6c314193795ec1918e4227ede916743381285b719b3d8cfb05c35fec071
-  imagePullPolicy: Always
-  displayName: IBM Db2aaservice CP4D Catalog
-  publisher: IBM
----
-apiVersion: operators.coreos.com/v1alpha1
-kind: CatalogSource
-metadata:
-  name: ibm-cpd-iis-operator-catalog
-  namespace: openshift-marketplace
-spec:
-  sourceType: grpc
-  image: icr.io/cpopen/ibm-cpd-iis-operator-catalog@sha256:3ad952987b2f4d921459b0d3bad8e30a7ddae9e0c5beb407b98cf3c09713efcc
-  imagePullPolicy: Always
-  displayName: CPD IBM Information Server
-  publisher: IBM
----
-apiVersion: operators.coreos.com/v1alpha1
-kind: CatalogSource
-metadata:
-  name: ibm-cpd-wml-operator-catalog
-  namespace: openshift-marketplace
-spec:
-  displayName: Cloud Pak for Data Watson Machine Learning
-  publisher: IBM
-  sourceType: grpc
-  imagePullPolicy: Always
-  image: icr.io/cpopen/ibm-cpd-wml-operator-catalog@sha256:d2da8a2573c0241b5c53af4d875dbfbf988484768caec2e4e6231417828cb192
-  updateStrategy:
-    registryPoll:
-      interval: 45m
----
-apiVersion: operators.coreos.com/v1alpha1
-kind: CatalogSource
-metadata:
-  name: ibm-cpd-ws-operator-catalog
-  namespace: openshift-marketplace
-spec:
-  sourceType: grpc
-  image: icr.io/cpopen/ibm-cpd-ws-operator-catalog@sha256:bf6b42df3d8cee32740d3273154986b28dedbf03349116fba39974dc29610521
-  imagePullPolicy: Always
-  displayName: CPD IBM Watson Studio
-  publisher: IBM
----
-apiVersion: operators.coreos.com/v1alpha1
-kind: CatalogSource
-metadata:
-  name: opencontent-elasticsearch-dev-catalog
-  namespace: openshift-marketplace
-spec:
-  sourceType: grpc
-  image: icr.io/cpopen/opencontent-elasticsearch-operator-catalog@sha256:bc284b8c2754af2eba81bb1edf6daa59dc823bf7a81fe91710c603f563a9a724
-  displayName: IBM Opencontent Elasticsearch Catalog
-  publisher: CloudpakOpen
-  updateStrategy:
-    registryPoll:
-      interval: 45m
----
-apiVersion: operators.coreos.com/v1alpha1
-kind: CatalogSource
-metadata:
-  name: ibm-rabbitmq-operator-catalog
-  namespace: openshift-marketplace
-spec:
-  displayName: IBM RabbitMQ operator Catalog
-  publisher: IBM
-  sourceType: grpc
-  image: icr.io/cpopen/opencontent-rabbitmq-operator-catalog@sha256:c3b14816eabc04bcdd5c653eaf6e0824adb020ca45d81d57059f50c80f22964f
-  updateStrategy:
-    registryPoll:
-      interval: 45m
----
-apiVersion: operators.coreos.com/v1alpha1
-kind: CatalogSource
-metadata:
-  name: ibm-cloud-databases-redis-operator-catalog
-  namespace: openshift-marketplace
-spec:
-  displayName: ibm-cloud-databases-redis-operator-catalog
-  publisher: IBM
-  sourceType: grpc
-  image: icr.io/cpopen/ibm-cloud-databases-redis-catalog@sha256:980e4182ec20a01a93f3c18310e0aa5346dc299c551bd8aca070ddf2a5bf9ca5
----
-apiVersion: operators.coreos.com/v1alpha1
-kind: CatalogSource
-metadata:
-  name: ibm-cpd-ws-runtimes-operator-catalog
-  namespace: openshift-marketplace
-spec:
-  sourceType: grpc
-  image: icr.io/cpopen/ibm-cpd-ws-runtimes-operator-catalog@sha256:c1faf293456261f418e01795eecd4fe8b48cc1e8b37631fb6433fad261b74ea4
-  imagePullPolicy: Always
-  displayName: CPD Watson Studio Runtimes
-  publisher: IBM
 EOF
 ```
 
 # Operator Group
 
-Create Operator Group (Express installation).
+Create Operator Group
 
 ```
 cat <<EOF |oc apply -f -
@@ -329,17 +203,67 @@ EOF
 # Create Operator Subscriptions
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-creating-operator-subscriptions
+
 ```
 cat <<EOF |oc apply -f -
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
-  name: ibm-common-service-operator
+  name: cpd-operator
   namespace: ibm-common-services
 spec:
-  channel: v3
+  channel: v2.0
   installPlanApproval: Automatic
-  name: ibm-common-service-operator
+  name: cpd-platform-operator
+  source: ibm-operator-catalog
+  sourceNamespace: openshift-marketplace
+EOF
+```
+```
+cat <<EOF |oc apply -f -
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    app.kubernetes.io/instance:  ibm-cpd-wkc-operator-catalog-subscription
+    app.kubernetes.io/managed-by: ibm-cpd-wkc-operator
+    app.kubernetes.io/name:  ibm-cpd-wkc-operator-catalog-subscription
+  name: ibm-cpd-wkc-operator-catalog-subscription
+  namespace: ibm-common-services
+spec:
+    channel: v1.0
+    installPlanApproval: Automatic
+    name: ibm-cpd-wkc
+    source: ibm-operator-catalog
+    sourceNamespace: openshift-marketplace
+EOF
+```
+```
+cat <<EOF |oc apply -f -
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: ibm-datastage-operator
+  namespace: ibm-common-services
+spec:
+  channel: v1.0
+  installPlanApproval: Automatic
+  name: ibm-datastage-operator
+  source: ibm-operator-catalog
+  sourceNamespace: openshift-marketplace
+EOF
+```
+```
+cat <<EOF |oc apply -f -
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: ibm-dv-operator-catalog-subscription
+  namespace: ibm-common-services
+spec:
+  channel: v1.7
+  installPlanApproval: Automatic
+  name: ibm-dv-operator
   source: ibm-operator-catalog
   sourceNamespace: openshift-marketplace
 EOF
@@ -357,6 +281,7 @@ operand-deployment-lifecycle-manager.v1.7.0   Operand Deployment Lifecycle Manag
 ```
 operandrequests.operator.ibm.com                                  2021-07-26T11:57:51Z
 ```
+
 > oc api-resources --api-group operator.ibm.com
 ```
 commonservices                   operator.ibm.com/v3         true         CommonService
@@ -400,136 +325,6 @@ spec:
   sourceNamespace: openshift-marketplace
 EOF
 ```
-# Installing the scheduling service
-
-https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=service-installing-scheduling
-<br>
-
-Assign RBAC role.<br>
-
-> oc adm policy add-cluster-role-to-user system:kube-scheduler system:serviceaccount:ibm-common-services:ibm-cpd-scheduling-operator 
---rolebinding-name=ibm-cpd-scheduling-operator-kube-sched-crb-ibm-common-services<br>
-
-
-Install in *ibm-common-services* namespace. Consider *storageClass*, here *managed-nfs-storage*
-
-```
-cat <<EOF |oc apply -f -
-apiVersion: scheduler.spectrumcomputing.ibm.com/v1
-kind: Scheduling
-metadata:
-  labels:
-    release: cpd-scheduler
-    velero.io/exclude-from-backup: "true"
-  name: ibm-cpd-scheduler
-  namespace: ibm-common-services   
-spec:
-  appVersion: 1.2.1
-  version: 1.2.1
-  cluster:
-    pvc:
-      dynamicStorage: true
-      size: 10G
-  license:
-    accept: true
-    license: Standard       # Specify the license you purchased
-  registry: cp.icr.io/cp/cpd
-  releasename: ibm-cpd-scheduler
-  storageClass: managed-nfs-storage     # See the guidance in "Information you need to complete this task"
-  scheduler:
-    image: ibm-cpd-scheduler
-    imagePullPolicy: Always
-    replicas: 1
-    resources:
-      limits:
-        cpu: "1"
-        memory: 4G
-      requests:
-        cpu: "1"
-        memory: 4G
-  agent:
-    image: ibm-cpd-scheduler-agent
-    imagePullPolicy: Always
-    resources:
-      limits:
-        cpu: 200m
-        memory: 750M
-      requests:
-        cpu: 200m
-        memory: 750M
-  mwebhook:
-    image: ibm-cpd-scheduler-mutate-webhook
-    imagePullPolicy: Always
-    replicas: 1
-    resources:
-      limits:
-        cpu: 200m
-        memory: 1G
-      requests:
-        cpu: 200m
-        memory: 1G
-  vwebhook:
-    image: ibm-cpd-scheduler-webhook
-    imagePullPolicy: Always
-    replicas: 1
-    resources:
-      limits:
-        cpu: 200m
-        memory: 1G
-      requests:
-        cpu: 200m
-        memory: 1G
-EOF
-```
-<br>
-
-> oc get scheduling ibm-cpd-scheduler -n ibm-common-services -o yaml<br>
-
-If successful, there will be status reported like below:<br>
-```
-status:
-  conditions:
-  - message: Running reconciliation
-    reason: Running
-    status: "True"
-    type: Running
-  cpd-schedulingStatus: Completed
-  type: Ready
-  versions:
-    reconciled: 1.2.1
-
-```
-
-> oc get pod -n ibm-common-services | grep scheduler
-```
-ibm-cpd-scheduler-agent-r24qz                           1/1     Running   0          5m28s
-ibm-cpd-scheduler-agent-rwxh9                           1/1     Running   0          5m28s
-ibm-cpd-scheduler-agent-sfxqc                           1/1     Running   0          5m28s
-ibm-cpd-scheduler-agent-whrvv                           1/1     Running   0          5m28s
-ibm-cpd-scheduler-agent-xsnc2                           1/1     Running   0          5m28s
-ibm-cpd-scheduler-agent-zhnd5                           1/1     Running   0          5m28s
-ibm-cpd-scheduler-mutating-webhook-68b4d56c5c-p2dvk     1/1     Running   0          4m40s
-ibm-cpd-scheduler-scheduler-57f5d56758-8jhkr            1/1     Running   0          5m25s
-ibm-cpd-scheduler-webhook-f4cc67567-pxg4h               1/1     Running   0          5m23s
-```
-# Install CPD platform operator
-
-```
-cat <<EOF |oc apply -f -
-apiVersion: operators.coreos.com/v1alpha1
-kind: Subscription
-metadata:
-  name: cpd-operator
-  namespace: ibm-common-services
-spec:
-  channel: stable-v1
-  installPlanApproval: Automatic
-  name: cpd-platform-operator
-  source: ibm-operator-catalog
-  sourceNamespace: openshift-marketplace
-EOF
-```
-
 
 # Install Cloud Pak for Data 
 
@@ -569,20 +364,20 @@ spec:
 EOF
 ```
 
-The last step will install CPD Control Pane. It will take several minutes to create *ZenService* kind and *lite-cr* instance. Monitor the progress:<br>
+The last step will install CPD Control Pane.<br>
 
-> oc get ZenService lite-cr -o jsonpath="{.status.zenStatus}{'\n'}"
+> oc get Ibmcpd ibmcpd-cr -o jsonpath='{.status.controlPlaneStatus}'
 ```
-error: the server doesn't have a resource type "ZenService"
+error: the server doesn't have a resource type "Ibmcpd"
 ```
 ```
-Error from server (NotFound): zenservices.zen.cpd.ibm.com "lite-cr" not found
+Error from server (NotFound): ibmcpd.zen.cpd.ibm.com "ibmcpd-cr" not found
 ```
 ```
 InProgress
 ```
 
-It will take 10-20 minutes until completed.
+It will take up to 1 hour until completed.
 ```
 Completed
 ```
