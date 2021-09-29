@@ -499,86 +499,13 @@ oc label machineconfigpool worker db2u-kubelet=sysctl
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=catalog-installing-watson-knowledge
 
-## DB2 prereq
+## Make sure that WKC kind is created
 
-> vi wkc-iis-scc.yaml
-```
-allowHostDirVolumePlugin: false
-allowHostIPC: false
-allowHostNetwork: false
-allowHostPID: false
-allowHostPorts: false
-allowPrivilegeEscalation: true
-allowPrivilegedContainer: false
-allowedCapabilities: null
-apiVersion: security.openshift.io/v1
-defaultAddCapabilities: null
-fsGroup:
-  type: RunAsAny
-kind: SecurityContextConstraints
-metadata:
-  annotations:
-    kubernetes.io/description: WKC/IIS provides all features of the restricted SCC
-      but runs as user 10032.
-  name: wkc-iis-scc
-readOnlyRootFilesystem: false
-requiredDropCapabilities:
-- KILL
-- MKNOD
-- SETUID
-- SETGID
-runAsUser:
-  type: MustRunAs
-  uid: 10032
-seLinuxContext:
-  type: MustRunAs
-supplementalGroups:
-  type: RunAsAny
-volumes:
-- configMap
-- downwardAPI
-- emptyDir
-- persistentVolumeClaim
-- projected
-- secret
-users:
-- system:serviceaccount:cpd-instance:wkc-iis-sa
-```
+>  oc get WKC<br>
 
-> oc create -f wkc-iis-scc.yaml<br>
-
-Verify<br>
-
-> oc get scc wkc-iis-scc<br>
 ```
-NAME          PRIV    CAPS         SELINUX     RUNASUSER   FSGROUP    SUPGROUP   PRIORITY     READONLYROOTFS   VOLUMES
-wkc-iis-scc   false   <no value>   MustRunAs   MustRunAs   RunAsAny   RunAsAny   <no value>   false            ["configMap","downwardAPI","emptyDir","persistentVolumeClaim","projected","secret"]
+No resources found in cpd-instance namespace.
 ```
-## Create WKC Operator Subscription
-```
-cat << EOF | oc apply -f -
-apiVersion: operators.coreos.com/v1alpha1
-kind: Subscription
-metadata:
-  labels:
-    app.kubernetes.io/instance:  ibm-cpd-wkc-operator-catalog-subscription
-    app.kubernetes.io/managed-by: ibm-cpd-wkc-operator
-    app.kubernetes.io/name:  ibm-cpd-wkc-operator-catalog-subscription
-  name: ibm-cpd-wkc-operator-catalog-subscription
-  namespace: ibm-common-services
-spec:
-  channel: v1.0
-  installPlanApproval: Automatic
-  name: ibm-cpd-wkc
-  source: ibm-operator-catalog
-  sourceNamespace: openshift-marketplace
-EOF
-```
-## Install Python2 and yaml dependency
-
-> yum install -y python2<br>
-> alternatives --set python /usr/bin/python2<br>
-> pip2 install pyyaml<br>
 
 ## Install Watson Knowledge Catalog
 
