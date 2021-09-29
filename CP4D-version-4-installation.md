@@ -438,7 +438,7 @@ Completed
 Open Cloud Pak for Data console and navigate to "Services Catalog". Watson Studio and Data Refinery tiles should be marked as *Enabled*.
 ![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-07-27%2014-28-18.png)
 
-# Watson Knowledge Studio and DB2 prerequisites
+# Watson Knowledge Catalog and DB2 prerequisites
 
 Tuned resource, prereq for DB2. The parameters are aligned assuming 64GB RAM. In case of a more tiny environment, adjust accordingly.
 ```
@@ -519,7 +519,7 @@ metadata:
   name: wkc-cr
   namespace: cpd-instance
 spec:
-  version: 4.0.0
+  version: 4.0.1
   license:
     accept: true
     license: Standard
