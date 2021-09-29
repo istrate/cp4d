@@ -309,29 +309,6 @@ ibm-namespace-scope-operator-747fd7dc-n7g8p             1/1     Running   0     
 operand-deployment-lifecycle-manager-59d99c8f9d-2xfk2   1/1     Running   0          38s
 secretshare-5fd5b4fb76-fn225                            1/1     Running   0          58s
 ```
-#  Creating an operator subscription for the scheduling service
-
-https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-creating-operator-subscriptions
-
-```
-cat <<EOF |oc apply -f -
-apiVersion: operators.coreos.com/v1alpha1
-kind: Subscription
-metadata:
-  annotations:
-  labels:
-    operators.coreos.com/ibm-cpd-scheduling-operator.aks: ""
-    velero.io/exclude-from-backup: "true"
-  name: ibm-cpd-scheduling-catalog-subscription
-  namespace: ibm-common-services
-spec:
-  channel: alpha
-  installPlanApproval: Automatic
-  name: ibm-cpd-scheduling-operator
-  source: ibm-operator-catalog
-  sourceNamespace: openshift-marketplace
-EOF
-```
 
 # Install Cloud Pak for Data 
 
