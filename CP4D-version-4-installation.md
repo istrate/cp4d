@@ -272,9 +272,12 @@ EOF
 Verify the status of the operators:
 > oc --namespace ibm-common-services get csv<br>
 ```
-ibm-common-service-operator.v3.9.0            IBM Cloud Pak foundational services    3.9.0     ibm-common-service-operator.v3.8.0            Succeeded
-ibm-namespace-scope-operator.v1.3.0           IBM NamespaceScope Operator            1.3.0     ibm-namespace-scope-operator.v1.2.0           Succeeded
-operand-deployment-lifecycle-manager.v1.7.0   Operand Deployment Lifecycle Manager   1.7.0     operand-deployment-lifecycle-manager.v1.6.0   Succeeded
+NAME                                  DISPLAY                               VERSION   REPLACES                              PHASE
+cpd-platform-operator.v2.0.3          Cloud Pak for Data Operator           2.0.3                                           Succeeded
+ibm-common-service-operator.v3.11.0   IBM Cloud Pak foundational services   3.11.0    ibm-common-service-operator.v3.10.0   Succeeded
+ibm-cpd-wkc.v1.0.1                    WKC Services                          1.0.1     ibm-cpd-wkc.v1.0.0                    Succeeded
+ibm-datastage-operator.v1.0.1         IBM DataStage                         1.0.1     ibm-datastage-operator.v1.0.0         Succeeded
+ibm-dv-operator.v1.7.1                IBM Data Virtualization               1.7.1     ibm-dv-operator.v1.7.0                Succeeded
 ```
 
 > oc get crd | grep operandrequest<br>
