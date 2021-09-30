@@ -584,8 +584,24 @@ oc get csv -n ibm-common-services  ibm-cpd-wsl.v2.0.1  -o jsonpath='{ .status.ph
 1
 ```
 
-# Install Watson Studio
-Create Custom resource
+# Create Custom resource
+
+Apply proper license (here Standard) and Storage Class (here managed-nfs-storage) <br>
+```
+cat <<EOF |oc apply -f -
+apiVersion: ws.cpd.ibm.com/v1beta1
+kind: WS
+metadata:
+  name: ws-cr
+  namespace: cpd-instance
+spec:
+  license:
+    accept: true
+    license: Standard
+  version: 4.0.1
+  storageClass: managed-nfs-storage
+EOF
+```
 
 # HEE - Hadoop Execution Engine
 
