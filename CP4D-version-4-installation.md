@@ -387,9 +387,10 @@ gNKvIwRDpbLk
 
 ## Info
 
-
+https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=catalog-installing-watson-knowledge
+<br>
 Important, practical observation: Watson Knowledge Catalog should be installed **before** Watson Studio. <br>
-
+<br>
 In a tiny environment, it was necessary to reduce *memory request* of *db2oltp-iis* from default 16 GB to 8 GB.
 
 ## Custom SCC
@@ -437,6 +438,10 @@ fsGroup:
 EOF
 
 ```
+
+Add SCC to service account<br>
+
+> oc adm policy add-scc-to-user wkc-iis-scc -n cpd-instace -z wkc-iis-sa<br>
 
 ## Watson Knowledge Catalog and DB2 prerequisites
 
@@ -494,10 +499,6 @@ Label all worker nodes as unsafe sysctl whilelisted.
 oc label machineconfigpool worker db2u-kubelet=sysctl
 ```
 
-# Watson Knowledge Catalog
-
-https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=catalog-installing-watson-knowledge
-
 ## Make sure that WKC kind is created
 
 >  oc get WKC<br>
@@ -523,8 +524,8 @@ spec:
     accept: true
     license: Standard
   storageClass: managed-nfs-storage
-  useODLM: true
-  docker_registry_prefix: cp.icr.io/cp/cpd 
+  # useODLM: true
+  # docker_registry_prefix: cp.icr.io/cp/cpd 
 EOF
 ```
 
