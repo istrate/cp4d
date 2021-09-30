@@ -382,47 +382,63 @@ Get the initial password
 # initial_admin_password
 gNKvIwRDpbLk
 ```
-# Install Watson Studio
 
-Make sure WS resource is ready.<br>
+# Install Watson Knowledge Catalog
 
-> oc get WS<br>
-```
-error: the server doesn't have a resource type "WS"
-```
-```
-No resources were found in cpd-instance namespace.
-```
+## Info
 
-Create a custom resource. Apply proper license (here Standard) and Storage Class (here managed-nfs-storage) <br>
+
+Important, practical observation: Watson Knowledge Catalog should be installed **before** Watson Studio. <br>
+
+In a tiny environment, it was necessary to reduce *memory request* of *db2oltp-iis* from default 16 GB to 8 GB.
+
+## Custom SCC
+
 ```
 cat <<EOF |oc apply -f -
-apiVersion: ws.cpd.ibm.com/v1beta1
-kind: WS
+kind: SecurityContextConstraints
 metadata:
-  name: ws-cr
-  namespace: cpd-instance
-spec:
-  license:
-    accept: true
-    license: Standard
-  version: 4.0.1
-  storageClass: managed-nfs-storage
+  annotations:
+    kubernetes.io/description: WKC/IIS provides all features of the restricted SCC
+      but runs as user 10032.
+  name: wkc-iis-scc
+readOnlyRootFilesystem: false
+requiredDropCapabilities:
+- KILL
+- MKNOD
+- SETUID
+- SETGID
+runAsUser:
+  type: MustRunAs
+  uid: 10032
+seLinuxContext:
+  type: MustRunAs
+supplementalGroups:
+  type: RunAsAny
+volumes:
+- configMap
+- downwardAPI
+- emptyDir
+- persistentVolumeClaim
+- projected
+- secret
+allowHostDirVolumePlugin: false
+allowHostIPC: false
+allowHostNetwork: false
+allowHostPID: false
+allowHostPorts: false
+allowPrivilegeEscalation: true
+allowPrivilegedContainer: false
+allowedCapabilities: null
+apiVersion: security.openshift.io/v1
+defaultAddCapabilities: null
+fsGroup:
+  type: RunAsAny
 EOF
-```
-Monitor the installation progress. It can take 1-2 hours until finished.<br>
-> oc get WS ws-cr -o jsonpath='{.status.wsStatus} {"\n"}'<br>
-```
-InProgress
-```
-```
-Completed 
 
 ```
-Open Cloud Pak for Data console and navigate to "Services Catalog". Watson Studio and Data Refinery tiles should be marked as *Enabled*.
-![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-07-27%2014-28-18.png)
 
-# Watson Knowledge Catalog and DB2 prerequisites
+## Watson Knowledge Catalog and DB2 prerequisites
 
 Tuned resource, prereq for DB2. The parameters are aligned assuming 64GB RAM. In case of a more tiny environment, adjust accordingly.
 ```
@@ -477,7 +493,6 @@ Label all worker nodes as unsafe sysctl whilelisted.
 ```
 oc label machineconfigpool worker db2u-kubelet=sysctl
 ```
-
 
 # Watson Knowledge Catalog
 
