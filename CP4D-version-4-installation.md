@@ -543,6 +543,50 @@ There is also a lot of dependencies installed together with Watson Knowledge Cat
 > oc get IIS iis-cr -o jsonpath='{.status.iisStatus} {"\n"}'<br>
 > oc get UG ug-cr -o jsonpath='{.status.ugStatus} {"\n"}'<br>
 
+# Watson Studio
+
+## Create subscription
+
+https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=upgrade-creating-operator-subscriptions
+
+```
+cat <<EOF |oc apply -f -
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  annotations:
+  name: ibm-cpd-ws-operator-catalog-subscription
+  namespace: ibm-common-services
+spec:
+  channel: v2.0
+  installPlanApproval: Automatic
+  name: ibm-cpd-wsl
+  source: ibm-operator-catalog
+  sourceNamespace: openshift-marketplace
+EOF
+```
+
+Verify<br>
+
+> oc get sub -n ibm-common-services  ibm-cpd-ws-operator-catalog-subscription -o jsonpath='{.status.installedCSV} {"\n"}'
+```
+ibm-cpd-wsl.v2.0.1 
+```
+
+> oc get csv -n ibm-common-services  ibm-cpd-wsl.v2.0.1  -o jsonpath='{ .status.phase } : { .status.message} {"\n"}'
+```
+oc get csv -n ibm-common-services  ibm-cpd-wsl.v2.0.1  -o jsonpath='{ .status.phase } : { .status.message} {"\n"}'
+```
+
+> oc get deployments -n ibm-common-services  -l olm.owner="ibm-cpd-wsl.v2.0.1" -o jsonpath="{.items[0].status.availableReplicas} {'\n'}"<br>
+(number 1 is expected. Ff 0 returned wait until 1 is reported)
+```
+1
+```
+
+# Install Watson Studio
+Create Custom resource
+
 # HEE - Hadoop Execution Engine
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=ieeah-installing-execution-engine-apache-hadoop
