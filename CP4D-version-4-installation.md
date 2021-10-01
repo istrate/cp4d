@@ -602,6 +602,16 @@ spec:
   storageClass: managed-nfs-storage
 EOF
 ```
+## Monitor
+
+> oc get WS ws-cr -o jsonpath='{.status.wsStatus} {"\n"}'
+```
+Completed 
+```
+
+Open Cloud Pak for Data console and navigate to "Services Catalog". Watson Studio and Data Refinery tiles should be marked as *Enabled*.
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-07-27%2014-28-18.png)
+
 
 # HEE - Hadoop Execution Engine
 
