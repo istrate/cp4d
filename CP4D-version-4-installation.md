@@ -441,7 +441,7 @@ EOF
 
 Add SCC to service account<br>
 
-> oc adm policy add-scc-to-user wkc-iis-scc -n cpd-instace -z wkc-iis-sa<br>
+> oc adm policy add-scc-to-user wkc-iis-scc -n cpd-instance -z wkc-iis-sa<br>
 
 ## Watson Knowledge Catalog and DB2 prerequisites
 
