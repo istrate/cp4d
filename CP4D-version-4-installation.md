@@ -575,8 +575,10 @@ ibm-cpd-wsl.v2.0.1
 ```
 oc get csv -n ibm-common-services  ibm-cpd-wsl.v2.0.1  -o jsonpath='{ .status.phase } : { .status.message} {"\n"}'
 ```
+<br>
 
 > oc get deployments -n ibm-common-services  -l olm.owner="ibm-cpd-wsl.v2.0.1" -o jsonpath="{.items[0].status.availableReplicas} {'\n'}"<br>
+
 (number 1 is expected. If 0 returned wait until 1 is reported)
 ```
 1
