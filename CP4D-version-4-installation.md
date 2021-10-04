@@ -389,9 +389,7 @@ gNKvIwRDpbLk
 
 https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=catalog-installing-watson-knowledge
 <br>
-Important, practical observation: Watson Knowledge Catalog should be installed **before** Watson Studio. <br>
-<br>
-In a tiny environment, it was necessary to reduce *memory request* of *db2oltp-iis* from default 16 GB to 8 GB.
+In a tiny environment, it could be necessary to reduce *memory request* of *db2oltp-iis* from default 16 GB to 8 GB.
 
 ## Custom SCC
 
