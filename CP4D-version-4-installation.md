@@ -541,6 +541,37 @@ There is also a lot of dependencies installed together with Watson Knowledge Cat
 > oc get IIS iis-cr -o jsonpath='{.status.iisStatus} {"\n"}'<br>
 > oc get UG ug-cr -o jsonpath='{.status.ugStatus} {"\n"}'<br>
 
+## Troubleshooting
+
+If there is no activity after CR creation (wait 1-15 minutes at least), remove WKC operator pod (cpd-wkc-operator-...) in *ibm-common-services* project. In the operator log, ansible output is expected.
+```
+1004 13:43:32.643832       8 request.go:655] Throttling request took 1.026303076s, request: GET:https://172.30.0.1:443/apis/cloudcredential.openshift.io/v1?timeout=32s
+
+--------------------------- Ansible Task StdOut -------------------------------
+
+TASK [Include vars of digests.yaml] ********************************************
+[1;30mtask path: /opt/ansible/roles/wkc-core/deploy_wkc_core.yaml:19[0m
+
+-------------------------------------------------------------------------------
+
+--------------------------- Ansible Task StdOut -------------------------------
+
+TASK [Check license] ***********************************************************
+[1;30mtask path: /opt/ansible/roles/wkc-core/deploy_wkc_core.yaml:21[0m
+
+-------------------------------------------------------------------------------
+
+--------------------------- Ansible Task StdOut -------------------------------
+
+ TASK [Display the license accept value if defined] ********************************
+[0;32mok: [localhost] => {[0m
+[0;32m    "license": {[0m
+[0;32m        "accept": true,[0m
+[0;32m        "license": "Standard"[0m
+[0;32m    }[0m
+[0;32m}[0m
+```
+
 # Watson Studio
 
 ## Create subscription
