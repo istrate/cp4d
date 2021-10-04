@@ -543,7 +543,7 @@ There is also a lot of dependencies installed together with Watson Knowledge Cat
 
 ## Troubleshooting
 
-If there is no activity after CR creation (wait 1-15 minutes at least), remove WKC operator pod (cpd-wkc-operator-...) in *ibm-common-services* project. In the operator log, ansible output is expected.
+If there is no activity after CR creation (wait 10-15 minutes at least), remove WKC operator pod (cpd-wkc-operator-...) in *ibm-common-services* project. In the operator log, ansible output is expected.
 ```
 1004 13:43:32.643832       8 request.go:655] Throttling request took 1.026303076s, request: GET:https://172.30.0.1:443/apis/cloudcredential.openshift.io/v1?timeout=32s
 
