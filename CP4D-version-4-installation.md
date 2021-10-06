@@ -636,7 +636,7 @@ spec:
   license:
     accept: true
     license: Standard
-  version: 4.0.1
+  version: 4.0.2
   storageClass: managed-nfs-storage
 EOF
 ```
@@ -650,6 +650,11 @@ Completed
 Open Cloud Pak for Data console and navigate to "Services Catalog". Watson Studio and Data Refinery tiles should be marked as *Enabled*.
 ![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-07-27%2014-28-18.png)
 
+## Troubleshooting
+
+Pay attention to WS version, here 4.0.2. If the installation seems to be stalled, verify the latest version of WS available and modify accordingly.
+
+https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=iws-installing-watson-studio
 
 # HEE - Hadoop Execution Engine
 
