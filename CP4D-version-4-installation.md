@@ -608,7 +608,10 @@ ibm-cpd-wsl.v2.0.1
 
 > oc get csv -n ibm-common-services  ibm-cpd-wsl.v2.0.1  -o jsonpath='{ .status.phase } : { .status.message} {"\n"}'
 ```
-oc get csv -n ibm-common-services  ibm-cpd-wsl.v2.0.1  -o jsonpath='{ .status.phase } : { .status.message} {"\n"}'
+Installing : installing: waiting for deployment ibm-cpd-ws-operator to become ready: deployment "ibm-cpd-ws-operator" not available: Deployment does not have minimum availability. 
+```
+```
+Succeeded : install strategy completed with no errors 
 ```
 <br>
 
