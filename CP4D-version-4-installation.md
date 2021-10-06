@@ -17,6 +17,10 @@ Also: https://github.com/stanislawbartkowski/CP4D/wiki/OpenShift-NFS-provisioner
 * CP4D entitlement, API Key: https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=tasks-obtaining-your-entitlement-api-key
 * Authorized OpenShift *admin-cluster* user
 
+OpenShift compatibility.<br>
+<br>
+According to this page: https://www.ibm.com/docs/en/cloud-paks/1.0?topic=clusters-openshift-platform-compatibility only OC 4.6.X Is supported. I was successful with OC 4.7 but failed with the latest 4.8.
+
 # Test your API Key
 
 Validate the API Key before running the installation. As password, copy and paste your API Key.
