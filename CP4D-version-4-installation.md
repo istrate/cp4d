@@ -603,10 +603,10 @@ Verify<br>
 
 > oc get sub -n ibm-common-services  ibm-cpd-ws-operator-catalog-subscription -o jsonpath='{.status.installedCSV} {"\n"}'
 ```
-ibm-cpd-wsl.v2.0.1 
+ibm-cpd-wsl.v2.0.2 
 ```
 
-> oc get csv -n ibm-common-services  ibm-cpd-wsl.v2.0.1  -o jsonpath='{ .status.phase } : { .status.message} {"\n"}'
+> oc get csv -n ibm-common-services  ibm-cpd-wsl.v2.0.2  -o jsonpath='{ .status.phase } : { .status.message} {"\n"}'
 ```
 Installing : installing: waiting for deployment ibm-cpd-ws-operator to become ready: deployment "ibm-cpd-ws-operator" not available: Deployment does not have minimum availability. 
 ```
@@ -615,7 +615,7 @@ Succeeded : install strategy completed with no errors
 ```
 <br>
 
-> oc get deployments -n ibm-common-services  -l olm.owner="ibm-cpd-wsl.v2.0.1" -o jsonpath="{.items[0].status.availableReplicas} {'\n'}"<br>
+> oc get deployments -n ibm-common-services  -l olm.owner="ibm-cpd-wsl.v2.0.2" -o jsonpath="{.items[0].status.availableReplicas} {'\n'}"<br>
 
 (number 1 is expected. If 0 returned wait until 1 is reported)
 ```
