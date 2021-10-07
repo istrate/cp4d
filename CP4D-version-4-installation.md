@@ -348,7 +348,7 @@ spec:
     license: Standard
   storageClass: managed-nfs-storage
   zenCoreMetadbStorageClass: managed-nfs-storage
-  version: "4.0.1"
+  version: "4.0.2"
 EOF
 ```
 
@@ -521,7 +521,7 @@ metadata:
   name: wkc-cr
   namespace: cpd-instance
 spec:
-  version: 4.0.1
+  version: 4.0.2
   license:
     accept: true
     license: Standard
