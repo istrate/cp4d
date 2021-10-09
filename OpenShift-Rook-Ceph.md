@@ -40,6 +40,7 @@ OpenShift 4.6. Grant additional privileges.<br>
 > oc adm policy add-scc-to-user hostaccess -z rook-csi-rbd-provisioner-sa<br>
 oc adm policy add-scc-to-user hostmount-anyuid -z rook-csi-rbd-provisioner-sa<br>
 
+Create an operator<br>
 
 > oc create -f operator-openshift.yaml<br>
 
