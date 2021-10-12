@@ -35,10 +35,10 @@ Create an operator. Image is pulled from *docker.io*, make sure that *docker.io*
 
 OpenShift 4.6. Grant additional privileges.<br>
 
-> oc adm policy add-scc-to-user hostaccess -z rook-csi-cephfs-provisioner-sa<br>
-> oc adm policy add-scc-to-user hostmount-anyuid -z rook-csi-cephfs-provisioner-sa<br>
-> oc adm policy add-scc-to-user hostaccess -z rook-csi-rbd-provisioner-sa<br>
-oc adm policy add-scc-to-user hostmount-anyuid -z rook-csi-rbd-provisioner-sa<br>
+> oc adm policy add-scc-to-user hostaccess -z rook-csi-cephfs-provisioner-sa -n rook-ceph<br>
+> oc adm policy add-scc-to-user hostmount-anyuid -z rook-csi-cephfs-provisioner-sa -n rook-ceph<br>
+> oc adm policy add-scc-to-user hostaccess -z rook-csi-rbd-provisioner-sa -n rook-ceph<br>
+oc adm policy add-scc-to-user hostmount-anyuid -z rook-csi-rbd-provisioner-sa -n rook-ceph<br>
 
 Create an operator<br>
 
