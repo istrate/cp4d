@@ -38,7 +38,9 @@ OpenShift 4.6. Grant additional privileges.<br>
 > oc adm policy add-scc-to-user hostaccess -z rook-csi-cephfs-provisioner-sa -n rook-ceph<br>
 > oc adm policy add-scc-to-user hostmount-anyuid -z rook-csi-cephfs-provisioner-sa -n rook-ceph<br>
 > oc adm policy add-scc-to-user hostaccess -z rook-csi-rbd-provisioner-sa -n rook-ceph<br>
-oc adm policy add-scc-to-user hostmount-anyuid -z rook-csi-rbd-provisioner-sa -n rook-ceph<br>
+> oc adm policy add-scc-to-user hostmount-anyuid -z rook-csi-rbd-provisioner-sa -n rook-ceph<br>
+> oc adm policy add-scc-to-user privileged -z  rook-csi-cephfs-plugin-sa -n rook-ceph<br>
+> oc adm policy add-scc-to-user privileged -z rook-csi-rbd-plugin-sa -n rook-ceph<br>
 
 Create an operator<br>
 
