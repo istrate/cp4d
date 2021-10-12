@@ -213,14 +213,14 @@ rbd-pvc   Bound    pvc-f5239735-cd74-4269-86d1-c8b2ffbf9d9d   1Gi        RWO    
 ```
 ## Write to allocated space
 >oc create -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/rook-ceph/write-box.yaml<br>
-> oc get pods -l app=ceph-test<br>
+> oc get pods<br>
 ```
 NAME        READY   STATUS      RESTARTS   AGE
 write-box   0/1     Completed   0          38s
 ```
 ## Read content in allocated space
 > oc create -f https://raw.githubusercontent.com/stanislawbartkowski/CP4D/main/rook-ceph/read-box.yaml<br>
-> oc get pods -l app=ceph-test<br>
+> oc get pods<br>
 ```
 NAME        READY   STATUS      RESTARTS   AGE
 read-box    1/1     Running     0          24s
