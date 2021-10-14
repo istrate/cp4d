@@ -720,4 +720,30 @@ Completed
 ```
 ![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-08-02%2014-21-11.png)
 
+# Data Virtualization
 
+https://www.ibm.com/docs/en/cloud-paks/cp-data/4.0?topic=virtualization-installing-service
+<br>
+```
+cat <<EOF |oc apply -f -
+apiVersion: db2u.databases.ibm.com/v1
+kind: DvService
+metadata:
+  name: dv-service     
+  namespace: cpd-instance 
+spec:
+  license:
+    accept: true
+    license: Standard 
+  version: 1.7.2
+  size: "small"             
+EOF
+```
+
+Monitor the installation progress. It takes around 30 minutes to be completed.<br>
+> oc get DvService dv-service -o jsonpath="{.status.reconcileStatus}"
+```
+Completed
+```
+
+It installs the Data Virtualization deployment service only. Provisioning Data Virtualization instance can be done from Cloud Pak for Data console.
