@@ -746,4 +746,5 @@ Monitor the installation progress. It takes around 30 minutes to be completed.<b
 Completed
 ```
 
-It installs the Data Virtualization deployment service only. Provisioning Data Virtualization instance can be done from Cloud Pak for Data console.
+It installs the Data Virtualization deployment service only. Provisioning Data Virtualization instance can be done from Cloud Pak for Data console.<br>
+![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-10-14%2020-29-32.png)
