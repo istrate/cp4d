@@ -52,3 +52,10 @@ x
  2
 (3 rows)
 ```
+## Pods description
+
+| Pod | Volume | Description
+| --- | --- | --- | 
+| cluster1- | Ephemeral | Main PostgreSQL instance. The data is stored in ephemeral storage but is replicated to *cluster1-repl* pods. In case of failure, the *cluster1-* pod can be deleted. The pod is next automatically recreated and the database is restored from *cluster1-repl* pod.
+| cluster1-repl | PVC, default StorageClass | PostgreSQL replica. All changes in *cluster1-* instance is mirrored in replica.
+| cluster1-backrest-shared-repo- | PVC, default StorageClass | Backup/Restore instance. Additional DR feature running *pgbackrest* utility. The backup schedule is defined in *PerconaPGClusters* instance.
