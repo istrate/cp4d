@@ -144,7 +144,7 @@ Ncat: 0 bytes sent, 0 bytes received in 0.26 seconds.
 
 ### Connect externally to PostgreSQL
 
-Get password of *postgres* user.<br>
+Get password for *postgres* admin user.<br>
 
 > oc extract secret/cluster1-postgres-secret  --keys=password --to=-
 ```
