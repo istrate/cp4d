@@ -10,7 +10,7 @@ Create a separate project for PostgreSQL instance, for instance, *postgres*. The
 
 ## Deploy the operator
 
-It can be done only by *cluster-admin*.
+An operator can be deployed only by *cluster-admin*.
 
 
 
