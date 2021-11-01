@@ -135,7 +135,6 @@ backend ingress-postgresql
 
 Assuming that *kist* is the hostname of *haproxy* node.<br>
 
-```
 > nc -zv kist 5432
 ```
 Ncat: Version 7.70 ( https://nmap.org/ncat )
@@ -145,4 +144,21 @@ Ncat: 0 bytes sent, 0 bytes received in 0.26 seconds.
 
 ### Connect externally to PostgreSQL
 
-Get *
+Get password of *postgres* user.<br>
+
+> oc extract secret/cluster1-postgres-secret  --keys=password --to=-
+```
+# password
+gHUksg0rPQJlqDFQFvuqxppC
+```
+
+Connect as *postgres* user.<br>
+
+> psql -h kist -U postgres
+```
+Password for user postgres: 
+psql (13.4)
+Type "help" for help.
+
+postgres=# 
+```
