@@ -57,7 +57,7 @@ x
 | Pod | Description
 | --- | --- | 
 | cluster1-pgbouncer | Connection pooler and load balancer for PosgreSQL cluster. 
-| cluster1-<br>cluster1-repl | Three PostgreSQL instances running in Master/StandBy mode. One is active and two are standbys. Every transaction committed on the active instance is replicated on standbys. The application should avoid connecting to any of the containers directly because standby instances are running in read-only mode. Connection to *pgbouncer* is recommended.
+| cluster1-<br>cluster1-repl | Three PostgreSQL instances running in Master/StandBy mode. One is active and two are standbys. Every transaction committed on the active instance is replicated to standbys. The application should avoid connecting to any of the containers directly because standby instances are running in read-only mode. Connection to *pgbouncer* is recommended.
 | cluster1-backrest-shared-repo- | Backup/Restore instance. Additional DR feature running *pgbackrest* utility. The backup schedule is defined in *PerconaPGClusters* instance.
 
 ## External access
@@ -90,7 +90,7 @@ Name:                     postgresql
 Namespace:                postgresql
 Labels:                   <none>
 Annotations:              <none>
-Selector:                 name=cluster1
+Selector:                 name=cluster1-pgbouncer
 Type:                     NodePort
 IP Family Policy:         SingleStack
 IP Families:              IPv4
@@ -154,11 +154,21 @@ gHUksg0rPQJlqDFQFvuqxppC
 
 Connect as *postgres* user. Important: while connecting to *pgbouncer*, the database name should be specified and *-W* option to force password.<br>
 
-> psql -h kist -U postgres
+> psql -h kist -U postgres postgres
 ```
 Password for user postgres: 
 psql (13.4)
 Type "help" for help.
 
 postgres=# 
+```
+If connection as *postgres* user is rejected, logon to active PostgreSQL container, create a user and logon remotely as newly created user.
+<br>
+> psql -h kist -U queryuser querydb<br>
+```
+Password for user queryuser: 
+psql (13.4)
+Type "help" for help.
+
+querydb=> 
 ```
