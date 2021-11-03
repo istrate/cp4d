@@ -54,17 +54,17 @@ x
 ```
 ## Pods description
 
-| Pod | Volume | Description
-| --- | --- | --- | 
-| cluster1- | Ephemeral | Main PostgreSQL instance. The data is stored in ephemeral storage but is replicated to *cluster1-repl* pods. In case of failure, the *cluster1-* pod can be deleted. The pod is next automatically recreated and the database is restored from *cluster1-repl* pod.
-| cluster1-repl | PVC, default StorageClass | PostgreSQL replica. All changes in *cluster1-* instance is mirrored in replica.
-| cluster1-backrest-shared-repo- | PVC, default StorageClass | Backup/Restore instance. Additional DR feature running *pgbackrest* utility. The backup schedule is defined in *PerconaPGClusters* instance.
+| Pod | Description
+| --- | --- | 
+| cluster1-pgbouncer | Connection pooler and load balancer for PosgreSQL cluster. 
+| cluster1-<br>cluster1-repl | Three PostgreSQL instances running in Master/StandBy mode. One is active and two are standbys. Every transaction committed on the active instance is replicated on standbys. The application should avoid connecting to any of the containers directly because standby instances are running in read-only mode. Connection to *pgbouncer* is recommended.
+| cluster1-backrest-shared-repo- | Backup/Restore instance. Additional DR feature running *pgbackrest* utility. The backup schedule is defined in *PerconaPGClusters* instance.
 
 ## External access
 
 ### Create NodePort
 
-Replace *selector* with valid pod label (here *name=cluster*).<br>
+Replace *selector* with valid pod label (here *name=cluster1-pgbouncer*). The selector should point to *pgbouncer* container.<br>
 ```
 cat <<EOF |oc apply -f -
 apiVersion: v1
@@ -73,7 +73,7 @@ metadata:
   name: postgresql
 spec:
   selector:           
-    name: cluster1
+    name: cluster1-pgbouncer
   type: NodePort
   ports:
   - port: 5432
@@ -152,7 +152,7 @@ Get password for *postgres* admin user.<br>
 gHUksg0rPQJlqDFQFvuqxppC
 ```
 
-Connect as *postgres* user.<br>
+Connect as *postgres* user. Important: while connecting to *pgbouncer*, the database name should be specified and *-W* option to force password.<br>
 
 > psql -h kist -U postgres
 ```
