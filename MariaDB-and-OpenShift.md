@@ -43,8 +43,6 @@ Assign Persistent Volume.<br>
 
 > oc set volume deployment/mariadb --add  --claim-name=mariadb  --mount-path=/var/lib/mysql/data  -t pvc --claim-size=10G  
 
-> oc expose deployment/mariadb --name mariadbn --type=NodePort
-
 ## Verify the deployment
 
 > oc get pods
