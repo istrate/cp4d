@@ -605,6 +605,8 @@ In order to have a long-running pod, use *oc new-app*. <br>
 Immediately after executing this command, the pod will run into *CrashLoopBackOff* cycle. <br>
 
 Apply a command to the container template.<br>
+(pay attention to removed - before *image:*)<br>
+
 > oc edit deployment/ce8
 ```
  spec:
