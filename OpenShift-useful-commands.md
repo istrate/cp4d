@@ -733,4 +733,21 @@ Password:
 > oc set volume deployment/httpd --add --name=www  -m //var/www/html  -t pvc --claim-size=20G --claim-class=managed-nfs-storage<br>
 
 > oc expose svc httpd
+## Create PVC from command line
+```
+oc create -f - <<EOF
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: restapijdbc
+  annotations:
+    volume.beta.kubernetes.io/storage-class: "managed-nfs-storage"
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Mi
+EOF
+```
 
