@@ -368,7 +368,8 @@ spec:
 | skopeo copy docker://quay.io/stanislawbartkowski/php7-original docker-archive:orig.tgz | Copy docker-image as tgz
 | oc completion bash >oc_bash_comletion | Prepare
 | source oc_bash_comletion | Enable
-
+| oc set env deployment/restapijdbc -e URL="jdbc:postgresql://querydb:5432/querydb" | Set environment variable
+| oc set env deployment/restapijdbc --list | List all environment variables and values
 # Project template
 
 > oc adm create-bootstrap-project-template -o yaml > /tmp/project-template.yaml <br>
