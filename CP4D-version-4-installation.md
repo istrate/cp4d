@@ -348,7 +348,6 @@ spec:
     license: Standard
   storageClass: managed-nfs-storage
   zenCoreMetadbStorageClass: managed-nfs-storage
-  version: "4.0.2"
 EOF
 ```
 
