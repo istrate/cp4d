@@ -635,7 +635,6 @@ spec:
   license:
     accept: true
     license: Standard
-  version: 4.0.2
   storageClass: managed-nfs-storage
 EOF
 ```
