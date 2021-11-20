@@ -12,6 +12,10 @@ Minimal notebook<br>
 
 > oc new-app --template jupyter-notebook<br>
 
+Different notebook<br>
+
+> oc new-app --template jupyter-notebook  --param NOTEBOOK_IMAGE=jupyter/scipy-notebook:latest <br>
+
 Mind the password<br>
 ```
      * With parameters:
@@ -29,11 +33,6 @@ Expose NodePort if necessary<br>
 Enable JupyterLab interface<br>
 
 > oc set env dc/notebook JUPYTER_ENABLE_LAB=true<br>
-
-Different notebook
-<br>
-> oc new-app --template jupyter-notebook  --param NOTEBOOK_IMAGE=jupyter/scipy-notebook:latest <br>
-<br>
 
 Keep data on persistent storage<br>
 
