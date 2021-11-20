@@ -1,5 +1,9 @@
 # OpenShift - Jupyter Lab
 
+<br>
+(Warning: although the JupyterLab seems to be installed and accessed, I could not create a notebook. It seems that this image cannot work with any arbitrarily assigned user id, there is a permission problem accessing the Jupyter user home directory).<br>
+<br>
+
 How to quickly deploy JupyterLab on OpenShift using standard community operator.
 
 ![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-06-01%2000-36-22.png)
