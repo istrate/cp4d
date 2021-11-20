@@ -30,6 +30,11 @@ Enable JupyterLab interface<br>
 
 > oc set env dc/notebook JUPYTER_ENABLE_LAB=true<br>
 
+Different notebook
+<br>
+> oc new-app --template jupyter-notebook  --param NOTEBOOK_IMAGE=jupyter/scipy-notebook:latest <br>
+<br>
+
 Keep data on persistent storage<br>
 
 > oc set volume dc/notebook --add --type=pvc --claim-size=1Gi --claim-mode=ReadWriteOnce --claim-name mynotebook-data --name data --mount-path /home/jovyan
