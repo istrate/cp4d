@@ -70,7 +70,7 @@ OpenShift Container Storage. https://www.openshift.com/blog/introducing-openshif
 Rook-Ceph: use *rook-cephfs* (file system)
 
 More detailed storage assignment.<br>
-* data: root-ceph-block
+* data : root-ceph-block
 * meta data: rook-cephfs
 * backup: managed-nfs-storage
 
