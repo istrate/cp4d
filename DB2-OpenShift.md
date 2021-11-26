@@ -59,6 +59,8 @@ Another method is to make *ibm-registry* available across the OCP cluster as des
 
 # Storage options
 
+https://www.ibm.com/docs/en/db2/11.5?topic=db2-configuring-database-storage
+
 https://www.ibm.com/support/producthub/db2/docs/content/SSEPGG_11.5.0/com.ibm.db2.luw.db2u_openshift.doc/database-storage-aese.html
 
 There are several options available. For testing and evaluating, NFS storage is a good option. 
