@@ -2,13 +2,13 @@
 
 Containerized DB2 is available for RedHat OpenShift. The installation is easy and straightforward also in a tiny environment.
 
-# Enable DB2 Operator
+# Enable DB2 Operator, install Catalog Source
 
 Follow the instruction.<br>
 
 https://www.ibm.com/support/producthub/db2/docs/content/SSEPGG_11.5.0/com.ibm.db2.luw.db2u_openshift.doc/doc/t_db2u_install_op_catalog.html
 
-# Important
+Make sure that IBM Catalog Source is available.<br>
 
 ![](https://github.com/stanislawbartkowski/CP4D/blob/main/img/Zrzut%20ekranu%20z%202021-08-15%2001-39-58.png)
 
