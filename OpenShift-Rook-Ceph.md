@@ -33,7 +33,7 @@ Create an operator. Image is pulled from *docker.io*, make sure that *docker.io*
 > oc adm policy add-scc-to-user privileged -z rook-ceph-default -n rook-ceph<br>
 <br>
 
-OpenShift 4.6. Grant additional privileges.<br>
+OpenShift 4.6 only! Grant additional privileges.<br>
 
 > oc adm policy add-scc-to-user hostaccess -z rook-csi-cephfs-provisioner-sa -n rook-ceph<br>
 > oc adm policy add-scc-to-user hostmount-anyuid -z rook-csi-cephfs-provisioner-sa -n rook-ceph<br>
