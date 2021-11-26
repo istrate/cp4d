@@ -22,7 +22,7 @@ Create also additional *db2admin* user to install and manage DB2 cluster. After 
 
 > oc adm policy add-role-to-user admin db2admin -n db2<br>
 
-In OpenShift console, go to Operators->OperatorHub and search for "Db2". Click "IBM Db2" tile and wait a moment until the info page is displayed. Deploy *Entitlement Key* following the instruction attached to the operator. Make sure to pass all points: 1,2 and 3.
+In OpenShift console, go to Operators->OperatorHub and search for "Db2". Click "IBM Db2" tile and wait a moment until the info page is displayed. Deploy *Entitlement Key* following the instruction attached to the operator. Make sure to pass the points: 1,2 (or 3).
 ```
 ............
 To install the Db2U Operator using the command-line
