@@ -257,6 +257,7 @@ metadata:
 | oc create secret generic quayio --from-file .dockerconfigjson=${XDG_RUNTIME_DIR}/containers/auth.json --type kubernetes.io/dockerconfigjson | Create external registry temporary credentials valid until API access key expires
 | oc secrets link default quayio --for pull | Link to the default service account
 | oc secrets link builder quay-registry | Link sa builder to docker quay.io credentials
+| oc extract secret/admin-user-details -keys=initial_admin_password --to=- | Extract secret in plain text (dangerous)
 # Insecure registry
 
 Assuming a non-secure registry is used to pull docker images. Example, image registry *broth1.fyre.ibm.com:5000* <br>
