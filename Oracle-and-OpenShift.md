@@ -89,7 +89,7 @@ ORACLE PASSWORD FOR SYS, SYSTEM AND PDBADMIN: u3PHLYyImp
 ```
 The password is also stored in a secret *db19c-oracle-db*.
 
-> oc extract secret/admin-user-details^C-keys=initial_admin_password --to=-<br>
+> oc extract secret/db19c-oracle-db  --keys=oracle_pwd --to=-<br>
 
 
 Enter Oracle pod.<br>
