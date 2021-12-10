@@ -164,8 +164,20 @@ Version 19.3.0.0.0
 SQL> 
 
 ```
+# MAX_STRING_SIZE
 
+https://docs.oracle.com/en/database/oracle/oracle-database/18/spmsu/enabling-the-new-extended-data-type-capability.html#GUID-88FB7FFD-4392-49C6-843A-45B49F8A1821
 
+>  sqlplus sys as sysdba<br>
+```
+ALTER SESSION SET CONTAINER=ORCLPDB1;
+SHUTDOWN IMMEDIATE;
+STARTUP UPGRADE;
+ALTER SYSTEM SET max_string_size=extended SCOPE=SPFILE;
+START $ORACLE_HOME/rdbms/admin/utl32k.sql
+SHUTDOWN IMMEDIATE;
+STARTUP;
+```
 
 
 
