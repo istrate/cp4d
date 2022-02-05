@@ -38,8 +38,20 @@ Keep data on persistent storage<br>
 
 > oc set volume dc/notebook --add --type=pvc --claim-size=1Gi --claim-mode=ReadWriteOnce --claim-name mynotebook-data --name data --mount-path /home/jovyan
 
+# Another method 
 
+## Create service account
 
+> oc create sa uuid-saspark<br>
+> oc adm policy add-scc-to-user anyuid -z uuid-saspark<br>
+
+## Create notebook
+
+> oc new-app docker.io/jupyter/all-spark-notebook:latest --name spark  --param  JUPYTER_ENABLE_LAB=true<br>
+
+## Assign service account 
+
+> oc set serviceaccount deployment/spark uuid-saspark
 
 
 
