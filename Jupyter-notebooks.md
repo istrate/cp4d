@@ -53,5 +53,14 @@ Keep data on persistent storage<br>
 
 > oc set serviceaccount deployment/spark uuid-saspark
 
+## Expose NodePort
+
+> oc expose deployment  spark  --port=8888 --type NodePort --name=sparkn<br>
+
+> oc get svc<br>
+```
+spark      ClusterIP   172.30.54.0      <none>        8888/TCP         2m7s
+sparkn     NodePort    172.30.205.75    <none>        8888:32676/TCP   9s
+```
 
 
