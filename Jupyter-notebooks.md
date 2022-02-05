@@ -66,3 +66,38 @@ sparkn     NodePort    172.30.205.75    <none>        8888:32676/TCP   9s
 ## Assign persistent storage
 
 > oc set volume deployment/spark --add --type=pvc --claim-size=1Gi --claim-mode=ReadWriteOnce --claim-name myspark -data --name data --mount-path /home/jovyan
+
+## Get token
+
+> oc get pods<br>
+```
+NAME                     READY   STATUS              RESTARTS   AGE
+spark-67f98fbb4b-g7fkt   1/1     Running             0          9m18s
+```
+
+> oc logs spark-67f98fbb4b-g7fkt<br>
+```
+.............
+[I 2022-02-05 21:46:07.301 ServerApp] ipyparallel | extension was successfully loaded.
+[I 2022-02-05 21:46:07.302 LabApp] JupyterLab extension loaded from /opt/conda/lib/python3.9/site-packages/jupyterlab
+[I 2022-02-05 21:46:07.302 LabApp] JupyterLab application directory is /opt/conda/share/jupyter/lab
+[I 2022-02-05 21:46:07.307 ServerApp] jupyterlab | extension was successfully loaded.
+[I 2022-02-05 21:46:07.307 ServerApp] Serving notebooks from local directory: /home/jovyan
+[I 2022-02-05 21:46:07.307 ServerApp] Jupyter Server 1.13.4 is running at:
+[I 2022-02-05 21:46:07.307 ServerApp] http://spark-67f98fbb4b-g7fkt:8888/lab?token=22c0e9280508426267c098a4fe9d0eecb2f1b1c964f4494b
+[I 2022-02-05 21:46:07.307 ServerApp]  or http://127.0.0.1:8888/lab?token=22c0e9280508426267c098a4fe9d0eecb2f1b1c964f4494b
+[I 2022-02-05 21:46:07.307 ServerApp] Use Control-C to stop this server and shut down all kernels (twice to skip confirmation).
+[C 2022-02-05 21:46:07.311 ServerApp] 
+    
+    To access the server, open this file in a browser:
+        file:///home/jovyan/.local/share/jupyter/runtime/jpserver-8-open.html
+    Or copy and paste one of these URLs:
+        http://spark-67f98fbb4b-g7fkt:8888/lab?token=22c0e9280508426267c098a4fe9d0eecb2f1b1c964f4494b
+     or http://127.0.0.1:8888/lab?token=22c0e9280508426267c098a4fe9d0eecb2f1b1c964f4494b
+
+```
+## Run notebook
+
+(assuming proxy node *kist* and NodePort mapped to *8889*)
+
+http://kist:8889/lab?token=22c0e9280508426267c098a4fe9d0eecb2f1b1c964f4494b
