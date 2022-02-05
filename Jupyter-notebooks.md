@@ -63,4 +63,6 @@ spark      ClusterIP   172.30.54.0      <none>        8888/TCP         2m7s
 sparkn     NodePort    172.30.205.75    <none>        8888:32676/TCP   9s
 ```
 
+## Assign persistent storage
 
+> oc set volume deployment/spark --add --type=pvc --claim-size=1Gi --claim-mode=ReadWriteOnce --claim-name myspark -data --name data --mount-path /home/jovyan
