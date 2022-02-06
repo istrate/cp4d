@@ -14,7 +14,7 @@ Important: review the script contents before running, the disk cleansing is irre
 
 # Download ceph-rook repository
 > git clone https://github.com/rook/rook.git<br>
-> cd rook/cluster/examples/kubernetes/ceph<br>
+> cd rook/deploy/examples<br>
 
 Log in to OpenShift cluster using cluster-admin credentials.
 
