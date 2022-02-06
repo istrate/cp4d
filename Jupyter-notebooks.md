@@ -65,7 +65,7 @@ sparkn     NodePort    172.30.205.75    <none>        8888:32676/TCP   9s
 
 ## Assign persistent storage
 
-> oc set volume deployment/spark --add --type=pvc --claim-size=1Gi --claim-mode=ReadWriteOnce --claim-name myspark -data --name data --mount-path /home/jovyan
+> oc set volume deployment/spark --add --type=pvc --claim-size=1Gi --claim-mode=ReadWriteOnce --claim-name myspark --name data --mount-path /home/jovyan
 
 ## Get token
 
