@@ -98,6 +98,8 @@ spark-67f98fbb4b-g7fkt   1/1     Running             0          9m18s
 ```
 ## Run notebook
 
-(assuming proxy node *kist* and NodePort mapped to *8889*)
+(assuming proxy node *kist* and NodePort mapped to *8889*)<br>
+Important: the token is regenerated every time the pod is restarted.
+
 
 http://kist:8889/lab?token=22c0e9280508426267c098a4fe9d0eecb2f1b1c964f4494b
