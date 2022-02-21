@@ -754,4 +754,35 @@ spec:
       storage: 1Mi
 EOF
 ```
+## ConfigMaps
+### Create
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: customers
+data:
+  key_1: awesomecustomer
+  url_1: https://awesome-store.myshopify.com
+  key_2: coolcustomer
+  url_2: https://your-cool-store.myshopify.com
+  key_3: splendidcustomer
+  url_3: https://your-splendid-store.myshopify.com
+```
+### Consume as env variables
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: read-box
+spec:
+  containers:
+  - name: read-box
+    image:  docker.io/busybox
+    command: ["sleep","60000"]
+    envFrom:
+    - configMapRef:
+       name: customers
 
+
+```
