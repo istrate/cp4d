@@ -783,6 +783,23 @@ spec:
     envFrom:
     - configMapRef:
        name: customers
-
-
+```
+### Consume as volume
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: read-box
+spec:
+  containers:
+  - name: read-box
+    image:  docker.io/busybox
+    command: ["sleep","60000"]
+    volumeMounts:
+       - name: customer-volume
+         mountPath: /etc/customers
+  volumes:
+    - name : customer-volume
+      configMap:
+        name: customers
 ```
